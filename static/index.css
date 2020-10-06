@@ -1,0 +1,89 @@
+
+
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.node > circle {
+  stroke-width: 4px;
+}
+
+.node > text {
+  pointer-events: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.link, .drag_link {
+  stroke-width: 6px;
+  stroke: gray;
+  opacity: 0.5;
+}
+
+.drag_link {
+  stroke-linecap: round;
+}
+
+.selected > circle {
+  stroke-width: 8px;
+}
+
+.selected.link {
+  stroke-width: 14px;
+}
+
+.overlay {
+  fill: transparent;
+}
+
+.toolbar {
+  position: absolute;
+  top: 12px;
+  left: 480px;
+  width: 240px;
+  margin-left: -120px;
+  text-align: center;
+}
+
+.tool:not(:last-child) {
+  margin-right: 10px;
+}
+
+.tool {
+  fill: #a3a4c3;
+  cursor: pointer;
+}
+.tool.active {
+  fill: #b52d0c;
+}
+
+.library {
+  border: 2px solid #a3a4c3;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 6px;
+  margin-top: 10px;
+}
+.library svg {
+  cursor: pointer;
+}
+.library svg:not(:last-child) {
+  padding-right: 6px;
+}
