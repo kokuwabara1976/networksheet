@@ -1,4 +1,6 @@
-from flask import Flask, request, redirect, render_template, url_for, jsonify
+from flask import Flask, request, redirect, render_template, url_for, jsonify, session
+
+# https://bl.ocks.org/nitaku/7512487
 
 app = Flask(__name__)
 app.secret_key = "aVerySecretKey"
@@ -8,35 +10,65 @@ PORT = 8081
 def landing():
     return render_template('landing.html')
 
+@app.route("/who", methods=['GET', 'POST'])
+def who():
 
-@app.route("/network")
+	if request.method == 'POST':
+
+		nodes = []
+
+		who = request.form
+
+		for headline in ['technical', 'insider', 'political', 'guidance', 'inspiration', 'friendship']:
+		    names = [name for category, name in who.lists() if category == headline]
+
+		    if len(names) == 0:
+		    	continue
+
+		    names = [name for name in names[0] if name != '']
+
+		    for name in names:
+		    	nodes.append(
+			    	{
+			    	 "id": name,
+			    	 "x": 469,
+			    	 "y": 410,
+			    	 "type": headline,
+			    	 }
+		    	 )
+
+		session['nodes'] = nodes
+
+		return render_template('how.html', nodes=session['nodes'])
+
+
+	return render_template('who.html')
+
+
+@app.route("/how", methods=['GET', 'POST'])
+def how():
+
+	if request.method == 'POST':
+
+		session['how'] = request.form
+
+		return render_template('network.html')
+
+	return render_template('how.html')
+
+
+@app.route("/network", methods=['GET', 'POST'])
 def network():
+
     return render_template('network.html')
 
+
+#### Internal Endpoints
 
 @app.route("/getnodes")
 def getnodes():
 
-	nodes = [
-      {
-        "id": 'MM',
-        "x": 469,
-        "y": 410,
-        "type": 'X'
-      },
-      {
-        "id": 'RS',
-        "x": 480,
-        "y": 450,
-        "type": 'X'
-      },
-      {
-        "id": 'TM',
-        "x": 400,
-        "y": 400,
-        "type": 'X'
-      }
-    ]
+	nodes = session['nodes']
 
 	return jsonify(nodes)
 
