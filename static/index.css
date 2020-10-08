@@ -2,7 +2,7 @@
 
 html, body {
     height: 100%;
-    overflow: hidden; /* MM */
+/*    overflow: hidden;  MM 
     margin: 0;  /* MM */
 }
 
