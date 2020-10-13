@@ -348,13 +348,15 @@ window.main = (function() {
 
     // var data = [2, 4, 8, 10];
 
-    // var svg2 = d3.select("svg"),
-    //     width = 200,
-    //     height = 200,
-    //     radius = 100,
-    //     g2 = svg2.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+    // var svg = d3.select("svg"),
+    //     width = svg.attr("width"),
+    //     height = svg.attr("height"),
+    //     radius = Math.min(width, height) / 2,
+    //     g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-    // var color = d3.scale.ordinal(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
+    // var color = d3.scale.category20()
+    // // d3.scale.ordinal()
+    //             // .domain(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
 
     // // Generate the pie
     // var pie = d3.layout.pie();
@@ -362,10 +364,10 @@ window.main = (function() {
     // // Generate the arcs
     // var arc = d3.svg.arc()
     //             .innerRadius(0)
-    //             .outerRadius(radius);
+    //             .outerRadius(30);
 
     // //Generate groups
-    // var arcs = g2.selectAll("arc")
+    // var arcs = g.selectAll("arc")
     //             .data(pie(data))
     //             .enter()
     //             .append("g")
@@ -378,12 +380,18 @@ window.main = (function() {
     //     })
     //     .attr("d", arc);
 
-
-    new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) {
+    new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) { //18
       return global.colorify(d.type);
     }).attr('fill', function(d) {
       return d3.hcl(global.colorify(d.type)).brighter(3);
     });
+
+
+    // new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) { //18
+    //   return global.colorify(d.type);
+    // }).attr('fill', function(d) {
+    //   return d3.hcl(global.colorify(d.type)).brighter(3);
+    // });
     /* draw the label
     */
     new_nodes.append('text').text(function(d) {
