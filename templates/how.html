@@ -8,203 +8,251 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-  <title>Hello, world!</title>
+  <title>Network Sheet</title>
 </head>
 <body>
 
   <form action="how" method="POST" role="form" class="form-horizontal">
 
-      {% for node in nodes %}
 
-      <br>
 
-      <br>
+    <br>
+
+    <br>
+    <div class="container">
+
+      <!-- Question 1 -->
+      <div class="jumbotron">
+        <div class="jumbotron-content">
+          <h1 class="display-7">}How close are you?</h1>
+          
+          {% for node in nodes %}
+          <div class="border-top my-3"></div>
+          {{ node.id }}
+          <div class="border-top my-3"></div>
+
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio1" value="Rather distant">
+              <label class="form-check-label" for="inlineRadio1">Rather distant</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio2" value="Somewhat close">
+              <label class="form-check-label" for="inlineRadio2">Somewhat close</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio3" value="Rather close">
+              <label class="form-check-label" for="inlineRadio3">Rather close</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio4" value="Very close">
+              <label class="form-check-label" for="inlineRadio4">Very close</label>
+            </div>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+      <!-- End Question 1 -->
+
+      <!-- Question 2 -->
+
+      <div class="jumbotron">
+        <div class="jumbotron-content">
+          <h1 class="display-7">How often do you talk to them at work?  </h1>
+          
+          {% for node in nodes %}
+          <div class="border-top my-3"></div>
+          {{ node.id }}    
+          <div class="border-top my-3"></div>
+
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio1" value="Never">
+              <label class="form-check-label" for="inlineRadio1">Never</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio2" value="1-2 times a year">
+              <label class="form-check-label" for="inlineRadio2">1-2 times a year</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio3" value="Every few months">
+              <label class="form-check-label" for="inlineRadio3">Every few months</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio4" value="Every month">
+              <label class="form-check-label" for="inlineRadio4">Every month</label>
+            </div>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+      <!-- End Question 2 -->
+
+      <!-- Question 3 -->
+      <div class="jumbotron">
+        <div class="jumbotron-content">
+          <h1 class="display-7">How often do you talk to them outside of work?</h1>
+          {% for node in nodes %}
+          <div class="border-top my-3"></div>
+          {{ node.id }}    
+          <div class="border-top my-3"></div>
+
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio1" value="Never">
+              <label class="form-check-label" for="inlineRadio1">Never</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio2" value="1-2 times a year">
+              <label class="form-check-label" for="inlineRadio2">1-2 times a year</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio3" value="Every few months">
+              <label class="form-check-label" for="inlineRadio3">Every few months</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio4" value="Every month">
+              <label class="form-check-label" for="inlineRadio4">Every month</label>
+            </div>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+      <!-- End Question 3 -->
+
+
+
+      <!-- Question 4 -->
+
+      <div class="jumbotron">
+        <div class="jumbotron-content">
+          <h1 class="display-7">How often do they come to you for help, feedback, or a chat?</h1>
+          {% for node in nodes %}
+          <div class="border-top my-3"></div>
+          {{ node.id }}    
+          <div class="border-top my-3"></div>
+
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio1" value="Never">
+              <label class="form-check-label" for="inlineRadio1">Never</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio2" value="1-2 times a year">
+              <label class="form-check-label" for="inlineRadio2">1-2 times a year</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio3" value="Every few months">
+              <label class="form-check-label" for="inlineRadio3">Every few months</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio4" value="Every month">
+              <label class="form-check-label" for="inlineRadio4">Every month</label>
+            </div>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+      <!-- End Question 4 -->
+
+
+      <!-- Question 5 -->
+
+      <div class="jumbotron">
+        <div class="jumbotron-content">
+          <h1 class="display-7">Do you know anything about their...?</h1>
+          {% for node in nodes %}
+          <div class="border-top my-3"></div>
+          {{ node.id }}    
+          <div class="border-top my-3"></div>
+
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio1" value="Birthday">
+              <label class="form-check-label" for="inlineCheckbox1">Birthday</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio2" value="Family members">
+              <label class="form-check-label" for="inlineCheckbox2">Family members</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio3" value="Educational background">
+              <label class="form-check-label" for="inlineCheckbox3">Educational background</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio4" value="Interests or hobbies">
+              <label class="form-check-label" for="inlineCheckbox4">Interests or hobbies</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio4" value="Favorite Food">
+              <label class="form-check-label" for="inlineCheckbox5">Favorite Food</label>
+            </div>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+      <!-- End Question 5 -->
+
+
+
+      <!-- Question 6 -->
+
+      <div class="jumbotron">
+        <div class="jumbotron-content">
+          <h1 class="display-7">How similar are you in...?</h1>
+          {% for node in nodes %}
+          <div class="border-top my-3"></div>
+          {{ node.id }}    
+          <div class="border-top my-3"></div>
+
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio1" value="Gender">
+              <label class="form-check-label" for="inlineCheckbox1">Gender</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio2" value="Age">
+              <label class="form-check-label" for="inlineCheckbox2">Age</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio3" value="Country or culture of origin">
+              <label class="form-check-label" for="inlineCheckbox3">Country or culture of origin</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio4" value="Professional Interests">
+              <label class="form-check-label" for="inlineCheckbox4">Professional Interests</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio4" value="Social or political attitudes">
+              <label class="form-check-label" for="inlineCheckbox5">Social or political attitudes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio4" value="Personality">
+              <label class="form-check-label" for="inlineCheckbox5">Personality</label>
+            </div>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+      <!-- End Question 6 -->
+
       <div class="container">
-        <div class="jumbotron">
-          <div class="jumbotron-content">
-            <h1 class="display-7">{{ node.id }}</h1>
-            <!-- Question 1 -->
-            <div class="border-top my-3"></div>
-            How close are you?           
-            <div class="border-top my-3"></div>
-
-            <div class="form-group">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio1" value="Rather distant">
-                <label class="form-check-label" for="inlineRadio1">Rather distant</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio2" value="Somewhat close">
-                <label class="form-check-label" for="inlineRadio2">Somewhat close</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio3" value="Rather close">
-                <label class="form-check-label" for="inlineRadio3">Rather close</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio4" value="Very close">
-                <label class="form-check-label" for="inlineRadio4">Very close</label>
-              </div>
-            </div>
-            <!-- End Question 1 -->
-
-            <!-- Question 2 -->
-            <div class="border-top my-3"></div>
-            How often do you talk to them at work?       
-            <div class="border-top my-3"></div>
-
-            <div class="form-group">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio1" value="Never">
-                <label class="form-check-label" for="inlineRadio1">Never</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio2" value="1-2 times a year">
-                <label class="form-check-label" for="inlineRadio2">1-2 times a year</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio3" value="Every few months">
-                <label class="form-check-label" for="inlineRadio3">Every few months</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio4" value="Every month">
-                <label class="form-check-label" for="inlineRadio4">Every month</label>
-              </div>
-            </div>
-            <!-- End Question 2 -->
-
-            <!-- Question 3 -->
-            <div class="border-top my-3"></div>
-            How often do you talk to them outside of work?         
-            <div class="border-top my-3"></div>
-
-            <div class="form-group">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio1" value="Never">
-                <label class="form-check-label" for="inlineRadio1">Never</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio2" value="1-2 times a year">
-                <label class="form-check-label" for="inlineRadio2">1-2 times a year</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio3" value="Every few months">
-                <label class="form-check-label" for="inlineRadio3">Every few months</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio4" value="Every month">
-                <label class="form-check-label" for="inlineRadio4">Every month</label>
-              </div>
-            </div>
-            <!-- End Question 3 -->
-
-            <!-- Question 4 -->
-            <div class="border-top my-3"></div>
-            How often do they come to you for help, feedback, or a chat?         
-            <div class="border-top my-3"></div>
-
-            <div class="form-group">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio1" value="Never">
-                <label class="form-check-label" for="inlineRadio1">Never</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio2" value="1-2 times a year">
-                <label class="form-check-label" for="inlineRadio2">1-2 times a year</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio3" value="Every few months">
-                <label class="form-check-label" for="inlineRadio3">Every few months</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio4" value="Every month">
-                <label class="form-check-label" for="inlineRadio4">Every month</label>
-              </div>
-            </div>
-            <!-- End Question 4 -->
-
-            <!-- Question 5 -->
-            <div class="border-top my-3"></div>
-            Do you know anything about their…?         
-            <div class="border-top my-3"></div>
-
-            <div class="form-group">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio1" value="Birthday">
-                <label class="form-check-label" for="inlineCheckbox1">Birthday</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio2" value="Family members">
-                <label class="form-check-label" for="inlineCheckbox2">Family members</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio3" value="Educational background">
-                <label class="form-check-label" for="inlineCheckbox3">Educational background</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio4" value="Interests or hobbies">
-                <label class="form-check-label" for="inlineCheckbox4">Interests or hobbies</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio4" value="Favorite Food">
-                <label class="form-check-label" for="inlineCheckbox5">Favorite Food</label>
-              </div>
-            </div>
-            <!-- End Question 5 -->
-
-
-           <!-- Question 6 -->
-            <div class="border-top my-3"></div>
-            How similar are you in...?         
-            <div class="border-top my-3"></div>
-
-            <div class="form-group">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio1" value="Gender">
-                <label class="form-check-label" for="inlineCheckbox1">Gender</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio2" value="Age">
-                <label class="form-check-label" for="inlineCheckbox2">Age</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio3" value="Country or culture of origin">
-                <label class="form-check-label" for="inlineCheckbox3">Country or culture of origin</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio4" value="Professional Interests">
-                <label class="form-check-label" for="inlineCheckbox4">Professional Interests</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio4" value="Social or political attitudes">
-                <label class="form-check-label" for="inlineCheckbox5">Social or political attitudes</label>
-              </div>
-             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio4" value="Personality">
-                <label class="form-check-label" for="inlineCheckbox5">Personality</label>
-              </div>
-            </div>
-            <!-- End Question 6 -->
-
-
+        <div class="row">
+          <div class="col text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </div>
       </div>
 
-      {% endfor %}
+    </form>
 
-
-
-
-      <div class="container">
-  <div class="row">
-    <div class="col text-center">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
   </div>
-</div>
-
-  </form>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -216,7 +264,7 @@
 
 <!-- Footer -->
 <footer>
-<br><br>
+  <br><br>
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">© 2020 Copyright:
     <a href="">Ko</a>

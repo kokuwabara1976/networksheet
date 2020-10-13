@@ -1,6 +1,30 @@
+
+function postNodes() {
+
+  var nodes = document.getElementsByClassName("node");
+  var links = document.getElementsByClassName("link");
+
+    fetch('/postnodes', {
+    method: "POST",
+    body: JSON.stringify(nodes),
+    credentials: 'same-origin'
+    });
+
+    fetch('/postnodes', {
+    method: "POST",
+    body: JSON.stringify(links),
+    credentials: 'same-origin'
+    });
+    // .then(result => {
+    //     // do something with the result
+    //     console.log("Completed with result:", result);
+    // });
+  };
+
+
 (function() {
   var drag_add_link, global, graph, height, update, width,
-    __indexOf = Array.prototype.indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+  __indexOf = Array.prototype.indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   width = 1000;
 
@@ -28,23 +52,23 @@
 //     });
 
 
-  async function fetchNodes() {
-      try {
-          const response = await fetch('/getnodes',  {
-                method: 'GET',
-                credentials: 'same-origin'
-            });
+async function fetchNodes() {
+  try {
+    const response = await fetch('/getnodes',  {
+      method: 'GET',
+      credentials: 'same-origin'
+    });
 
-          const nodes = await response.text();
+    const nodes = await response.text();
 
-          return JSON.parse(nodes);
-          
-      } catch (error) {
-          console.error(error);
-      }
-  };  
+    return JSON.parse(nodes);
 
-  fetchNodes().then( function (nodes) { 
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+fetchNodes().then( function (nodes) { 
 
   graph = {
     nodes: nodes, //fetchNodes(),
@@ -53,8 +77,8 @@
       //   source: 'M',
       //   target: 'K'
       // }
-    ],
-    objectify: (function() {
+      ],
+      objectify: (function() {
       /* resolve node IDs (not optimized at all!)
       */
       var l, n, _i, _len, _ref, _results;
@@ -84,7 +108,7 @@
       }
       return _results;
     }),
-    remove: (function(condemned) {
+      remove: (function(condemned) {
       /* remove the given node or link from the graph, also deleting dangling links if a node is removed
       */      if (__indexOf.call(graph.nodes, condemned) >= 0) {
         graph.nodes = graph.nodes.filter(function(n) {
@@ -99,19 +123,19 @@
         });
       }
     }),
-    last_index: 0,
-    add_node: (function(type) {
-      var n;
-      n = {
-        id: graph.last_index++,
-        x: width / 2,
-        y: height / 2,
-        type: type
-      };
-      graph.nodes.push(n);
-      return n;
-    }),
-    add_link: (function(source, target) {
+      last_index: 0,
+      add_node: (function(type) {
+        var n;
+        n = {
+          id: graph.last_index++,
+          x: width / 2,
+          y: height / 2,
+          type: type
+        };
+        graph.nodes.push(n);
+        return n;
+      }),
+      add_link: (function(source, target) {
       /* avoid links to self
       */
       var l, link, _i, _len, _ref;
@@ -130,15 +154,15 @@
       graph.links.push(l);
       return l;
     })
-  };
+    };
 
-   graph.objectify();
+    graph.objectify();
 
   });
 
-  
 
-  window.main = (function() {
+
+window.main = (function() {
     /* create the SVG
     */
     var container, library, svg, toolbar;
@@ -152,11 +176,17 @@
     //   return global.vis.attr('transform', "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
     // })));
     global.vis = container.append('g');
+    global.vis.append('image').attr('xlink:href',"/static/img/network_background.png")
+    // .append('rect')
     /* create a rectangular overlay to catch events
     */
     /* WARNING rect size is huge but not infinite. this is a dirty hack
     */
-    global.vis.append('rect').attr('class', 'overlay').attr('x', -500000).attr('y', -500000).attr('width', 1000000).attr('height', 1000000).on('click', (function(d) {
+     //
+    // global.vis.append('rect').attr('class', 'overlay').attr('x', -500000).attr('y', -500000).attr('width', 1000000).attr('height', 1000000).on('click', (function(d) {
+    // global.vis.append('rect').attr('x', -2000).attr('y', -2000).attr('width', 2000).attr('height', 2000).style("fill", "rgb(12,240,233)");
+    global.vis.append('rect').attr('class', 'overlay').attr('x', -2000).attr('y', -2000).attr('width', 2000).attr('height', 2000).on('click', (function(d) {
+
       /* SELECTION
       */      global.selection = null;
       d3.selectAll('.node').classed('selected', false);
@@ -199,6 +229,7 @@
       }
     });
     update();
+
     /* TOOLBAR
     */
     toolbar = $("<div class='toolbar'></div>");
@@ -210,6 +241,8 @@
     toolbar.append(library);
     ['Technical', 'Insider', 'Political', 'Guidance', 'Inspiration', 'Friendship'].forEach(function(type) {
       var new_btn;
+      // colouring the nodes
+      // new_btn = $("<svg width='42' height='42'>\n    <g class='node'>\n        <circle\n            cx='21'\n            cy='21'\n            r='18'\n            stroke='" + (global.colorify(type)) + "'\n            fill='" + (d3.hcl(global.colorify(type)).brighter(3)) + "'\n        />\n    </g>\n</svg>");
       new_btn = $("<svg width='42' height='42'>\n    <g class='node'>\n        <circle\n            cx='21'\n            cy='21'\n            r='18'\n            stroke='" + (global.colorify(type)) + "'\n            fill='" + (d3.hcl(global.colorify(type)).brighter(3)) + "'\n        />\n    </g>\n</svg>");
       new_btn.bind('click', function() {
         graph.add_node(type);
@@ -266,6 +299,7 @@
     });
   });
 
+
   update = function() {
     /* update the layout
     */
@@ -282,6 +316,7 @@
     nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
       return d.id;
     });
+
     new_nodes = nodes.enter().append('g').attr('class', 'node').on('click', (function(d) {
       /* SELECTION
       */      global.selection = d;
@@ -309,6 +344,41 @@
     } else {
       new_nodes.call(global.drag);
     }
+
+
+    // var data = [2, 4, 8, 10];
+
+    // var svg2 = d3.select("svg"),
+    //     width = 200,
+    //     height = 200,
+    //     radius = 100,
+    //     g2 = svg2.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    // var color = d3.scale.ordinal(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
+
+    // // Generate the pie
+    // var pie = d3.layout.pie();
+
+    // // Generate the arcs
+    // var arc = d3.svg.arc()
+    //             .innerRadius(0)
+    //             .outerRadius(radius);
+
+    // //Generate groups
+    // var arcs = g2.selectAll("arc")
+    //             .data(pie(data))
+    //             .enter()
+    //             .append("g")
+    //             .attr("class", "arc")
+
+    // //Draw arc paths
+    // arcs.append("path")
+    //     .attr("fill", function(d, i) {
+    //         return color(i);
+    //     })
+    //     .attr("d", arc);
+
+
     new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) {
       return global.colorify(d.type);
     }).attr('fill', function(d) {
@@ -321,6 +391,7 @@
     }).attr('dy', '0.35em').attr('fill', function(d) {
       return global.colorify(d.type);
     });
+
     return nodes.exit().remove();
   };
 

@@ -72,6 +72,13 @@ def getnodes():
 
 	return jsonify(nodes)
 
+@app.route("/postnodes", methods=['GET','POST'])
+def postnodes():
+
+	print(request.data)
+
+	return redirect(url_for("postnodes"))
+
 
 if __name__ == "__main__":
     app.run(debug=False, port=PORT)
