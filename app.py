@@ -19,14 +19,10 @@ def who():
 
 		who = request.form
 
-		import pdb; pdb.set_trace()
-
 		id_number = 1
 
 		for headline in ['technical', 'insider', 'political', 'guidance', 'inspiration', 'friendship']:
 		    names = [name for category, name in who.lists() if category == headline]
-
-		    # import pdb; pdb.set_trace()
 
 		    if len(names) == 0:
 		    	continue
