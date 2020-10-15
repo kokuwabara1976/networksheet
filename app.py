@@ -1,6 +1,5 @@
 from flask import Flask, request, redirect, render_template, url_for, jsonify, session
 import io
-import matplotlib.pyplot as plt
 import pandas as pd
 
 # https://bl.ocks.org/nitaku/7512487
