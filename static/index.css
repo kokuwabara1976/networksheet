@@ -35,8 +35,8 @@ body {
 
 .link, .drag_link {
   stroke-width: 6px;
-  stroke: gray;
-  opacity: 0.5;
+  stroke: black;
+  /*opacity: 0.5;*/
 }
 
 .drag_link {
