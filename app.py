@@ -1,4 +1,7 @@
 from flask import Flask, request, redirect, render_template, url_for, jsonify, session
+import io
+import matplotlib.pyplot as plt
+import pandas as pd
 
 # https://bl.ocks.org/nitaku/7512487
 
@@ -19,28 +22,27 @@ def who():
 
 		who = request.form
 
-		id_number = 1
+		df = pd.DataFrame({})
 
 		for headline in ['technical', 'insider', 'political', 'guidance', 'inspiration', 'friendship']:
-		    names = [name for category, name in who.lists() if category == headline]
+		    _df = pd.DataFrame({'names': who.getlist(headline), 'category': headline})
+		    df = pd.concat([df, _df])
 
-		    if len(names) == 0:
-		    	continue
+		df = df[df['names'] != '']
+		df = df.reset_index(drop=True).groupby('names')['category'].agg(lambda x: str(list(x)))
 
-		    names = [name for name in names[0] if name != '']
+		for name,categories in df.items():
 
-		    for name in names:
-		    	nodes.append(
+			nodes.append(
 			    	{
 			    	 "id": name,
 			    	 "name": name,
 			    	 "x": 469,
 			    	 "y": 410,
-			    	 "type": headline,
+			    	 "type": categories,
+			    	 "img": "/static/img/favicon.ico",
 			    	 }
 		    	 )
-
-		    	id_number += 1
 
 		session['nodes'] = nodes
 

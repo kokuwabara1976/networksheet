@@ -61,6 +61,8 @@ async function fetchNodes() {
 
     const nodes = await response.text();
 
+    console.log(nodes);
+
     return JSON.parse(nodes);
 
   } catch (error) {
@@ -130,7 +132,8 @@ fetchNodes().then( function (nodes) {
           id: graph.last_index++,
           x: width / 2,
           y: height / 2,
-          type: type
+          type: type,
+          img: img,
         };
         graph.nodes.push(n);
         return n;
@@ -167,6 +170,16 @@ window.main = (function() {
     */
     var container, library, svg, toolbar;
     svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
+
+    // svg.append("text")
+    //     .attr("x", 50)             
+    //     .attr("y", 50)
+    //     .attr("text-anchor", "middle")  
+    //     .style("font-size", "16px") 
+    //     .style("text-decoration", "underline")  
+    //     .text("Value vs Date Graph");
+
+
     /* ZOOM and PAN
     */
     /* create container elements
@@ -176,7 +189,7 @@ window.main = (function() {
     //   return global.vis.attr('transform', "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
     // })));
     global.vis = container.append('g');
-    global.vis.append('image').attr('xlink:href',"/static/img/network_background.png")
+    // global.vis.append('image').attr('xlink:href',"/static/img/network_background.png")
     // .append('rect')
     /* create a rectangular overlay to catch events
     */
@@ -328,7 +341,7 @@ window.main = (function() {
     links = global.vis.selectAll('.link').data(graph.links, function(d) {
       return "" + d.source.id + "->" + d.target.id;
     });
-    links.enter().insert('line', '.node').attr('class', 'link').on('click', (function(d) {
+    links.enter().insert('line', '.node').attr('class', 'link').on('click', (function(d) { 
       /* SELECTION
       */      global.selection = d;
       d3.selectAll('.link').classed('selected', function(d2) {
@@ -346,56 +359,70 @@ window.main = (function() {
     }
 
 
-    // var data = [2, 4, 8, 10];
+    var data = [
+  [11975,  5871, 8916, 2868],
+  [ 1951, 10048, 2060, 6171],
+  [ 8010, 16145, 8090, 8045],
+  [ 1013,   990,  940, 6907]
+];
 
-    // var svg = d3.select("svg"),
-    //     width = svg.attr("width"),
-    //     height = svg.attr("height"),
-    //     radius = Math.min(width, height) / 2,
-    //     g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+// Define the margin, radius, and color scale. The color scale will be
+// assigned by index, but if you define your data using objects, you could pass
+// in a named field from the data object instead, such as `d.name`. Colors
+// are assigned lazily, so if you want deterministic behavior, define a domain
+// for the color scale.
+var m = 10,
+    r = 100,
+    z = d3.scale.category20c();
 
-    // var color = d3.scale.category20()
-    // // d3.scale.ordinal()
-    //             // .domain(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
+// Insert an svg element (with margin) for each row in our dataset. A child g
+// element translates the origin to the pie center.
+// var svg = d3.select("body").selectAll("svg")
+//     .data(data)
+//   .enter().append("svg")
+//     .attr("width", (r + m) * 2)
+//     .attr("height", (r + m) * 2)
+//   .append("g")
+//     .attr("transform", "translate(" + (r + m) + "," + (r + m) + ")");
 
-    // // Generate the pie
-    // var pie = d3.layout.pie();
+// The data for each svg element is a row of numbers (an array). We pass that to
+// d3.layout.pie to compute the angles for each arc. These start and end angles
+// are passed to d3.svg.arc to draw arcs! Note that the arc radius is specified
+// on the arc, not the layout.
+// new_nodes.selectAll("path")
+    // .data(d3.layout.pie())
+  // .enter().append("path")
+  //   .attr("d", d3.svg.arc()
+  //       .innerRadius(r / 2)
+  //       .outerRadius(r))
+  //   .style("fill", "blue");
 
-    // // Generate the arcs
-    // var arc = d3.svg.arc()
-    //             .innerRadius(0)
-    //             .outerRadius(30);
 
-    // //Generate groups
-    // var arcs = g.selectAll("arc")
-    //             .data(pie(data))
-    //             .enter()
-    //             .append("g")
-    //             .attr("class", "arc")
+    // new_nodes.append("image").attr("xlink:href", function(d){
+    //    return d.img
+    // }).attr("x", -25)
+    //   .attr("y", -25)
+    //   .attr("width", 50)
+    //   .attr("height", 50);
 
-    // //Draw arc paths
-    // arcs.append("path")
-    //     .attr("fill", function(d, i) {
-    //         return color(i);
-    //     })
-    //     .attr("d", arc);
+    // new_nodes.
+
+    // new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) { //18
+    //     return global.colorify(d.type);
+    // }).attr('fill', function(d) {
+    //     return d3.hcl(global.colorify(d.type)).brighter(3);
+    // });
+
 
     new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) { //18
       return global.colorify(d.type);
     }).attr('fill', function(d) {
       return d3.hcl(global.colorify(d.type)).brighter(3);
     });
-
-
-    // new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) { //18
-    //   return global.colorify(d.type);
-    // }).attr('fill', function(d) {
-    //   return d3.hcl(global.colorify(d.type)).brighter(3);
-    // });
     /* draw the label
     */
     new_nodes.append('text').text(function(d) {
-      return d.id;
+      return d.id + ": " + d.type;
     }).attr('dy', '0.35em').attr('fill', function(d) {
       return global.colorify(d.type);
     });
@@ -424,3 +451,49 @@ window.main = (function() {
   };
 
 }).call(this);
+
+
+
+  // Download solution
+// function getDownloadURL(svg, callback) {
+//   var canvas;
+//   var source = svg.innerHTML;
+//   var image = d3.select('body').append('img')
+//     .style('display', 'none')
+//     .attr('width', 1000)
+//     .attr('height', 800)
+//     .node();
+
+//   image.onerror = function() {
+//     callback(new Error('An error occurred while attempting to load SVG'));
+//   };
+//   image.onload = function() {
+//     canvas = d3.select('body').append('canvas')
+//       .style('display', 'none')
+//       .attr('width', 1000)
+//       .attr('height', 800)
+//       .node();
+
+//     var ctx = canvas.getContext('2d');
+//     ctx.drawImage(image, 0, 0);
+//     var url = canvas.toDataURL('image/png');
+
+//     d3.selectAll([ canvas, image ]).remove();
+
+//     callback(null, url);
+//   };
+//   image.src = 'data:image/svg+xml,' + encodeURIComponent(source);
+// }
+
+// function updateDownloadURL(svg, link) {
+//   getDownloadURL(svg, function(error, url) {
+//     if (error) {
+//       console.error(error);
+//     } else {
+//       link.href = url;
+//     }
+//   });
+// }
+
+// updateDownloadURL(d3.select("svg")[0][0], document.getElementById('download'));
+
