@@ -67,10 +67,13 @@ async function fetchNodes() {
 
   } catch (error) {
     console.error(error);
+    return JSON.parse([])
   }
 };
 
-fetchNodes().then( function (nodes) { 
+function runfetch() {
+
+  fetchNodes().then( function (nodes) { 
 
   graph = {
     nodes: nodes, //fetchNodes(),
@@ -163,12 +166,102 @@ fetchNodes().then( function (nodes) {
     graph.objectify();
 
   });
+};
 
+runfetch();
+
+
+update = function() {
+  /* update the layout
+  */
+  var links, new_nodes, nodes;
+
+  global.force.nodes(graph.nodes).links(graph.links).start();
+  /* create nodes and links
+  */
+  /* (links are drawn with insert to make them appear under the nodes)
+  */
+  /* also define a drag behavior to drag nodes
+  */
+  /* dragged nodes become fixed
+  */
+  nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
+    return d.id;
+  });
+
+  new_nodes = nodes.enter().append('g').attr('class', 'node').on('click', (function(d) {
+    /* SELECTION
+    */      global.selection = d;
+    d3.selectAll('.node').classed('selected', function(d2) {
+      return d2 === d;
+    });
+    return d3.selectAll('.link').classed('selected', false);
+  }));
+  links = global.vis.selectAll('.link').data(graph.links, function(d) {
+    return "" + d.source.id + "->" + d.target.id;
+  });
+  links.enter().insert('line', '.node').attr('class', 'link').on('click', (function(d) { 
+    /* SELECTION
+    */      global.selection = d;
+    d3.selectAll('.link').classed('selected', function(d2) {
+      return d2 === d;
+    });
+    return d3.selectAll('.node').classed('selected', false);
+  }));
+  links.exit().remove();
+  /* TOOLBAR - add link tool initialization for new nodes
+  */
+  if (global.tool === 'add_link') {
+    new_nodes.call(drag_add_link);
+  } else {
+    new_nodes.call(global.drag);
+  }
+
+
+  new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) { //18
+    return global.colorify(d.type);
+  }).attr('fill', function(d) {
+    return d3.hcl(global.colorify(d.type)).brighter(3);
+  });
+
+
+
+  /* draw the label
+  */
+  new_nodes.append('text').text(function(d) {
+    return d.id + ": " + d.type;
+  }).attr('dy', '0.35em').attr('fill', function(d) {
+    return global.colorify(d.type);
+  });
+
+  return nodes.exit().remove();
+};
+
+drag_add_link = function(selection) {
+    return selection.on('mousedown.add_link', (function(d) {
+      var p;
+      global.new_link_source = d;
+      /* create the draggable link representation
+      */
+      p = d3.mouse(global.vis.node());
+      global.drag_link = global.vis.insert('line', '.node').attr('class', 'drag_link').attr('x1', d.x).attr('y1', d.y).attr('x2', p[0]).attr('y2', p[1]);
+      /* prevent pan activation
+      */
+      d3.event.stopPropagation();
+      /* prevent text selection
+      */
+      return d3.event.preventDefault();
+    })).on('mouseup.add_link', (function(d) {
+      /* add link and update, but only if a link is actually added
+      */      if (graph.add_link(global.new_link_source, d) != null) return update();
+    }));
+  };
 
 
 window.main = (function() {
     /* create the SVG
     */
+
     var container, library, svg, toolbar;
     svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
 
@@ -360,119 +453,6 @@ window.main = (function() {
       return global.tool = new_tool;
     });
   });
-
-
-  update = function() {
-    /* update the layout
-    */
-    var links, new_nodes, nodes;
-    global.force.nodes(graph.nodes).links(graph.links).start();
-    /* create nodes and links
-    */
-    /* (links are drawn with insert to make them appear under the nodes)
-    */
-    /* also define a drag behavior to drag nodes
-    */
-    /* dragged nodes become fixed
-    */
-    nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
-      return d.id;
-    });
-
-    new_nodes = nodes.enter().append('g').attr('class', 'node').on('click', (function(d) {
-      /* SELECTION
-      */      global.selection = d;
-      d3.selectAll('.node').classed('selected', function(d2) {
-        return d2 === d;
-      });
-      return d3.selectAll('.link').classed('selected', false);
-    }));
-    links = global.vis.selectAll('.link').data(graph.links, function(d) {
-      return "" + d.source.id + "->" + d.target.id;
-    });
-    links.enter().insert('line', '.node').attr('class', 'link').on('click', (function(d) { 
-      /* SELECTION
-      */      global.selection = d;
-      d3.selectAll('.link').classed('selected', function(d2) {
-        return d2 === d;
-      });
-      return d3.selectAll('.node').classed('selected', false);
-    }));
-    links.exit().remove();
-    /* TOOLBAR - add link tool initialization for new nodes
-    */
-    if (global.tool === 'add_link') {
-      new_nodes.call(drag_add_link);
-    } else {
-      new_nodes.call(global.drag);
-    }
-
-
-    new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) { //18
-      return global.colorify(d.type);
-    }).attr('fill', function(d) {
-      return d3.hcl(global.colorify(d.type)).brighter(3);
-    });
-
-
-
-// // Append one g element for each row in the csv and bind data to it:
-//   var points = g2.selectAll("g")
-//     .data([10,20,30])
-//     .enter()
-//     .append("g")
-//     .append("g").attr("class","pies");
-  
-//   // Add a circle to it if needed
-//   points.append("circle")
-//     .attr("r", 3)
-//         .style("fill", "red");
-  
-//     // Select each g element we created, and fill it with pie chart:
-//   var pies = points.selectAll(".pies")
-//     .data(pie([0,15,30,35,20])) // I'm unsure why I need the leading 0.
-//     .enter()
-//     .append('g')
-//     .attr('class','arc');
-  
-//   pies.append("path")
-//     .attr('d',arc)
-//       .attr("fill",function(d,i){
-//            return color[i];      
-//       });
-
-
-
-    /* draw the label
-    */
-    new_nodes.append('text').text(function(d) {
-      return d.id + ": " + d.type;
-    }).attr('dy', '0.35em').attr('fill', function(d) {
-      return global.colorify(d.type);
-    });
-
-    return nodes.exit().remove();
-  };
-
-  drag_add_link = function(selection) {
-    return selection.on('mousedown.add_link', (function(d) {
-      var p;
-      global.new_link_source = d;
-      /* create the draggable link representation
-      */
-      p = d3.mouse(global.vis.node());
-      global.drag_link = global.vis.insert('line', '.node').attr('class', 'drag_link').attr('x1', d.x).attr('y1', d.y).attr('x2', p[0]).attr('y2', p[1]);
-      /* prevent pan activation
-      */
-      d3.event.stopPropagation();
-      /* prevent text selection
-      */
-      return d3.event.preventDefault();
-    })).on('mouseup.add_link', (function(d) {
-      /* add link and update, but only if a link is actually added
-      */      if (graph.add_link(global.new_link_source, d) != null) return update();
-    }));
-  };
 
 }).call(this);
 
