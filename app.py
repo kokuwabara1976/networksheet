@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, render_template, url_for, jsonify, session
 import io
 import pandas as pd
+import json
 
 # https://bl.ocks.org/nitaku/7512487
 
@@ -58,7 +59,7 @@ def how():
 
 		session['how'] = request.form
 
-		return render_template('network.html')
+		return render_template('network.html', nodes=json.dumps(session['nodes']))
 
 	return render_template('how.html')
 
@@ -66,7 +67,7 @@ def how():
 @app.route("/network", methods=['GET', 'POST'])
 def network():
 
-    return render_template('network.html')
+    return render_template('network.html', nodes=json.dumps(session['nodes']))
 
 
 @app.route("/pie", methods=['GET', 'POST'])
