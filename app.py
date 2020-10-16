@@ -69,6 +69,12 @@ def network():
     return render_template('network.html')
 
 
+@app.route("/pie", methods=['GET', 'POST'])
+def pie():
+
+    return render_template('pie.html')
+
+
 #### Internal Endpoints
 
 @app.route("/getnodes")

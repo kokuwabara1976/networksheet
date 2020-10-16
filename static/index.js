@@ -130,6 +130,7 @@ fetchNodes().then( function (nodes) {
         var n;
         n = {
           id: graph.last_index++,
+          name: type,
           x: width / 2,
           y: height / 2,
           type: type,
@@ -171,7 +172,7 @@ window.main = (function() {
     var container, library, svg, toolbar;
     svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
 
-    // svg.append("text")
+    // svg.append("line")
     //     .attr("x", 50)             
     //     .attr("y", 50)
     //     .attr("text-anchor", "middle")  
@@ -179,6 +180,54 @@ window.main = (function() {
     //     .style("text-decoration", "underline")  
     //     .text("Value vs Date Graph");
 
+    svg.append('rect')
+    .style("fill", "white")
+    .style("stroke", "black")
+    .style("stroke-width", 6)
+    .attr("x", 90)
+    .attr("y", 90)
+    .attr("width", 900)
+    .attr("height", 600);
+
+    svg.append('line')
+    .style("stroke", "black")
+    .style("stroke-width", 6)
+    .attr("x1", 90)
+    .attr("y1", 300)
+    .attr("x2", 990)
+    .attr("y2", 300);
+
+    svg.append('line')
+    .style("stroke", "black")
+    .style("stroke-width", 6)
+    .attr("x1", 90)
+    .attr("y1", 500)
+    .attr("x2", 990)
+    .attr("y2", 500);
+
+    svg.append('line')
+    .style("stroke", "black")
+    .style("stroke-width", 6)
+    .attr("x1", 400)
+    .attr("y1", 90)
+    .attr("x2", 400)
+    .attr("y2", 690);
+
+    svg.append('line')
+    .style("stroke", "black")
+    .style("stroke-width", 6)
+    .attr("x1", 600)
+    .attr("y1", 90)
+    .attr("x2", 600)
+    .attr("y2", 690);
+
+    svg.append('line')
+    .style("stroke", "black")
+    .style("stroke-width", 6)
+    .attr("x1", 800)
+    .attr("y1", 90)
+    .attr("x2", 800)
+    .attr("y2", 690);
 
     /* ZOOM and PAN
     */
@@ -215,7 +264,7 @@ window.main = (function() {
       */      global.vis.selectAll('.node').attr('transform', function(d) {
         return "translate(" + d.x + "," + d.y + ")";
       });
-      return global.vis.selectAll('.link').attr('x1', function(d) {
+      return global.vis.selectAll('.link').style("stroke", "black").style("opacity", 0.5).attr('x1', function(d) {
         return d.source.x;
       }).attr('y1', function(d) {
         return d.source.y;
@@ -364,6 +413,36 @@ window.main = (function() {
     }).attr('fill', function(d) {
       return d3.hcl(global.colorify(d.type)).brighter(3);
     });
+
+
+
+// Append one g element for each row in the csv and bind data to it:
+  var points = g2.selectAll("g")
+    .data([10,20,30])
+    .enter()
+    .append("g")
+    .append("g").attr("class","pies");
+  
+  // Add a circle to it if needed
+  points.append("circle")
+    .attr("r", 3)
+        .style("fill", "red");
+  
+    // Select each g element we created, and fill it with pie chart:
+  var pies = points.selectAll(".pies")
+    .data(pie([0,15,30,35,20])) // I'm unsure why I need the leading 0.
+    .enter()
+    .append('g')
+    .attr('class','arc');
+  
+  pies.append("path")
+    .attr('d',arc)
+      .attr("fill",function(d,i){
+           return color[i];      
+      });
+
+
+
     /* draw the label
     */
     new_nodes.append('text').text(function(d) {
@@ -396,4 +475,17 @@ window.main = (function() {
   };
 
 }).call(this);
+
+
+
+function svg2img(){
+    var svg = document.querySelector('svg');
+    var xml = new XMLSerializer().serializeToString(svg);
+    var svg64 = btoa(xml);
+    var b64start = 'data:image/svg+xml;base64,';
+    var image64 = b64start + svg64;
+    return image64;
+};
+
+
 
