@@ -211,7 +211,7 @@
       */      global.vis.selectAll('.node').attr('transform', function(d) {
         return "translate(" + d.x + "," + d.y + ")";
       });
-      return global.vis.selectAll('.link').attr('x1', function(d) {
+      return global.vis.selectAll('.link').style("stroke", "black").style("opacity", 0.5).attr('x1', function(d) {
         return d.source.x;
       }).attr('y1', function(d) {
         return d.source.y;
@@ -359,7 +359,7 @@
     /* draw the label
     */
     new_nodes.append('text').text(function(d) {
-      return d.id;
+      return d.id + ": " + d.type;
     }).attr('dy', '0.35em').attr('fill', function(d) {
       return global.colorify(d.type);
     });
