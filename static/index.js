@@ -416,30 +416,30 @@ window.main = (function() {
 
 
 
-// Append one g element for each row in the csv and bind data to it:
-  var points = g2.selectAll("g")
-    .data([10,20,30])
-    .enter()
-    .append("g")
-    .append("g").attr("class","pies");
+// // Append one g element for each row in the csv and bind data to it:
+//   var points = g2.selectAll("g")
+//     .data([10,20,30])
+//     .enter()
+//     .append("g")
+//     .append("g").attr("class","pies");
   
-  // Add a circle to it if needed
-  points.append("circle")
-    .attr("r", 3)
-        .style("fill", "red");
+//   // Add a circle to it if needed
+//   points.append("circle")
+//     .attr("r", 3)
+//         .style("fill", "red");
   
-    // Select each g element we created, and fill it with pie chart:
-  var pies = points.selectAll(".pies")
-    .data(pie([0,15,30,35,20])) // I'm unsure why I need the leading 0.
-    .enter()
-    .append('g')
-    .attr('class','arc');
+//     // Select each g element we created, and fill it with pie chart:
+//   var pies = points.selectAll(".pies")
+//     .data(pie([0,15,30,35,20])) // I'm unsure why I need the leading 0.
+//     .enter()
+//     .append('g')
+//     .attr('class','arc');
   
-  pies.append("path")
-    .attr('d',arc)
-      .attr("fill",function(d,i){
-           return color[i];      
-      });
+//   pies.append("path")
+//     .attr('d',arc)
+//       .attr("fill",function(d,i){
+//            return color[i];      
+//       });
 
 
 

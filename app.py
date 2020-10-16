@@ -82,7 +82,7 @@ def getnodes():
 
 	nodes = session['nodes']
 
-	return jsonify(nodes)
+	return jsonify(nodes), 200, {'Content-Type': 'application/json'}
 
 @app.route("/postnodes", methods=['GET','POST'])
 def postnodes():
