@@ -304,6 +304,7 @@
       return global.tool = new_tool;
     });
 
+
    update();
 
   });
@@ -313,6 +314,18 @@
     */
     var links, new_nodes, nodes;
     global.force.nodes(graph.nodes).links(graph.links).start();
+
+// pie stuff
+    var arc = d3.svg.arc()
+            .innerRadius(0)
+            .outerRadius(30);
+            
+var pie = d3.layout.pie()
+            .sort(null)
+            .value(function(d) { return d; });
+// pie stuff
+
+
     /* create nodes and links
     */
     /* (links are drawn with insert to make them appear under the nodes)
@@ -351,11 +364,37 @@
     } else {
       new_nodes.call(global.drag);
     }
-    new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) {
-      return global.colorify(d.type);
+    new_nodes.append('circle').attr('r', 25).attr('stroke', function(d) {
+      return d3.hcl(global.colorify(d.type)).brighter(6);
     }).attr('fill', function(d) {
-      return d3.hcl(global.colorify(d.type)).brighter(3);
+      return d3.hcl(global.colorify(d.type)).brighter(9);
     });
+
+    // new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) {
+    //   return global.colorify(d.type);
+    // }).style("fill", "red").attr("class","pies");
+        
+
+    // new_nodes.selectAll(".pies")
+    // .data(pie([100,10,10,10])) // I'm unsure why I need the leading 0.
+    //     .enter()
+    //     .append('g')
+    //     .attr('class','arc');
+    
+    // new_nodes.append("path")
+    //   .attr('e',arc)
+    //   .attr("fill", "M1.83697019872103e-15,-30A30,30,0,1,1,-29.78126622294162,-3.6161004076596717L0,0Z");
+
+    // .data(pie([100,10,10,10])) // I'm unsure why I need the leading 0.
+    //     .enter()
+    //     .append('g')
+    //     .append("path")
+    //   .attr('d',arc)
+    //   .attr("fill",function(d){
+    //        return global.colorify(d);
+    //   });
+
+
     /* draw the label
     */
     new_nodes.append('text').text(function(d) {
