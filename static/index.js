@@ -901,14 +901,23 @@
 
 
 
-// function svg2img(){
-//     var svg = document.querySelector('svg');
-//     var xml = new XMLSerializer().serializeToString(svg);
-//     var svg64 = btoa(xml);
-//     var b64start = 'data:image/svg+xml;base64,';
-//     var image64 = b64start + svg64;
-//     return image64;
-// };
+async function svg2img(){
+    var svg = document.querySelector('svg');
+    var xml = new XMLSerializer().serializeToString(svg);
+    var svg64 = btoa(xml);
+    var b64start = 'data:image/svg+xml;base64,';
+    var image64 = b64start + svg64;
+
+    fetch('/postgraph', {
+    method: "POST",
+    body: image64,
+    credentials: 'same-origin'
+    }).then(function(response) {
+      console.log(response)
+      window.location.href = "/summary"
+    });
+
+};
 
 
 

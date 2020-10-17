@@ -40,7 +40,7 @@ def who():
 			    	 "x": 469,
 			    	 "y": 410,
 			    	 "type": categories,
-			    	 "img": "/static/img/favicon.ico",
+			    	 # "img": "/static/img/favicon.ico",
 			    	 }
 		    	 )
 
@@ -57,7 +57,7 @@ def how():
 
 	if request.method == 'POST':
 
-		session['how'] = request.form
+		session['how'] = request.form.to_dict()
 
 		return render_template('network.html', nodes=json.dumps(session['nodes']))
 
@@ -75,6 +75,11 @@ def pie():
 
     return render_template('pie.html')
 
+@app.route("/summary", methods=['GET', 'POST'])
+def summary():
+
+	return render_template('summary.html', img=session['graph'])
+
 
 #### Internal Endpoints
 
@@ -85,12 +90,21 @@ def getnodes():
 
 	return jsonify(nodes), 200, {'Content-Type': 'application/json'}
 
-@app.route("/postnodes", methods=['GET','POST'])
-def postnodes():
+# @app.route("/postnodes", methods=['GET','POST'])
+# def postnodes():
 
-	print(request.data)
+# 	print(request)
 
-	return redirect(url_for("postnodes"))
+# 	return redirect(url_for("postnodes"))
+
+
+@app.route("/postgraph", methods=['GET','POST'])
+def postgraph():
+
+    session['graph'] = request.data.decode('utf-8')
+
+    return jsonify(dict(redirect='summary'))
+
 
 
 if __name__ == "__main__":
