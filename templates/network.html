@@ -17,6 +17,20 @@
 
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js" integrity="sha512-C2RveGuPIWqkaLAluvoxyiaN1XYNe5ss11urhZWZYBUA9Ydgj+hfGKPcxCzTwut1/fmjEZR7Ac35f2aycT8Ogw==" crossorigin="anonymous"></script> -->
   <script src="/static/index.js"></script>
+
+<div class="footer">
+  <div class="container">
+      <div class="row">
+        <div class="col text-center">
+            <form name="myform" action="javascript:svg2img()">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+      </div>
+      <br>
+   </div>
+</div>
+
 </head>
 <body onload="main()">
 
@@ -132,6 +146,27 @@
     var container, library, svg, toolbar;
     svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
 
+    svg.append("text")
+    .attr("x", 250)
+    .attr("y", 30)
+    .text("Drag each contact to the appropriate square, based upon their status and workplace.")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 250)
+    .attr("y", 50)
+    .text("Next, switch to the Connection Tool and connect contacts if they are good friends")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 250)
+    .attr("y", 70)
+    .text("or colleagues. If you are not sure, assume they are not connected.")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
     svg.append('rect')
     .style("fill", "white")
     .style("stroke", "black")
@@ -180,6 +215,83 @@
     .attr("y1", 90)
     .attr("x2", 800)
     .attr("y2", 690);
+
+    svg.append("text")
+    .attr("x", 10)
+    .attr("y", 200)
+    .text("Your")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 10)
+    .attr("y", 230)
+    .text("Senior")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 10)
+    .attr("y", 400)
+    .text("Your")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 10)
+    .attr("y", 430)
+    .text("Peer")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 10)
+    .attr("y", 600)
+    .text("Your")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 10)
+    .attr("y", 630)
+    .text("Junior")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 200)
+    .attr("y", 730)
+    .text("Same Unit")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 410)
+    .attr("y", 730)
+    .text("Same Organization")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 610)
+    .attr("y", 730)
+    .text("Different Organization")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 840)
+    .attr("y", 730)
+    .text("Outside of")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    svg.append("text")
+    .attr("x", 840)
+    .attr("y", 750)
+    .text("your industry")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
 
     /* ZOOM and PAN
     */
@@ -442,18 +554,7 @@ var pie = d3.layout.pie()
 }
 </style>
 
-<div class="footer">
-  <div class="container">
-      <div class="row">
-        <div class="col text-center">
-            <form name="myform" action="javascript:svg2img()">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-      </div>
-      <br>
-   </div>
-</div>
+
 
 
 <!-- Optional JavaScript -->

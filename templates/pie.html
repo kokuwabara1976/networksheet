@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+	<style>
+		svg {	
+			background: #9ecae1;
+		}
+		
+		.mesh {
+			fill:none;
+			stroke: white;
+			stroke-width: 0.5px;
+		}
+		
+		.land {
+			fill: #41ab5d;
+		}
+
+	</style>	
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://d3js.org/topojson.v1.min.js"></script>	
+</head>
+<body>
+	
+
+    <script type="text/javascript">
+
+var width = 960;
+	height = 500;
+
+var svg = d3.select("body").append("svg")
+	.attr("width", width)
+	.attr("height", height);
+
+
+var g2 = svg.append("g");
+
+var arc = d3.arc()
+			.innerRadius(0)
+			.outerRadius(30);
+			
+var pie = d3.pie()
+			.sort(null)
+			.value(function(d) { return d; });
+			
+var color = d3.schemeCategory10;
+
+var projection = d3.geoMercator().center([81,22]).scale(800).translate([width/2,height/2]);
+
+d3.csv("/static/water.csv", function(error, water) {
+
+	console.log(water);
+
+	// var water = [{'lon': 100, 'lat': }]
+
+	// Append one g element for each row in the csv and bind data to it:
+	var points = g2.selectAll("g")
+		.data(water)
+		.enter()
+		.append("g")
+		.attr("id", function (d,i) { return "chart"+i; })
+		.attr("transform",function(d) { return "translate("+[d.lon,d.lat]+")" })
+		.append("g").attr("class","pies");
+	
+	// Add a circle to it if needed
+	points.append("circle")
+		.attr("r", 3)
+
+        .style("fill", "red");
+	
+    // Select each g element we created, and fill it with pie chart:
+	var pies = points.selectAll(".pies")
+		.data(pie([100,10,10,10])) // I'm unsure why I need the leading 0.
+		.enter()
+		.append('g')
+		.attr('class','arc');
+	
+	pies.append("path")
+	  .attr('d',arc)
+      .attr("fill",function(d,i){
+           return color[i];      
+      });
+});
+
+
+
+
+
+
+</script>
+</body>
