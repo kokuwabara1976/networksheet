@@ -33,13 +33,16 @@ def who():
 
 		for name,categories in df.items():
 
+			print(categories)
+			print(type(categories))
+
 			nodes.append(
 			    	{
 			    	 "id": name,
 			    	 "name": name,
 			    	 "x": 469,
 			    	 "y": 410,
-			    	 "type": categories,
+			    	 "type": ', '.join(eval(categories)),
 			    	 # "img": "/static/img/favicon.ico",
 			    	 }
 		    	 )

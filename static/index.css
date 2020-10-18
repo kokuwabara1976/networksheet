@@ -10,8 +10,8 @@
 
 html, body {
     height: 100%;
-/*    overflow: hidden;  MM 
-    margin: 0;  /* MM */
+    /*overflow: hidden;  MM */
+    margin: 100;
 }
 
 html {
@@ -21,7 +21,7 @@ html {
 
 body {
     display: table-cell;
-    vertical-align: middle;
+    vertical-align: right;
 }
 
 
@@ -66,7 +66,7 @@ body {
 .toolbar {
   position: absolute;
   top: 200px;
-  left: 180px;
+  left: 1200px;
   width: 240px;
   margin-left: -120px;
   text-align: center;
@@ -75,7 +75,7 @@ body {
 .instructions1 {
   position: absolute;
   top: 300px;
-  left: 180px;
+  left: 1250px;
   width: 240px;
   margin-left: -120px;
   text-align: center;
@@ -84,7 +84,7 @@ body {
 .instructions2 {
   position: absolute;
   top: 400px;
-  left: 180px;
+  left: 1250px;
   width: 240px;
   margin-left: -120px;
   text-align: center;

@@ -40,7 +40,7 @@
   var drag_add_link, global, graph, height, update, width,
     __indexOf = Array.prototype.indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  width = 1000;
+  width = 1200;
 
   height = 800;
 
@@ -515,10 +515,17 @@ var pie = d3.layout.pie()
     /* draw the label
     */
     new_nodes.append('text').text(function(d) {
-      return d.id + ": " + d.type;
+      return d.id;
     }).attr('dy', '0.35em').attr('fill', function(d) {
       return global.colorify(d.type);
     });
+
+    new_nodes.append('text').text(function(d) {
+      return d.type;
+    }).attr('dy', '1.2em').attr('fill', function(d) {
+      return global.colorify(d.type);
+    });
+
     return nodes.exit().remove();
   };
 
