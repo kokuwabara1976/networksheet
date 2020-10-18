@@ -8,6 +8,7 @@
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/index.css">
 
 	<title>Hello, world!</title>
 </head>
@@ -15,15 +16,37 @@
 
 
 	<div>
-		<img src={{ img | safe }} />
+		<img src={{ img | safe }} class="center"/>
 	</div>
 
 	<div class="container">
 		<div class="jumbotron">
 			<div class="jumbotron-content">
+
 				<h1 class="display-7">Summary</h1>
-				Lorem ipsum
-				<div class="border-top my-3"></div>
+
+                {% for name, questions in summary.items() %}
+
+				  <b>{{ name }}</b>
+
+                 
+				  {% for ques, ans in questions.items() %}
+                     
+				       <p>{{ ques }} : 
+                       
+                           {{ ', '.join(ans) }}
+                       
+				       </p>
+
+				  {% endfor %}
+
+				  <div class="border-top my-3"></div>
+
+               <!--    {'MM': {'How often do they come to you for help, feedback, or a chat?': ['Every few months'], 'How similar are you in...?': ['Country or culture of origin', 'Professional Interests', 'Social or political attitudes'], 'Do you know anything about their...?': ['Educational background', 'Interests or hobbies', 'Favorite Food'], 'How often do you talk to them outside of work?': ['Every few months'], 'How often do you talk to them at work?': ['Every month'], 'How close are you?': ['Rather distant']}, 'AA': {'How often do they come to you for help, feedback, or a chat?': ['Never'], 'How similar are you in...?': ['Gender'], 'Do you know anything about their...?': ['Birthday', 'Family members', 'Educational background'], 'How often do you talk to them outside of work?': ['Never'], 'How often do you talk to them at work?': ['1-2 times a year'], 'How close are you?': ['Rather distant']}, 'BB': {'How often do they come to you for help, feedback, or a chat?': ['1-2 times a year'], 'How similar are you in...?': ['Age', 'Country or culture of origin'], 'Do you know anything about their...?': ['Family members', 'Educational background', 'Interests or hobbies'], 'How often do you talk to them outside of work?': ['1-2 times a year'], 'How often do you talk to them at work?': ['Every few months'], 'How close are you?': ['Rather distant']}} -->
+
+				  
+
+			    {% endfor %}
 			</div>
 		</div>
 	</div>

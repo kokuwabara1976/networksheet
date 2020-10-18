@@ -55,9 +55,32 @@ def who():
 @app.route("/how", methods=['GET', 'POST'])
 def how():
 
+	d = {"close": "You are",
+	     "work": "You talk to them at work",
+	     "outside": "You talk to them outside of work",
+	     "help": "They come to you for help, feedback, or a chat",
+	     "know": "You know about their",
+	     "similar": "You are similar in"
+	}
+
 	if request.method == 'POST':
 
-		session['how'] = request.form.to_dict()
+		answers = {}
+
+		for ques_name, ans in request.form.lists():
+
+			name = ques_name.split("_")[1]
+			ques = ques_name.split("_")[0]
+
+			answers[name] = {}
+
+		for ques_name, ans in request.form.lists():
+
+			name = ques_name.split("_")[1]
+			ques = ques_name.split("_")[0]
+			answers[name].update({d[ques]: ans})
+
+		session['how'] = answers
 
 		return render_template('network.html', nodes=json.dumps(session['nodes']))
 
@@ -67,7 +90,7 @@ def how():
 @app.route("/network", methods=['GET', 'POST'])
 def network():
 
-    return render_template('network.html', nodes=json.dumps(session['nodes']))
+    return render_template('network.html', nodes=json.dumps(session['nodes']), summary=session['how'])
 
 
 @app.route("/pie", methods=['GET', 'POST'])
@@ -78,7 +101,7 @@ def pie():
 @app.route("/summary", methods=['GET', 'POST'])
 def summary():
 
-	return render_template('summary.html', img=session['graph'])
+	return render_template('summary.html', img=session['graph'], summary=session['how'])
 
 
 #### Internal Endpoints
