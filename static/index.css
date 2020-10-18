@@ -65,8 +65,26 @@ body {
 
 .toolbar {
   position: absolute;
-  top: 12px;
-  left: 480px;
+  top: 200px;
+  left: 180px;
+  width: 240px;
+  margin-left: -120px;
+  text-align: center;
+}
+
+.instructions1 {
+  position: absolute;
+  top: 300px;
+  left: 180px;
+  width: 240px;
+  margin-left: -120px;
+  text-align: center;
+}
+
+.instructions2 {
+  position: absolute;
+  top: 400px;
+  left: 180px;
   width: 240px;
   margin-left: -120px;
   text-align: center;

@@ -146,26 +146,6 @@
     var container, library, svg, toolbar;
     svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
 
-    svg.append("text")
-    .attr("x", 250)
-    .attr("y", 30)
-    .text("Drag each contact to the appropriate square, based upon their status and workplace.")
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "20px");
-
-    svg.append("text")
-    .attr("x", 250)
-    .attr("y", 50)
-    .text("Next, switch to the Connection Tool and connect contacts if they are good friends")
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "20px");
-
-    svg.append("text")
-    .attr("x", 250)
-    .attr("y", 70)
-    .text("or colleagues. If you are not sure, assume they are not connected.")
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "20px");
 
     svg.append('rect')
     .style("fill", "white")
@@ -352,6 +332,31 @@
     update();
     /* TOOLBAR
     */
+
+instructions1 = $("<div class='instructions1'></div>");
+    $('body').append(instructions1);
+
+    instructions2 = $("<div class='instructions2'></div>");
+    $('body').append(instructions2);
+
+    instructions3 = $("<div class='instructions3'></div>");
+    $('body').append(instructions3);
+
+    instructions1.append("text")
+    .attr("x", 200)
+    .attr("y", 30)
+    .text("Drag each contact to the appropriate square, based upon their status and workplace.")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+    instructions2.append("text")
+    .attr("x", 200)
+    .attr("y", 50)
+    .text("Next, switch to the Connection Tool and connect contacts if they are good friends or colleagues. If you are not sure, assume they are not connected.")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px");
+
+
     toolbar = $("<div class='toolbar'></div>");
     $('body').append(toolbar);
     toolbar.append($("<svg\n    class='active tool'\n    data-tool='pointer'\n    xmlns='http://www.w3.org/2000/svg'\n    version='1.1'\n    width='32'\n    height='32'\n    viewBox='0 0 128 128'>\n    <g transform='translate(881.10358,-356.22543)'>\n      <g transform='matrix(0.8660254,-0.5,0.5,0.8660254,-266.51112,-215.31898)'>\n        <path\n           d='m -797.14902,212.29589 a 5.6610848,8.6573169 0 0 0 -4.61823,4.3125 l -28.3428,75.0625 a 5.6610848,8.6573169 0 0 0 4.90431,13 l 56.68561,0 a 5.6610848,8.6573169 0 0 0 4.9043,-13 l -28.3428,-75.0625 a 5.6610848,8.6573169 0 0 0 -5.19039,-4.3125 z m 0.28608,25.96875 18.53419,49.09375 -37.06838,0 18.53419,-49.09375 z'\n        />\n        <path\n           d='m -801.84375,290.40625 c -2.09434,2.1e-4 -3.99979,1.90566 -4,4 l 0,35.25 c 2.1e-4,2.09434 1.90566,3.99979 4,4 l 10,0 c 2.09434,-2.1e-4 3.99979,-1.90566 4,-4 l 0,-35.25 c -2.1e-4,-2.09434 -1.90566,-3.99979 -4,-4 z'\n        />\n      </g>\n    </g>\n</svg>"));
