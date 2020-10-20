@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, render_template, url_for, jsonify, s
 import io
 import pandas as pd
 import json
+import numpy as np
 
 # https://bl.ocks.org/nitaku/7512487
 
@@ -54,6 +55,11 @@ def who():
 
 	return render_template('who.html')
 
+def to_score(x):
+	_trans = {"Never": 1, "1-2 times a year": 2, "Every few months": 3, "Every month": 4,
+	"Rather distant": 1, "Somewhat close": 2, "Rather close": 3, "Very close": 4}
+	return _trans[x]
+
 
 @app.route("/how", methods=['GET', 'POST'])
 def how():
@@ -68,22 +74,42 @@ def how():
 
 	if request.method == 'POST':
 
-		answers = {}
+        # x,y for x,y in request.form.lists()
+		# similar_MM ['Gender']
+		# help_DD ['Never']
+		# close_FF ['Somewhat close']
+		# know_BB ['Birthday', 'Family members']
+		# similar_AA ['Gender']
+		# work_CC ['Every few months']
+		# work_MM ['Never']
+		# close_CC ['Rather close']
+		# help_AA ['Never']
+		# similar_EE ['Gender', 'Age', 'Country or culture of origin', 'Professional Interests']
+		# help_CC ['Never']
 
-		for ques_name, ans in request.form.lists():
+		names = np.unique([ques_name.split("_")[1] for ques_name, ans in request.form.lists()]).tolist()
 
-			name = ques_name.split("_")[1]
-			ques = ques_name.split("_")[0]
+		score = {}
 
-			answers[name] = {}
+		for name in names:
+			score[name] = {}
 
-		for ques_name, ans in request.form.lists():
+		for quest in ['close', 'help', 'know', 'outside', 'similar', 'work']:
 
-			name = ques_name.split("_")[1]
-			ques = ques_name.split("_")[0]
-			answers[name].update({d[ques]: ans})
+			for name in names:
+				key = quest + "_" + name
 
-		session['how'] = answers
+				ans = [y for x,y in request.form.lists() if x == key]
+
+				if quest in ['close', 'help', 'outside', 'work']:
+					score[name][quest] = to_score(ans[0][0])
+				else:
+					if len(ans) == 0:
+						score[name][quest] = 0
+					else:
+					    score[name][quest] = len(ans[0])
+
+		session['how'] = score
 
 		return render_template('network.html', nodes=json.dumps(session['nodes']))
 
@@ -104,7 +130,14 @@ def pie():
 @app.route("/summary", methods=['GET', 'POST'])
 def summary():
 
+	print(session['how'])
+
 	return render_template('summary.html', img=session['graph'], summary=session['how'])
+
+@app.route("/summarypie", methods=['GET', 'POST'])
+def summarypie():
+
+	return render_template('summary_pie.html')
 
 
 #### Internal Endpoints

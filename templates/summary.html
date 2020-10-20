@@ -9,6 +9,7 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link rel="stylesheet" href="/static/index.css">
+	<script src="//d3js.org/d3.v3.min.js"></script>
 
 	<title>Hello, world!</title>
 </head>
@@ -25,70 +26,94 @@
 
 				<h1 class="display-7">Summary</h1>
 
-                {% for name, questions in summary.items() %}
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Contact</th>
+							<th>How close are you?</th>
+							<th>How often do you talk at work?</th>
+							<th>How often do you talk outside of work?</th>
+							<th>How often do they come to you for help, feedback, or a chat?</th>
+							<th>Do you know about them?</th>
+							<th>How similar are you?</th>
+						</tr>
+					</thead>
 
-				  <b>{{ name }}</b>
+					{% for name, questions in summary.items() %}
+					<tr>
+						<td>{{ name }}</td>
 
-                 
-				  {% for ques, ans in questions.items() %}
-                     
-				       <p>{{ ques }} : 
-                       
-                           {{ ', '.join(ans) }}
-                       
-				       </p>
+						{% for quest in ['close', 'help', 'know', 'outside', 'similar', 'work'] %}
 
-				  {% endfor %}
+						<td>{{ summary[name][quest] }}</td>
 
-				  <div class="border-top my-3"></div>
+						{% endfor %}
 
-               <!--    {'MM': {'How often do they come to you for help, feedback, or a chat?': ['Every few months'], 'How similar are you in...?': ['Country or culture of origin', 'Professional Interests', 'Social or political attitudes'], 'Do you know anything about their...?': ['Educational background', 'Interests or hobbies', 'Favorite Food'], 'How often do you talk to them outside of work?': ['Every few months'], 'How often do you talk to them at work?': ['Every month'], 'How close are you?': ['Rather distant']}, 'AA': {'How often do they come to you for help, feedback, or a chat?': ['Never'], 'How similar are you in...?': ['Gender'], 'Do you know anything about their...?': ['Birthday', 'Family members', 'Educational background'], 'How often do you talk to them outside of work?': ['Never'], 'How often do you talk to them at work?': ['1-2 times a year'], 'How close are you?': ['Rather distant']}, 'BB': {'How often do they come to you for help, feedback, or a chat?': ['1-2 times a year'], 'How similar are you in...?': ['Age', 'Country or culture of origin'], 'Do you know anything about their...?': ['Family members', 'Educational background', 'Interests or hobbies'], 'How often do you talk to them outside of work?': ['1-2 times a year'], 'How often do you talk to them at work?': ['Every few months'], 'How close are you?': ['Rather distant']}} -->
+					</tr>
 
-				  
+					{% endfor %}
+	     </table>
+				</div>
+</div>
+</div>
+		
 
-			    {% endfor %}
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+<div class="form-group">
+    <label for="exampleFormControlTextarea1">Reflect Here</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Reflect Some More Here</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+
+
+	</body>
+
+
+	<!-- Footer -->
+	<footer>
+
+		<script>
+			function getPdf() {
+				window.print()
+			}
+		</script>
+
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<form name="myform" action="javascript:getPdf()">
+						<button type="submit" class="btn btn-primary">Download as PDF</button>
+					</form>
+				</div>
 			</div>
+			<br>
 		</div>
-	</div>
-
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-</body>
-
-
-<!-- Footer -->
-<footer>
-
-<script>
-    function getPdf() {
-    window.print()
-}
-</script>
-
-<div class="container">
-      <div class="row">
-        <div class="col text-center">
-            <form name="myform" action="javascript:getPdf()">
-                <button type="submit" class="btn btn-primary">Download as PDF</button>
-            </form>
-        </div>
-      </div>
-      <br>
-   </div>
 
 
 
-	<br><br>
-	<!-- Copyright -->
-	<div class="footer-copyright text-center py-3">© 2020 Copyright:
-		<a href="">Ko</a>
-	</div>
-	<!-- Copyright -->
+		<br><br>
+		<!-- Copyright -->
+		<div class="footer-copyright text-center py-3">© 2020 Copyright:
+			<a href="">Ko</a>
+		</div>
+		<!-- Copyright -->
 
-</footer>
-<!-- Footer -->
+	</footer>
+	<!-- Footer -->
 
-</html>
+	</html>
+
+
+
+
+
