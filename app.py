@@ -89,6 +89,13 @@ def how():
 
 		names = np.unique([ques_name.split("_")[1] for ques_name, ans in request.form.lists()]).tolist()
 
+		score_to_pie = {0: "/static/img/0_4.png",
+		                1: "/static/img/1_4.png", 
+		                2: "/static/img/2_4.png",
+		                3: "/static/img/3_4.png",
+		                4: "/static/img/4_4.png",
+		                5: "/static/img/4_4.png",}
+
 		score = {}
 
 		for name in names:
@@ -102,12 +109,12 @@ def how():
 				ans = [y for x,y in request.form.lists() if x == key]
 
 				if quest in ['close', 'help', 'outside', 'work']:
-					score[name][quest] = to_score(ans[0][0])
+					score[name][quest] = score_to_pie[to_score(ans[0][0])]
 				else:
 					if len(ans) == 0:
-						score[name][quest] = 0
+						score[name][quest] = score_to_pie[0]
 					else:
-					    score[name][quest] = len(ans[0])
+					    score[name][quest] = score_to_pie[len(ans[0]) - 1]
 
 		session['how'] = score
 

@@ -45,7 +45,11 @@
 
 						{% for quest in ['close', 'help', 'know', 'outside', 'similar', 'work'] %}
 
-						<td>{{ summary[name][quest] }}</td>
+   						    <td>
+
+   						    	<img src={{ summary[name][quest] }}>
+
+   						    </td>
 
 						{% endfor %}
 
