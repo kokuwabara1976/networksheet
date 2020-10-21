@@ -56,7 +56,7 @@ def who():
 	return render_template('who.html')
 
 def to_score(x):
-	_trans = {"Never": 1, "1-2 times a year": 2, "Every few months": 3, "Every month": 4,
+	_trans = {1-2 times a year": 1, "Every few months": 2, "Every month": 3, "Every week": 4,
 	"Rather distant": 1, "Somewhat close": 2, "Rather close": 3, "Very close": 4}
 	return _trans[x]
 
