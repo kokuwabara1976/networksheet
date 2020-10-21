@@ -78,13 +78,13 @@ def how():
 		# similar_MM ['Gender']
 		# help_DD ['Never']
 		# close_FF ['Somewhat close']
-		# know_BB ['Birthday', 'Family members']
+		# know_BB ['Birthday', 'Family']
 		# similar_AA ['Gender']
 		# work_CC ['Every few months']
 		# work_MM ['Never']
 		# close_CC ['Rather close']
 		# help_AA ['Never']
-		# similar_EE ['Gender', 'Age', 'Country or culture of origin', 'Professional Interests']
+		# similar_EE ['Gender', 'Age', 'Country or culture', 'Professional Interests']
 		# help_CC ['Never']
 
 		names = np.unique([ques_name.split("_")[1] for ques_name, ans in request.form.lists()]).tolist()
