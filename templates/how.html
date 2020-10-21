@@ -21,6 +21,18 @@
 
     <br>
     <div class="container">
+    
+    
+      <!-- Instructions -->
+      <div class="jumbotron">
+        <div class="jumbotron-content">
+          <h1 class="display-7">How do you know your contacts?</h1>
+          <p>Please answer the questions below for each contact in your network.</p>
+        </div>
+      </div>
+      <!-- End instructions -->
+
+
 
       <!-- Question 1 -->
       <div class="jumbotron">
@@ -166,7 +178,8 @@
       <div class="jumbotron">
         <div class="jumbotron-content">
           <h1 class="display-7">What do you know  about them?</h1>
-          <p>For each contact, indicate whether you know something about the following facts.</p>
+          <p>Please indicate what you know about each contact. </p>
+          <p>Family: What do you know about their family? Are they married? Who is in their family? Do they have siblings?</p>
           <p>Country or culture of origin: where or how they grew up</p>
           {% for node in nodes %}
           <div class="border-top my-3"></div>
@@ -180,11 +193,11 @@
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio2" value="Family members">
-              <label class="form-check-label" for="inlineCheckbox2">Family members</label>
+              <label class="form-check-label" for="inlineCheckbox2">Family</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio3" value="Educational background">
-              <label class="form-check-label" for="inlineCheckbox3">Educational background</label>
+              <label class="form-check-label" for="inlineCheckbox3">Education</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio4" value="Country or culture">
