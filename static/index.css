@@ -24,6 +24,9 @@ body {
     vertical-align: right;
 }
 
+h1 {
+  font-size: 5em;
+}
 
 .node > circle {
   stroke-width: 4px;
