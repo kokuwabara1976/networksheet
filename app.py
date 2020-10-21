@@ -17,6 +17,12 @@ def landing():
 @app.route("/who", methods=['GET', 'POST'])
 def who():
 
+	return render_template('who.html')
+
+
+@app.route("/how", methods=['GET', 'POST'])
+def how():
+
 	if request.method == 'POST':
 
 		nodes = []
@@ -52,11 +58,12 @@ def who():
 		return render_template('how.html', nodes=session['nodes'])
 
 
-	return render_template('who.html')
+
+	return render_template('how.html')
 
 
-@app.route("/how", methods=['GET', 'POST'])
-def how():
+@app.route("/network", methods=['GET', 'POST'])
+def network():
 
 	if request.method == 'POST':
 
@@ -106,15 +113,9 @@ def how():
 
 		session['how'] = score
 
-		return render_template('network.html', nodes=json.dumps(session['nodes']))
+		return render_template('network.html', nodes=json.dumps(session['nodes']), summary=session['how'])	
 
-	return render_template('how.html')
-
-
-@app.route("/network", methods=['GET', 'POST'])
-def network():
-
-    return render_template('network.html', nodes=json.dumps(session['nodes']), summary=session['how'])
+	return render_template('network.html', nodes=json.dumps(session['nodes']), summary=session['how'])
 
 
 @app.route("/pie", methods=['GET', 'POST'])
@@ -124,6 +125,8 @@ def pie():
 
 @app.route("/summary", methods=['GET', 'POST'])
 def summary():
+
+	print(session['how'])
 
 	return render_template('summary.html', img=session['graph'], summary=session['how'])
 
