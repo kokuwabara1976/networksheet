@@ -44,7 +44,6 @@ def who():
 			    	 "x": 469,
 			    	 "y": 410,
 			    	 "type": ', '.join(eval(categories)),
-			    	 # "img": "/static/img/favicon.ico",
 			    	 }
 		    	 )
 
@@ -55,53 +54,42 @@ def who():
 
 	return render_template('who.html')
 
-def to_score(x):
-	_trans = {"1-2 times a year": 1, "Every few months": 2, "Every month": 3, "Every week": 4,
-	"Rather distant": 1, "Somewhat close": 2, "Rather close": 3, "Very close": 4}
-	return _trans[x]
-
 
 @app.route("/how", methods=['GET', 'POST'])
 def how():
-
-	d = {"close": "You are",
-	     "work": "You talk to them at work",
-	     "outside": "You talk to them outside of work",
-	     "help": "They come to you for help, feedback, or a chat",
-	     "know": "You know about their",
-	     "similar": "You are similar in"
-	}
 
 	if request.method == 'POST':
 
         # x,y for x,y in request.form.lists()
 		# similar_MM ['Gender']
-		# help_DD ['Never']
-		# close_FF ['Somewhat close']
-		# know_BB ['Birthday', 'Family']
-		# similar_AA ['Gender']
-		# work_CC ['Every few months']
-		# work_MM ['Never']
-		# close_CC ['Rather close']
-		# help_AA ['Never']
 		# similar_EE ['Gender', 'Age', 'Country or culture', 'Professional Interests']
 		# help_CC ['Never']
 
 		names = np.unique([ques_name.split("_")[1] for ques_name, ans in request.form.lists()]).tolist()
 
-		score_to_pie = {0: "/static/img/0_4.png",
-		                1: "/static/img/1_4.png", 
-		                2: "/static/img/2_4.png",
-		                3: "/static/img/3_4.png",
-		                4: "/static/img/4_4.png",
-		                5: "/static/img/4_4.png",}
+		score_to_pie = {"1-2 times a year": "/static/img/1_4.png", 
+		                "Rather distant": "/static/img/1_4.png",
+                        "Every few months":"/static/img/2_4.png",
+                        "Somewhat close":"/static/img/2_4.png",
+                        "Every month":"/static/img/3_4.png",
+                        "Rather close":"/static/img/3_4.png",
+                        "Every week":"/static/img/4_4.png",
+                        "Very close":"/static/img/4_4.png"}
+
+		score_to_pie_6 = {0: "/static/img/0_4.png",
+		                  1: "/static/img/1_6.png", 
+		                  2: "/static/img/2_6.png",
+		                  3: "/static/img/2_4.png",
+		                  4: "/static/img/4_6.png",
+		                  5: "/static/img/5_6.png",
+		                  6: "/static/img/4_4.png"}
 
 		score = {}
 
 		for name in names:
 			score[name] = {}
 
-		for quest in ['close', 'help', 'know', 'outside', 'similar', 'work']:
+		for quest in ['close', 'work', 'outside', 'help', 'know', 'similar'] :
 
 			for name in names:
 				key = quest + "_" + name
@@ -109,12 +97,12 @@ def how():
 				ans = [y for x,y in request.form.lists() if x == key]
 
 				if quest in ['close', 'help', 'outside', 'work']:
-					score[name][quest] = score_to_pie[to_score(ans[0][0])]
+					score[name][quest] = score_to_pie[ans[0][0]]
 				else:
 					if len(ans) == 0:
-						score[name][quest] = score_to_pie[0]
+						score[name][quest] = score_to_pie_6[0]
 					else:
-					    score[name][quest] = score_to_pie[len(ans[0]) - 1]
+					    score[name][quest] = score_to_pie_6[len(ans[0])]
 
 		session['how'] = score
 
@@ -137,8 +125,6 @@ def pie():
 @app.route("/summary", methods=['GET', 'POST'])
 def summary():
 
-	print(session['how'])
-
 	return render_template('summary.html', img=session['graph'], summary=session['how'])
 
 @app.route("/summarypie", methods=['GET', 'POST'])
@@ -155,6 +141,7 @@ def getnodes():
 	nodes = session['nodes']
 
 	return jsonify(nodes), 200, {'Content-Type': 'application/json'}
+
 
 # @app.route("/postnodes", methods=['GET','POST'])
 # def postnodes():
