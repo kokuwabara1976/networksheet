@@ -24,8 +24,8 @@ body {
     vertical-align: right;
 }
 
-h1 {
-  font-size: 5em;
+.display-7 {
+  font-size: 3em;
 }
 
 .node > circle {
