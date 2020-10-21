@@ -17,12 +17,6 @@ def landing():
 @app.route("/who", methods=['GET', 'POST'])
 def who():
 
-	return render_template('who.html')
-
-
-@app.route("/how", methods=['GET', 'POST'])
-def how():
-
 	if request.method == 'POST':
 
 		nodes = []
@@ -55,15 +49,13 @@ def how():
 
 		session['nodes'] = nodes
 
-		return render_template('how.html', nodes=session['nodes'])
+		return redirect(url_for('how'))
+
+	return render_template('who.html')
 
 
-
-	return render_template('how.html')
-
-
-@app.route("/network", methods=['GET', 'POST'])
-def network():
+@app.route("/how", methods=['GET', 'POST'])
+def how():
 
 	if request.method == 'POST':
 
@@ -113,7 +105,14 @@ def network():
 
 		session['how'] = score
 
-		return render_template('network.html', nodes=json.dumps(session['nodes']), summary=session['how'])	
+		return redirect(url_for('network'))
+
+
+	return render_template('how.html', nodes=session['nodes'])
+
+
+@app.route("/network", methods=['GET', 'POST'])
+def network():
 
 	return render_template('network.html', nodes=json.dumps(session['nodes']), summary=session['how'])
 
