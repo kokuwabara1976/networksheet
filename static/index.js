@@ -275,7 +275,7 @@
 
 //     svg.append('rect')
 //     .style("fill", "white")
-//     .style("stroke", "black")
+//  .style("stroke", "gray")
 //     .style("stroke-width", 6)
 //     .attr("x", 90)
 //     .attr("y", 90)
@@ -283,7 +283,7 @@
 //     .attr("height", 600);
 
 //     svg.append('line')
-//     .style("stroke", "black")
+//  .style("stroke", "gray")
 //     .style("stroke-width", 6)
 //     .attr("x1", 90)
 //     .attr("y1", 300)
@@ -291,7 +291,7 @@
 //     .attr("y2", 300);
 
 //     svg.append('line')
-//     .style("stroke", "black")
+//  .style("stroke", "gray")
 //     .style("stroke-width", 6)
 //     .attr("x1", 90)
 //     .attr("y1", 500)
@@ -299,7 +299,7 @@
 //     .attr("y2", 500);
 
 //     svg.append('line')
-//     .style("stroke", "black")
+//  .style("stroke", "gray")
 //     .style("stroke-width", 6)
 //     .attr("x1", 400)
 //     .attr("y1", 90)
@@ -307,7 +307,7 @@
 //     .attr("y2", 690);
 
 //     svg.append('line')
-//     .style("stroke", "black")
+//  .style("stroke", "gray")
 //     .style("stroke-width", 6)
 //     .attr("x1", 600)
 //     .attr("y1", 90)
@@ -315,7 +315,7 @@
 //     .attr("y2", 690);
 
 //     svg.append('line')
-//     .style("stroke", "black")
+//  .style("stroke", "gray")
 //     .style("stroke-width", 6)
 //     .attr("x1", 800)
 //     .attr("y1", 90)
