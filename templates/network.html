@@ -148,7 +148,8 @@
     svg.append('rect')
     .style("fill", "white")
     .style("stroke", "black")
-    .style("stroke-width", 6)
+    .style("stroke-width", 3)
+    .style("stroke-dasharray",5,5)
     .attr("x", 90)
     .attr("y", 90)
     .attr("width", 900)
@@ -156,7 +157,7 @@
 
     svg.append('line')
     .style("stroke", "black")
-    .style("stroke-width", 6)
+    .style("stroke-width", 3)
     .attr("x1", 90)
     .attr("y1", 300)
     .attr("x2", 990)
@@ -164,7 +165,7 @@
 
     svg.append('line')
     .style("stroke", "black")
-    .style("stroke-width", 6)
+    .style("stroke-width", 3)
     .attr("x1", 90)
     .attr("y1", 500)
     .attr("x2", 990)
@@ -172,7 +173,7 @@
 
     svg.append('line')
     .style("stroke", "black")
-    .style("stroke-width", 6)
+    .style("stroke-width", 3)
     .attr("x1", 400)
     .attr("y1", 90)
     .attr("x2", 400)
@@ -180,7 +181,7 @@
 
     svg.append('line')
     .style("stroke", "black")
-    .style("stroke-width", 6)
+    .style("stroke-width", 3)
     .attr("x1", 600)
     .attr("y1", 90)
     .attr("x2", 600)
@@ -188,7 +189,7 @@
 
     svg.append('line')
     .style("stroke", "black")
-    .style("stroke-width", 6)
+    .style("stroke-width", 3)
     .attr("x1", 800)
     .attr("y1", 90)
     .attr("x2", 800)
@@ -260,17 +261,17 @@
     svg.append("text")
     .attr("x", 840)
     .attr("y", 730)
-    .text("Outside of")
+    .text("Different Industry")
     .attr("font-family", "sans-serif")
     .attr("font-size", "20px");
-
+/*
     svg.append("text")
     .attr("x", 840)
     .attr("y", 750)
     .text("your industry")
     .attr("font-family", "sans-serif")
     .attr("font-size", "20px");
-
+*/
     /* ZOOM and PAN
     */
     /* create container elements
