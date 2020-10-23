@@ -7,7 +7,7 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet 2" href="../static/index.css">
+  <link rel="stylesheet" href="../static/index.css">
 
   <title>NETWORKsheet</title>
 </head>
@@ -23,7 +23,7 @@
       <!-- Instructions -->
       <div class="jumbotron">
         <div class="jumbotron-content">
-          <h3>How do you know your contacts?</h3>
+          <h3 class="display-7">How do you know your contacts?</h3>
           <p>Please answer the questions below for each contact in your network.</p>
         </div>
       </div>
@@ -34,7 +34,7 @@
       <!-- Question 1 -->
       <div class="jumbotron">
         <div class="jumbotron-content">
-          <h3>How close are you?</h3>
+          <h3 class="display-7">How close are you?</h3>
           <p>People feel close if they trust each other and feel comfortable discussing personal matters.</p>
           {% for node in nodes %}
           <div class="border-top my-3"></div>
@@ -69,7 +69,7 @@
 
       <div class="jumbotron">
         <div class="jumbotron-content">
-          <h3>How often do you talk to them at work?  </h3>
+          <h3 class="display-7">How often do you talk to them at work?  </h3>
           
           {% for node in nodes %}
           <div class="border-top my-3"></div>
@@ -103,7 +103,7 @@
       <!-- Question 3 -->
       <div class="jumbotron">
         <div class="jumbotron-content">
-          <h3>How often do you talk to them outside of work?</h3>
+          <h3 class="display-7">How often do you talk to them outside of work?</h3>
           {% for node in nodes %}
           <div class="border-top my-3"></div>
           {{ node.id }}    
@@ -139,7 +139,7 @@
 
       <div class="jumbotron">
         <div class="jumbotron-content">
-          <h3>How often do they come to you for help, feedback, or a chat?</h3>
+          <h3 class="display-7">How often do they come to you for help, feedback, or a chat?</h3>
           {% for node in nodes %}
           <div class="border-top my-3"></div>
           {{ node.id }}    
@@ -174,7 +174,7 @@
 
       <div class="jumbotron">
         <div class="jumbotron-content">
-          <h3>What do you know  about them?</h3>
+          <h3 class="display-7">What do you know  about them?</h3>
           <p>Please indicate what you know about each contact. </p>
           <p>Family: What do you know about their family? Are they married? Who is in their family? Do they have siblings?</p>
           <p>Country or culture of origin: where or how they grew up</p>
@@ -221,7 +221,7 @@
 
       <div class="jumbotron">
         <div class="jumbotron-content">
-          <h3>How similar are you?</h3>
+          <h3 class="display-7">How similar are you?</h3>
           {% for node in nodes %}
           <div class="border-top my-3"></div>
           {{ node.id }}    
