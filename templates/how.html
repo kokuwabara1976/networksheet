@@ -29,8 +29,6 @@
       </div>
       <!-- End instructions -->
 
-
-
       <!-- Question 1 -->
       <div class="jumbotron">
         <div class="jumbotron-content">
@@ -104,6 +102,7 @@
       <div class="jumbotron">
         <div class="jumbotron-content">
           <h3 class="display-7">How often do you talk to them outside of work?</h3>
+          <br>Spending time together outside of work contexts offers opportunities to get to know one another in different ways.
           {% for node in nodes %}
           <div class="border-top my-3"></div>
           {{ node.id }}    
@@ -140,6 +139,7 @@
       <div class="jumbotron">
         <div class="jumbotron-content">
           <h3 class="display-7">How often do they come to you for help, feedback, or a chat?</h3>
+          <br>
           {% for node in nodes %}
           <div class="border-top my-3"></div>
           {{ node.id }}    
@@ -175,6 +175,7 @@
       <div class="jumbotron">
         <div class="jumbotron-content">
           <h3 class="display-7">What do you know  about them?</h3>
+          <br>Friends: Do you know anything about their best friends?
           <br>Family: What do you know about their family? Are they married? Who is in their family? Do they have siblings?
           <br>Education: What is their highest degree? Where did they get their education?
           <br>Cultural background: Where and how did they grow up?
@@ -185,19 +186,19 @@
 
           <div class="form-group">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio1" value="Birthday">
-              <label class="form-check-label" for="inlineCheckbox1">Birthday</label>
+              <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio1" value="Friends">
+              <label class="form-check-label" for="inlineCheckbox1">Friends</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio2" value="Family">
               <label class="form-check-label" for="inlineCheckbox2">Family</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio3" value="Educational background">
+              <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio3" value="Education">
               <label class="form-check-label" for="inlineCheckbox3">Education</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio4" value="Country or culture">
+              <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio4" value="Culture">
               <label class="form-check-label" for="inlineCheckbox4">Cultural background</label>
             </div>           
             <div class="form-check form-check-inline">
@@ -222,6 +223,7 @@
       <div class="jumbotron">
         <div class="jumbotron-content">
           <h3 class="display-7">How similar are you?</h3>
+          <br>Do you have anything in common with your contacts? Here are some common ways in which people feel similar to one another.
           {% for node in nodes %}
           <div class="border-top my-3"></div>
           {{ node.id }}    
@@ -238,7 +240,7 @@
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio3" value="Country or culture of origin">
-              <label class="form-check-label" for="inlineCheckbox3">Cultural backgroun</label>
+              <label class="form-check-label" for="inlineCheckbox3">Cultural background</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio4" value="Professional Interests">
