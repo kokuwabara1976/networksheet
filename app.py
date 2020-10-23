@@ -25,7 +25,7 @@ def who():
 
 		df = pd.DataFrame({})
 
-		for headline in ['T', 'N', 'political', 'G', 'I', 'F']:
+		for headline in ['T', 'N', 'P', 'G', 'I', 'F']:
 		    _df = pd.DataFrame({'names': who.getlist(headline), 'category': headline})
 		    df = pd.concat([df, _df])
 
