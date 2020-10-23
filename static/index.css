@@ -26,6 +26,12 @@ body {
 
 .display-5 {
   font-size:16pt;
+  font-weight:bold;
+  color:black;
+}
+
+.display-6 {
+  font-size:14pt;
   color:black;
 }
 
