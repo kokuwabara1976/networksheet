@@ -24,7 +24,7 @@
       <div class="jumbotron">
         <div class="jumbotron-content">
           <h3>How do you know your contacts?</h3>
-          <p>Please answer the questions below for each contact in your network.</p>
+          <p>Now that you’ve identified some of the key contacts in your network, we’re going to explore the nature and strength of those relationships. Please answer the questions below for each contact in your network.</p>
         </div>
       </div>
       <!-- End instructions -->
@@ -67,7 +67,7 @@
 
       <div class="jumbotron">
         <div class="jumbotron-content">
-          <h3 class="display-7">How often do you talk to them at work?  </h3>
+          <h3 class="display-7">How often do you talk to them during work hours?  </h3>
           Do you make a point to talk to them regularly on your own? Do you know what they are up to lately?
           {% for node in nodes %}
           <div class="border-top my-3"></div>
@@ -140,6 +140,7 @@
         <div class="jumbotron-content">
           <h3 class="display-7">How balanced are your relationships?</h3>
           Are you in their network as much as they are in yours? Do they come to you for support, advice, or company as much as you go to them? Do you give as much as they give? Or do you feel that your relationships are one-sided?
+
           {% for node in nodes %}
           <div class="border-top my-3"></div>
           {{ node.id }}    
