@@ -23,7 +23,7 @@
       <!-- Instructions -->
       <div class="jumbotron">
         <div class="jumbotron-content">
-          <h3 class="display-7">How do you know your contacts?</h3>
+          <h3>How do you know your contacts?</h3>
           <p>Please answer the questions below for each contact in your network.</p>
         </div>
       </div>
@@ -175,9 +175,9 @@
       <div class="jumbotron">
         <div class="jumbotron-content">
           <h3 class="display-7">What do you know  about them?</h3>
-          <p>Please indicate what you know about each contact. </p>
-          <p>Family: What do you know about their family? Are they married? Who is in their family? Do they have siblings?</p>
-          <p>Country or culture of origin: where or how they grew up</p>
+          <br>Family: What do you know about their family? Are they married? Who is in their family? Do they have siblings?
+          <br>Education: What is their highest degree? Where did they get their education?
+          <br>Cultural background: Where and how did they grow up?
           {% for node in nodes %}
           <div class="border-top my-3"></div>
           {{ node.id }}    
@@ -198,7 +198,7 @@
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio4" value="Country or culture">
-              <label class="form-check-label" for="inlineCheckbox4">Country or culture of origin</label>
+              <label class="form-check-label" for="inlineCheckbox4">Cultural background</label>
             </div>           
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineRadio5" value="Interests or hobbies">
@@ -238,7 +238,7 @@
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio3" value="Country or culture of origin">
-              <label class="form-check-label" for="inlineCheckbox3">Country or culture of origin</label>
+              <label class="form-check-label" for="inlineCheckbox3">Cultural backgroun</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineRadio4" value="Professional Interests">
