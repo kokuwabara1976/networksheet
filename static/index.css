@@ -24,9 +24,14 @@ body {
     vertical-align: right;
 }
 
+.display-5 {
+  font-size:18pt;
+  color: black;
+}
+
 .display-7 {
   font-size:14pt;
-  color: red;
+  color: rgb(0,128,0) ;
 }
 
 .node > circle {
