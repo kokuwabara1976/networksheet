@@ -44,6 +44,7 @@ def who():
 			    	 "x": 469,
 			    	 "y": 410,
 			    	 "type": ', '.join(eval(categories)),
+			    	 "cats": eval(categories)
 			    	 }
 		    	 )
 

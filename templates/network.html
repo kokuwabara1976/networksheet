@@ -167,6 +167,28 @@
     var container, library, svg, toolbar;
     svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
 
+    var gradient = svg.append("svg:defs")
+    .append("svg:linearGradient")
+    .attr("id", "gradient")
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "100%")
+    .attr("spreadMethod", "pad");
+
+// Define the gradient colors
+gradient.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#a00000")
+    .attr("stop-opacity", 1);
+
+gradient.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "#aaaa00")
+    .attr("stop-opacity", 1);
+
+    global.gradient = gradient;
+
 
     svg.append('rect')
     .style("fill", "white")
@@ -351,9 +373,14 @@
     d3.select(window).on('keydown', function() {
       if (d3.event.keyCode === 46) {
         if (global.selection != null) {
-          graph.remove(global.selection);
-          global.selection = null;
-          return update();
+          if (global.selection.hasOwnProperty("source")){
+
+            graph.remove(global.selection);
+            global.selection = null;
+            return update();
+
+          };
+          
         }
       }
     });
@@ -512,10 +539,60 @@ instructions1 = $("<div class='instructions1'></div>");
     } else {
       new_nodes.call(global.drag);
     }
+
     new_nodes.append('circle').attr('r', 25).attr('stroke', function(d) {
       return d3.hcl(global.colorify(d.type)).brighter(6);
     }).attr('fill', function(d) {
       return d3.hcl(global.colorify(d.type)).brighter(9);
+    });
+
+    new_nodes.each(function(d) {
+
+      var text = d3.select(this).text(d.type);
+
+      var r = 15;
+      var color_delta = 2;
+
+      text.append('circle').attr('r', 25).attr('stroke', d3.hcl(global.colorify("BLANK")).brighter(6))
+      .attr('fill', d3.hcl(global.colorify("BLANK")).brighter(9));
+
+      if (d.cats.includes("T")){
+          text.append("circle").attr("r", r).attr("cx", -40).attr("cy", 0).attr("fill", d3.hcl(global.colorify("T")).brighter(color_delta));
+      };
+
+      if (d.cats.includes("N")){
+          text.append("circle").attr("r", r).attr("cx", -25).attr("cy", 0).attr("fill", d3.hcl(global.colorify("N")).brighter(color_delta));
+      };
+
+      if (d.cats.includes("P")){
+          text.append("circle").attr("r", r).attr("cx", -10).attr("cy", 0).attr("fill", d3.hcl(global.colorify("P")).brighter(color_delta));
+      };
+
+      if (d.cats.includes("G")){
+          text.append("circle").attr("r", r).attr("cx", 10).attr("cy", 0).attr("fill", d3.hcl(global.colorify("G")).brighter(color_delta));
+      };
+
+      if (d.cats.includes("I")){
+          text.append("circle").attr("r", r).attr("cx", 25).attr("cy", 0).attr("fill", d3.hcl(global.colorify("I")).brighter(color_delta));
+      };
+
+      if (d.cats.includes("F")){
+          text.append("circle").attr("r", r).attr("cx", 40).attr("cy", 0).attr("fill", d3.hcl(global.colorify("F")).brighter(color_delta));
+      };
+
+        // // split name by space and -
+        // var n = d.name.replace("-","- ").split(" ");
+        // // get the current element
+        // var text = d3.select(this)
+        //     .attr("dy", n.length / 3 - (n.length-1) * 0.9 + 'em')
+        //     .text(n[0]);
+        // // now loop
+        // for (var i = 1; i < n.length; i++) {
+        //     text.append("tspan")
+        //         .attr('x', 0)
+        //         .attr('dy', '1em')
+        //         .text(n[i])
+        // }
     });
 
     // new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) {
@@ -551,11 +628,11 @@ instructions1 = $("<div class='instructions1'></div>");
       return global.colorify(d.type);
     });
 
-    new_nodes.append('text').text(function(d) {
-      return d.type;
-    }).attr('dy', '1.2em').attr('fill', function(d) {
-      return global.colorify(d.type);
-    });
+    // new_nodes.append('text').text(function(d) {
+    //   return d.type;
+    // }).attr('dy', '1.2em').attr('fill', function(d) {
+    //   return global.colorify(d.type);
+    // });
 
     return nodes.exit().remove();
   };
