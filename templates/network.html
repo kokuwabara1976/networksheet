@@ -522,17 +522,41 @@ update = function() {
     */
     nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
 
-      console.log(d.cats)
+      console.log(d.cats);
       
       try{
-        if (document.getElementById("checkbox_T").checked){
-            $(this).attr("visibility", "visible");
+        if ((!document.getElementById("checkbox_T").checked) && d.cats.includes("T")){ // if not checked AND includes T
+            $(this).attr("visibility", "hidden");
+            console.log("hidden T");
+        }
+        else if ((!document.getElementById("checkbox_N").checked) && d.cats.includes("N")){ // if not checked AND includes N
+            $(this).attr("visibility", "hidden");
+            console.log("hidden N");
+        }
+        else if ((!document.getElementById("checkbox_P").checked) && d.cats.includes("P")){ // if not checked AND includes P
+            $(this).attr("visibility", "hidden");
+            console.log("hidden P");
+        }
+        else if ((!document.getElementById("checkbox_G").checked) && d.cats.includes("G")){ // if not checked AND includes G
+            $(this).attr("visibility", "hidden");
+            console.log("hidden G");
+        }
+        else if ((!document.getElementById("checkbox_I").checked) && d.cats.includes("I")){ // if not checked AND includes I
+            $(this).attr("visibility", "hidden");
+            console.log("hidden I");
+        }
+        else if ((!document.getElementById("checkbox_F").checked) && d.cats.includes("F")){ // if not checked AND includes F
+            $(this).attr("visibility", "hidden");
+            console.log("hidden F");
         }
         else{
-          $(this).attr("visibility", "hidden");
-        }
+          $(this).attr("visibility", "visible");
+          console.log("visible");
+        };
       }
-      catch{};
+      catch{
+        console.log("catch");
+      };
       
       return d.id;
     });
@@ -633,7 +657,7 @@ update = function() {
     /* draw the label
     */
     new_nodes.append('text').text(function(d) {
-      return d.id;
+      return d.id + " [" + d.cats + "]";
     }).attr('dy', '0.35em').attr('fill', function(d) {
       return global.colorify(d.type);
     });
