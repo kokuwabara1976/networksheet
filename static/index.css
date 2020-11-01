@@ -79,9 +79,9 @@ body {
 }
 
 .toolbar {
-  position: absolute;
-  top: 200px;
-  left: 1200px;
+  position: relative;
+  top: -800px;
+  left: 600px;
   width: 240px;
   margin-left: -120px;
   text-align: center;

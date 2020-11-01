@@ -17,53 +17,53 @@
   <script src="/static/d3.v3.min.js"></script>
   <script src="/static/index.js"></script>
 
-<div class="footer">
-  <br>
-  <br>
-  <div class="container">
+  <div class="footer">
+    <br>
+    <br>
+    <div class="container">
       <div class="row">
         <br>
         <br>
         <div class="col text-center">
-            <form name="myform" action="javascript:svg2img()">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+          <form name="myform" action="javascript:svg2img()">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
       </div>
       <br>
-   </div>
-</div>
+    </div>
+  </div>
 
 </head>
 <body onload="main()">
-<br>
-<br>
+  <br>
+  <br>
 
-    <div class="container">
-      
-      <!-- Instructions -->
-      <div class="jumbotron">
-          <div class="jumbotron-content">
-            <h3>Who knows whom?</h3>
-            <p>Your next task is to draw your network in the grid below. First, drag each contact to the appropriate square, based upon their status and workplace. Their status may be based on their formal rank or your own perception of how much more or less senior (older, more experienced, etc) they are. </p>
-            <p>Next, switch to the Connection Tool and connect contacts by clicking on one contact and dragging the cursor to another as if you are drawing a line. Connect any two contacts if they are good friends or colleagues who talk to or spend time with each other on their own at least every few months. If you are not sure, assume they are not connected. To erase a tie, use the Selection Tool to highlight it and hit Delete on your keyboard.</p>
-            <p>Do not worry about being perfectly accurate. More important is that you take the time to think about what you know or do not know about your network.</p>  
-          </div>
-        </div>
-    </div>   
-      <!-- End instructions -->
-  
+  <div class="container">
+
+    <!-- Instructions -->
+    <div class="jumbotron">
+      <div class="jumbotron-content">
+        <h3>Who knows whom?</h3>
+        <p>Your next task is to draw your network in the grid below. First, drag each contact to the appropriate square, based upon their status and workplace. Their status may be based on their formal rank or your own perception of how much more or less senior (older, more experienced, etc) they are. </p>
+        <p>Next, switch to the Connection Tool and connect contacts by clicking on one contact and dragging the cursor to another as if you are drawing a line. Connect any two contacts if they are good friends or colleagues who talk to or spend time with each other on their own at least every few months. If you are not sure, assume they are not connected. To erase a tie, use the Selection Tool to highlight it and hit Delete on your keyboard.</p>
+        <p>Do not worry about being perfectly accurate. More important is that you take the time to think about what you know or do not know about your network.</p>  
+      </div>
+    </div>
+  </div>   
+  <!-- End instructions -->
 
 
-<script>
 
-(function() {
-  var drag_add_link, global, graph, height, update, width,
-    __indexOf = Array.prototype.indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+  <script>
 
-  width = 1200;
+    (mainFunc = function() {
+      var drag_add_link, global, graph, height, update, width,
+      __indexOf = Array.prototype.indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  height = 800;
+      width = 1200;
+
+      height = 800;
 
   /* SELECTION - store the selected node
   */
@@ -178,79 +178,79 @@
 
 // Define the gradient colors
 gradient.append("svg:stop")
-    .attr("offset", "0%")
-    .attr("stop-color", "#a00000")
-    .attr("stop-opacity", 1);
+.attr("offset", "0%")
+.attr("stop-color", "#a00000")
+.attr("stop-opacity", 1);
 
 gradient.append("svg:stop")
-    .attr("offset", "100%")
-    .attr("stop-color", "#aaaa00")
-    .attr("stop-opacity", 1);
+.attr("offset", "100%")
+.attr("stop-color", "#aaaa00")
+.attr("stop-opacity", 1);
 
-    global.gradient = gradient;
+global.gradient = gradient;
 
 
-    svg.append('rect')
-    .style("fill", "white")
-    .style("stroke", "gray")
-    .style("stroke-width", 2)
-    .style("stroke-dasharray",5)
-    .attr("x", 150)
-    .attr("y", 90)
-    .attr("width", 900)
-    .attr("height", 600);
+svg.append('rect')
+.style("fill", "white")
+.style("stroke", "gray")
+.style("stroke-width", 2)
+.style("stroke-dasharray",5)
+.attr("x", 150)
+.attr("y", 90)
+.attr("width", 900)
+.attr("height", 600);
 
-    svg.append('line')
-    .style("stroke", "gray")
-    .style("stroke-width", 2)
-    .style("stroke-dasharray",5)
-    .attr("x1", 150)
-    .attr("y1", 300)
-    .attr("x2", 1050)
-    .attr("y2", 300);
+svg.append('line')
+.style("stroke", "gray")
+.style("stroke-width", 2)
+.style("stroke-dasharray",5)
+.attr("x1", 150)
+.attr("y1", 300)
+.attr("x2", 1050)
+.attr("y2", 300);
 
-    svg.append('line')
-    .style("stroke", "gray")
-    .style("stroke-width", 2)
-    .style("stroke-dasharray",5)
-    .attr("x1", 150)
-    .attr("y1", 500)
-    .attr("x2", 1050)
-    .attr("y2", 500);
+svg.append('line')
+.style("stroke", "gray")
+.style("stroke-width", 2)
+.style("stroke-dasharray",5)
+.attr("x1", 150)
+.attr("y1", 500)
+.attr("x2", 1050)
+.attr("y2", 500);
 
-    svg.append('line')
-    .style("stroke", "gray")
-    .style("stroke-width", 2)
-    .style("stroke-dasharray",5)
-    .attr("x1", 450)
-    .attr("y1", 90)
-    .attr("x2", 450)
-    .attr("y2", 690);
+svg.append('line')
+.style("stroke", "gray")
+.style("stroke-width", 2)
+.style("stroke-dasharray",5)
+.attr("x1", 450)
+.attr("y1", 90)
+.attr("x2", 450)
+.attr("y2", 690);
 
-    svg.append('line')
-    .style("stroke", "gray")
-    .style("stroke-width", 2)
-    .style("stroke-dasharray",5)
-    .attr("x1", 650)
-    .attr("y1", 90)
-    .attr("x2", 650)
-    .attr("y2", 690);
+svg.append('line')
+.style("stroke", "gray")
+.style("stroke-width", 2)
+.style("stroke-dasharray",5)
+.attr("x1", 650)
+.attr("y1", 90)
+.attr("x2", 650)
+.attr("y2", 690);
 
-    svg.append('line')
-    .style("stroke", "gray")
-    .style("stroke-width", 2)
-    .style("stroke-dasharray",5)
-    .attr("x1", 850)
-    .attr("y1", 90)
-    .attr("x2", 850)
-    .attr("y2", 690);
+svg.append('line')
+.style("stroke", "gray")
+.style("stroke-width", 2)
+.style("stroke-dasharray",5)
+.attr("x1", 850)
+.attr("y1", 90)
+.attr("x2", 850)
+.attr("y2", 690);
 
-    svg.append("text")
-    .attr("x", 40)
-    .attr("y", 200)
-    .text("Your senior")
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "20px");
+svg.append("text")
+.attr("x", 40)
+.attr("y", 200)
+.text("Your senior")
+.attr("font-family", "sans-serif")
+.attr("font-size", "20px");
 
     /*
     svg.append("text")
@@ -259,7 +259,7 @@ gradient.append("svg:stop")
     .text("Senior")
     .attr("font-family", "sans-serif")
     .attr("font-size", "20px");
-*/
+    */
     svg.append("text")
     .attr("x", 40)
     .attr("y", 400)
@@ -273,7 +273,7 @@ gradient.append("svg:stop")
     .text("Peer")
     .attr("font-family", "sans-serif")
     .attr("font-size", "20px");
-*/
+    */
     svg.append("text")
     .attr("x", 40)
     .attr("y", 600)
@@ -287,7 +287,7 @@ gradient.append("svg:stop")
     .text("Junior")
     .attr("font-family", "sans-serif")
     .attr("font-size", "20px");
-*/
+    */
     svg.append("text")
     .attr("x", 270)
     .attr("y", 715)
@@ -322,7 +322,7 @@ gradient.append("svg:stop")
     .text("your industry")
     .attr("font-family", "sans-serif")
     .attr("font-size", "20px");
-*/
+    */
     /* ZOOM and PAN
     */
     /* create container elements
@@ -388,31 +388,7 @@ gradient.append("svg:stop")
     /* TOOLBAR
     */
 
-instructions1 = $("<div class='instructions1'></div>");
-   
-    /*
-    $('body').append(instructions1);
-
-    instructions2 = $("<div class='instructions2'></div>");
-    $('body').append(instructions2);
-
-    instructions3 = $("<div class='instructions3'></div>");
-    $('body').append(instructions3);
-
-    instructions1.append("text")
-    .attr("x", 200)
-    .attr("y", 30)
-    .text("Drag each contact to the appropriate square, based upon their status and workplace.")
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "20px");
-
-    instructions2.append("text")
-    .attr("x", 200)
-    .attr("y", 50)
-    .text("Next, switch to the Connection Tool and connect contacts if they are good friends or colleagues. If you are not sure, assume they are not connected.")
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "20px");
-*/
+    instructions1 = $("<div class='instructions1'></div>");
 
     toolbar = $("<div class='toolbar'></div>");
     $('body').append(toolbar);
@@ -422,6 +398,27 @@ instructions1 = $("<div class='instructions1'></div>");
     
     library = $("<div class='library'></div></div>");
     toolbar.append(library);
+
+// Check boxes
+    checkbox_btn = $("<div class='container'>\
+      <div class='jumbotron-content'>\
+        <div class='form-check form-check-inline'>\
+          <input class='form-check-input' type='checkbox' id='checkbox_T' value='option1' checked>\
+          <label class='form-check-label' for='inlineCheckbox1'>T</label>\
+      </div>\
+    </div>\
+  </div>");
+
+    checkbox_btn.bind('click', function(){
+      return update();
+    });
+    toolbar.append(checkbox_btn);
+
+   // End Check Boxes
+
+
+
+
     ['X', 'Y', 'Z', 'W'].forEach(function(type) {
       var new_btn;
       new_btn = $("<svg width='42' height='42'>\n    <g class='node'>\n        <circle\n            cx='21'\n            cy='21'\n            r='18'\n            stroke='" + (global.colorify(type)) + "'\n            fill='" + (d3.hcl(global.colorify(type)).brighter(3)) + "'\n        />\n    </g>\n</svg>");
@@ -479,27 +476,16 @@ instructions1 = $("<div class='instructions1'></div>");
       return global.tool = new_tool;
     });
 
-
-   update();
+    update();
 
   });
 
-  update = function() {
+update = function() {
+  console.log("update");
     /* update the layout
     */
     var links, new_nodes, nodes;
     global.force.nodes(graph.nodes).links(graph.links).start();
-
-// pie stuff
-    var arc = d3.svg.arc()
-            .innerRadius(0)
-            .outerRadius(30);
-            
-    var pie = d3.layout.pie()
-            .sort(null)
-            .value(function(d) { return d; });
-// pie stuff
-
 
     /* create nodes and links
     */
@@ -546,78 +532,64 @@ instructions1 = $("<div class='instructions1'></div>");
       return d3.hcl(global.colorify(d.type)).brighter(9);
     });
 
-    new_nodes.each(function(d) {
 
-      var text = d3.select(this).text(d.type);
+    //   var r = 15;
+    //   var color_delta = 2;
 
-      var r = 15;
-      var color_delta = 2;
+    //   // text.append('circle').attr('r', 25)
+    //   // .attr('fill', function(d) {
+    //   //   return d3.hcl(global.colorify(d.type)).brighter(9);
+    //   // });
 
-      text.append('circle').attr('r', 25).attr('stroke', d3.hcl(global.colorify("BLANK")).brighter(6))
-      .attr('fill', d3.hcl(global.colorify("BLANK")).brighter(9));
+    // //   try {
 
-      if (d.cats.includes("T")){
-          text.append("circle").attr("r", r).attr("cx", -40).attr("cy", 0).attr("fill", d3.hcl(global.colorify("T")).brighter(color_delta));
-      };
+    // //   if (d.cats.includes("T") && document.getElementById("checkbox_T").checked){
+    // //     text.append('circle').attr('r', 25)
+    // //     .attr('fill', function(d) {
+    // //       return d3.hcl(global.colorify(d.type)).brighter(9);
+    // //     });
+    // //   };
 
-      if (d.cats.includes("N")){
-          text.append("circle").attr("r", r).attr("cx", -25).attr("cy", 0).attr("fill", d3.hcl(global.colorify("N")).brighter(color_delta));
-      };
+    // // }
+    // // catch{
+    // //   console.log("checkbox catch");
+    // // };
 
-      if (d.cats.includes("P")){
-          text.append("circle").attr("r", r).attr("cx", -10).attr("cy", 0).attr("fill", d3.hcl(global.colorify("P")).brighter(color_delta));
-      };
+    //   // if (d.cats.includes("N") && document.getElementById("checkbox_N").checked){
+    //   //   text.append('circle').attr('r', 25)
+    //   //   .attr('fill', function(d) {
+    //   //     return d3.hcl(global.colorify(d.type)).brighter(9);
+    //   //   });
+    //   // };
 
-      if (d.cats.includes("G")){
-          text.append("circle").attr("r", r).attr("cx", 10).attr("cy", 0).attr("fill", d3.hcl(global.colorify("G")).brighter(color_delta));
-      };
+    //   // if (d.cats.includes("P") && document.getElementById("checkbox_P").checked){
+    //   //   text.append('circle').attr('r', 25)
+    //   //   .attr('fill', function(d) {
+    //   //     return d3.hcl(global.colorify(d.type)).brighter(9);
+    //   //   });
+    //   // };
 
-      if (d.cats.includes("I")){
-          text.append("circle").attr("r", r).attr("cx", 25).attr("cy", 0).attr("fill", d3.hcl(global.colorify("I")).brighter(color_delta));
-      };
+    //   // if (d.cats.includes("G") && document.getElementById("checkbox_G").checked){
+    //   //   text.append('circle').attr('r', 25)
+    //   //   .attr('fill', function(d) {
+    //   //     return d3.hcl(global.colorify(d.type)).brighter(9);
+    //   //   });
+    //   // };
 
-      if (d.cats.includes("F")){
-          text.append("circle").attr("r", r).attr("cx", 40).attr("cy", 0).attr("fill", d3.hcl(global.colorify("F")).brighter(color_delta));
-      };
+    //   // if (d.cats.includes("I") && document.getElementById("checkbox_I").checked){
+    //   //   text.append('circle').attr('r', 25)
+    //   //   .attr('fill', function(d) {
+    //   //     return d3.hcl(global.colorify(d.type)).brighter(9);
+    //   //   });
+    //   // };
 
-        // // split name by space and -
-        // var n = d.name.replace("-","- ").split(" ");
-        // // get the current element
-        // var text = d3.select(this)
-        //     .attr("dy", n.length / 3 - (n.length-1) * 0.9 + 'em')
-        //     .text(n[0]);
-        // // now loop
-        // for (var i = 1; i < n.length; i++) {
-        //     text.append("tspan")
-        //         .attr('x', 0)
-        //         .attr('dy', '1em')
-        //         .text(n[i])
-        // }
-    });
-
-    // new_nodes.append('circle').attr('r', 18).attr('stroke', function(d) {
-    //   return global.colorify(d.type);
-    // }).style("fill", "red").attr("class","pies");
-        
-
-    // new_nodes.selectAll(".pies")
-    // .data(pie([100,10,10,10])) // I'm unsure why I need the leading 0.
-    //     .enter()
-    //     .append('g')
-    //     .attr('class','arc');
-    
-    // new_nodes.append("path")
-    //   .attr('e',arc)
-    //   .attr("fill", "M1.83697019872103e-15,-30A30,30,0,1,1,-29.78126622294162,-3.6161004076596717L0,0Z");
-
-    // .data(pie([100,10,10,10])) // I'm unsure why I need the leading 0.
-    //     .enter()
-    //     .append('g')
-    //     .append("path")
-    //   .attr('d',arc)
-    //   .attr("fill",function(d){
-    //        return global.colorify(d);
-    //   });
+    //   // if (d.cats.includes("F") && document.getElementById("checkbox_F").checked){
+    //   //   text.append('circle').attr('r', 25)
+    //   //   .attr('fill', function(d) {
+    //   //     return d3.hcl(global.colorify(d.type)).brighter(9);
+    //   //   });
+    //   // };
+    // });
 
 
     /* draw the label
@@ -633,6 +605,12 @@ instructions1 = $("<div class='instructions1'></div>");
     // }).attr('dy', '1.2em').attr('fill', function(d) {
     //   return global.colorify(d.type);
     // });
+
+    new_nodes.each(function(d) {
+      console.log(d);
+    });
+
+    console.log("finished update");
 
     return nodes.exit().remove();
   };
@@ -657,9 +635,9 @@ instructions1 = $("<div class='instructions1'></div>");
     }));
   };
 
-
 }).call(this);
 </script>
+
 
 </body>
 
