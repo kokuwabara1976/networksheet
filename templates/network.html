@@ -405,7 +405,27 @@ svg.append("text")
         <div class='form-check form-check-inline'>\
           <input class='form-check-input' type='checkbox' id='checkbox_T' value='option1' checked>\
           <label class='form-check-label' for='inlineCheckbox1'>T</label>\
-      </div>\
+        </div>\
+         <div class='form-check form-check-inline'>\
+          <input class='form-check-input' type='checkbox' id='checkbox_N' value='option1' checked>\
+          <label class='form-check-label' for='inlineCheckbox1'>N</label>\
+        </div>\
+         <div class='form-check form-check-inline'>\
+          <input class='form-check-input' type='checkbox' id='checkbox_P' value='option1' checked>\
+          <label class='form-check-label' for='inlineCheckbox1'>P</label>\
+        </div>\
+         <div class='form-check form-check-inline'>\
+          <input class='form-check-input' type='checkbox' id='checkbox_G' value='option1' checked>\
+          <label class='form-check-label' for='inlineCheckbox1'>G</label>\
+        </div>\
+         <div class='form-check form-check-inline'>\
+          <input class='form-check-input' type='checkbox' id='checkbox_I' value='option1' checked>\
+          <label class='form-check-label' for='inlineCheckbox1'>I</label>\
+        </div>\
+         <div class='form-check form-check-inline'>\
+          <input class='form-check-input' type='checkbox' id='checkbox_F' value='option1' checked>\
+          <label class='form-check-label' for='inlineCheckbox1'>F</label>\
+        </div>\
     </div>\
   </div>");
 
@@ -482,10 +502,15 @@ svg.append("text")
 
 update = function() {
   console.log("update");
+
+   // global.vis.selectAll('.node').attr("visibility", "hidden");
+
     /* update the layout
     */
     var links, new_nodes, nodes;
     global.force.nodes(graph.nodes).links(graph.links).start();
+
+    // global.vis.selectAll('circle')
 
     /* create nodes and links
     */
@@ -496,6 +521,19 @@ update = function() {
     /* dragged nodes become fixed
     */
     nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
+
+      console.log(d.cats)
+      
+      try{
+        if (document.getElementById("checkbox_T").checked){
+            $(this).attr("visibility", "visible");
+        }
+        else{
+          $(this).attr("visibility", "hidden");
+        }
+      }
+      catch{};
+      
       return d.id;
     });
     new_nodes = nodes.enter().append('g').attr('class', 'node').on('click', (function(d) {
