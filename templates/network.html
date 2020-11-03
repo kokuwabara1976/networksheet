@@ -520,32 +520,34 @@ update = function() {
     */
     /* dragged nodes become fixed
     */
-    nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
 
-      console.log(d.cats);
+    nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
       
+      // Check T, show all nodes regardless of T
+      // Uncheck T, hide all nodes without T
+
       try{
-        if ((!document.getElementById("checkbox_T").checked) && d.cats.includes("T")){ // if not checked AND includes T
+        if (!(document.getElementById("checkbox_T").checked) && !(d.cats.includes("T"))){ // if not checked AND includes T
             $(this).attr("visibility", "hidden");
             console.log("hidden T");
         }
-        else if ((!document.getElementById("checkbox_N").checked) && d.cats.includes("N")){ // if not checked AND includes N
+        else if (!(document.getElementById("checkbox_N").checked) && !(d.cats.includes("N"))){ // if not checked AND includes N
             $(this).attr("visibility", "hidden");
             console.log("hidden N");
         }
-        else if ((!document.getElementById("checkbox_P").checked) && d.cats.includes("P")){ // if not checked AND includes P
+        else if (!(document.getElementById("checkbox_P").checked) && !(d.cats.includes("P"))){ // if not checked AND includes P
             $(this).attr("visibility", "hidden");
             console.log("hidden P");
         }
-        else if ((!document.getElementById("checkbox_G").checked) && d.cats.includes("G")){ // if not checked AND includes G
+        else if (!(document.getElementById("checkbox_G").checked) && !(d.cats.includes("G"))){ // if not checked AND includes G
             $(this).attr("visibility", "hidden");
             console.log("hidden G");
         }
-        else if ((!document.getElementById("checkbox_I").checked) && d.cats.includes("I")){ // if not checked AND includes I
+        else if (!(document.getElementById("checkbox_I").checked) && !(d.cats.includes("I"))){ // if not checked AND includes I
             $(this).attr("visibility", "hidden");
             console.log("hidden I");
         }
-        else if ((!document.getElementById("checkbox_F").checked) && d.cats.includes("F")){ // if not checked AND includes F
+        else if (!(document.getElementById("checkbox_F").checked) && !(d.cats.includes("F"))){ // if not checked AND includes F
             $(this).attr("visibility", "hidden");
             console.log("hidden F");
         }
@@ -693,7 +695,8 @@ update = function() {
       return d3.event.preventDefault();
     })).on('mouseup.add_link', (function(d) {
       /* add link and update, but only if a link is actually added
-      */      if (graph.add_link(global.new_link_source, d) != null) return update();
+      */      
+           if (graph.add_link(global.new_link_source, d) != null) return update();
     }));
   };
 
