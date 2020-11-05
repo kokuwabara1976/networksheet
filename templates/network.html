@@ -636,10 +636,13 @@ update = function() {
       new_nodes.call(global.drag);
     }
 
+    var node_color = "green"
+    var text_color = "black"
+
     new_nodes.append('circle').attr('r', 25).attr('stroke', function(d) {
-      return d3.hcl(global.colorify(d.type)).brighter(6);
+      return d3.hcl(node_color).brighter(6); //global.colorify(d.type)
     }).attr('fill', function(d) {
-      return d3.hcl(global.colorify(d.type)).brighter(9);
+      return d3.hcl(node_color).brighter(9);
     });
 
     /* draw the label
@@ -647,7 +650,7 @@ update = function() {
     new_nodes.append('text').text(function(d) {
       return d.id + " [" + d.cats + "]";
     }).attr('dy', '0.35em').attr('fill', function(d) {
-      return global.colorify(d.type);
+      return global.colorify(text_color);
     });
 
     // new_nodes.append('text').text(function(d) {
