@@ -652,8 +652,8 @@ update = function() {
     */
     new_nodes.append('text').text(function(d) {
       return d.id + " [" + d.cats + "]";
-    }).attr('dy', '0.35em').attr('fill', function(d) {
-      return global.colorify(d.type);
+    }).attr('dy', '0.3em').attr('fill', function(d) {
+      return global.colorify(d.type, C.black);
     });
 
     // new_nodes.append('text').text(function(d) {
