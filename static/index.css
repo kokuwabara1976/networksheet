@@ -48,7 +48,7 @@ body {
   pointer-events: none;
   font-family: sans-serif;
   font-weight: bold;
-  text-anchor: middle;
+  text-anchor: start;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -82,7 +82,7 @@ body {
   position: relative;
   top: -800px;
   left: 600px;
-  width: 240px;
+  width: 300px;
   margin-left: -120px;
   text-align: center;
 }
