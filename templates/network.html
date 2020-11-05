@@ -492,11 +492,11 @@ toolbar.append(checkbox_btn);
    // End Check Boxes
 
 
-
+//node properties
 
    ['X', 'Y', 'Z', 'W'].forEach(function(type) {
     var new_btn;
-    new_btn = $("<svg width='42' height='42'>\n    <g class='node'>\n        <circle\n            cx='21'\n            cy='21'\n            r='18'\n            stroke='" + (global.colorify(type)) + "'\n            fill='" + (d3.hcl(global.colorify(type)).brighter(3)) + "'\n        />\n    </g>\n</svg>");
+    new_btn = $("<svg width='42' height='42'>\n    <g class='node'>\n        <circle\n            cx='21'\n            cy='21'\n            r='18'\n            stroke='" + (global.colorify(type, C.blue)) + "'\n            fill='" + (d3.hcl(global.colorify(type)).brighter(3)) + "'\n        />\n    </g>\n</svg>");
     new_btn.bind('click', function() {
       graph.add_node(type);
       return update();
