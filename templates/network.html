@@ -643,10 +643,10 @@ update = function() {
     }
 
      /*node properties */ 
-    new_nodes.append('circle').attr('r', 25).attr('stroke', function(d) {
-      return d3.hcl(global.colorify(d.type, C.green));
+    new_nodes.append('circle').attr('r', 30).attr('stroke', function(d) {
+      return d3.hcl(global.colorify(d.type)).brighter(6);
     }).attr('fill', function(d) {
-      return d3.hcl(global.colorify(d.type, C.green));
+      return d3.hcl(global.colorify(d.type)).brighter(9);
     });
 
     /* draw the label
