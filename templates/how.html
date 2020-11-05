@@ -77,20 +77,20 @@
 
           <div class="form-group">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio1" value="1-2 times a year" required>
-              <label class="form-check-label" for="inlineRadio1">0-2 times a year</label>
+              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="talk_inlineRadio1" value="1-2 times a year" required>
+              <label class="form-check-label" for="talk_inlineRadio1">0-2 times a year</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio2" value="Every few months" required>
-              <label class="form-check-label" for="inlineRadio2">Every few months</label>
+              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="talk_inlineRadio2" value="Every few months" required>
+              <label class="form-check-label" for="talk_inlineRadio2">Every few months</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio3" value="Every month" required>
-              <label class="form-check-label" for="inlineRadio3">Every month</label>
+              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="talk_inlineRadio3" value="Every month" required>
+              <label class="form-check-label" for="talk_inlineRadio3">Every month</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio4" value="Every week" required>
-              <label class="form-check-label" for="inlineRadio4">Every week</label>
+              <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="talk_inlineRadio4" value="Every week" required>
+              <label class="form-check-label" for="talk_inlineRadio4">Every week</label>
             </div>
           </div>
 
@@ -177,12 +177,12 @@
 
       <div class="jumbotron">
         <div class="jumbotron-content">
-          <h3 class="display-7">What do you know  about them?</h3>
+          <h3 class="display-7">What do you know about them?</h3>
           Friends: Do you know anything about their best friends?
           <br>Family: Do they have siblings or children? Where do their parents live?
           <br>Education: What is their highest degree? Where did they get their education?
           <br>Cultural background: Where and how did they grow up?
-          <br>Interests: How do they spend their free time? Do they like to talk about outside of work?
+          <br>Interests: How do they spend their free time? What do they like to talk about outside of work?
           <br>Food: What do they enjoy eating? Do they have favorite restaurants?
           {% for node in nodes %}
           <div class="border-top my-3"></div>
@@ -290,9 +290,7 @@
 <footer>
   <br><br>
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="">Ko Kuwabara</a>
-  </div>
+  <div class="footer-copyright text-center py-3">© 2020 Copyright: Ko Kuwabara </div>
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
