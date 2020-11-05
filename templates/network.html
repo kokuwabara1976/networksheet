@@ -118,8 +118,8 @@
 
         <div class="form-group">
           <label for="exampleFormControlTextarea2">Next, look at the types of benefits you receive from your network. Are there any missing benefits? Do you see anyone providng more than 3 types of benefits? Any benefit coming from one person?
-            <p>It may be helpful to use the checkboxes above the network grid to hide contacts that do not provide any particular type of benefit. For instance, unchecking the checkbox T shows only your contacts who provide technical support. 
-            </p></label>
+            It may be helpful to use the checkboxes above the network grid to hide contacts that do not provide any particular type of benefit. For instance, unchecking the checkbox T shows only your contacts who provide technical support. 
+            </label>
           <textarea class="form-control" id="txtarea2" rows="3"></textarea>
         </div> 
 
@@ -652,7 +652,7 @@ update = function() {
     /* draw the label
     */
     new_nodes.append('text').text(function(d) {
-      return d.id + " [" + d.cats + "]";
+      return d.id + ": " + d.cats;
     }).attr('dy', '0.3em').attr('fill', function(d) {
       return global.colorify(d.type, C.black);
     });
