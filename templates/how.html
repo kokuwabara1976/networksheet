@@ -25,7 +25,7 @@
         <div class="jumbotron-content">
           <h3>How do you know your contacts?</h3>
           <p>Now that you’ve identified some of the key contacts in your network, we’re going to explore the nature and strength of those relationships. Please answer the questions below for each contact in your network.</p>
-          <p>This section may feel rather tedious, but please do not rush. It is an important part of understanding your relationships.</p>
+          <p>This section may feel rather tedious depending on how many contacts you have identified, but please do not rush. It is an important part of understanding your relationships.</p>
         </div>
       </div>
       <!-- End instructions -->
@@ -172,6 +172,7 @@
               <label class="form-check-label" for="inlineRadio16_{{ node.id }}">
               <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio16_{{ node.id }}" value="Every week" required>
               Very balanced</label>
+
             </div>  
           </div>
 
@@ -185,12 +186,12 @@
 
       <div class="jumbotron">
         <div class="jumbotron-content">
-          <h3 class="display-7">What do you know  about them?</h3>
+          <h3 class="display-7">What do you know about them?</h3>
           Friends: Do you know anything about their best friends?
           <br>Family: Do they have siblings or children? Where do their parents live?
           <br>Education: What is their highest degree? Where did they get their education?
           <br>Cultural background: Where and how did they grow up?
-          <br>Interests: How do they spend their free time? Do they like to talk about outside of work?
+          <br>Interests: How do they spend their free time? What do they like to talk about outside of work?
           <br>Food: What do they enjoy eating? Do they have favorite restaurants?
           {% for node in nodes %}
           <div class="border-top my-3"></div>
@@ -298,9 +299,7 @@
 <footer>
   <br><br>
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="">Ko Kuwabara</a>
-  </div>
+  <div class="footer-copyright text-center py-3">© 2020 Copyright: Ko Kuwabara </div>
   <!-- Copyright -->
 </footer>
 <!-- Footer -->

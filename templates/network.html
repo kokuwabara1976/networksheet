@@ -23,23 +23,27 @@
 
   <br>
   <br>
-  <!-- Instructions -->
+
   <div class="container"> 
+
+      <!-- Instructions -->
     <div class="jumbotron">
       <div class="jumbotron-content">
         <h3>Your NETWORKsheet Report</h3>
-        <p>Your network report is summarized below. Please review your report and answer reflection questions. Keep in mind that this report is not meant to be a comprehensive analysis of your entire network. Rather, it is designed to help you reflect on your general networking patterns by thinking about the people who comprise your core professional network.</p>
+        <p>Please complete your network report below. Keep in mind that this report is not meant to be a comprehensive analysis of your entire network. Rather, it is designed to help you reflect on your general networking patterns by thinking about the people who comprise your core professional network.</p>
       </div>
     </div>
-
     <!-- End instructions -->
 
+    <div class="jumbotron">
     <div class="jumbotron-content">
-
       <br>
-      <h3>What do you think of your relationships?</h3>
+      <h3 class="display-7">What do you think of your relationships?</h3>
       <p>The pie charts below indicate how strong your relationships are across different dimensions. The more green the pie chart is, the stronger the relationship on a given dimension.</p>
+    </div>
+  </div>
 
+  <div class="jumbotron-content">
       <table class="table">
         <thead>
           <tr>
@@ -81,21 +85,20 @@
         <label for="exampleFormControlTextarea1">Next, examine your pie charts down each column. Do you see anything suprising or notable patterns? Do see any weak areas (columns with many empty pie charts)? What can yo do to improve those areas of your relationships?</label>
         <textarea id="txtarea3" class="form-control" rows="3"></textarea>
       </div>
+
     </div>
 
 
 
     <div class="break" style="display: block; page-break-before: always; "></div>
 
-
-
-
     <!-- Instructions -->
     <div class="jumbotron">
       <div class="jumbotron-content">
-        <h3>Who knows whom?</h3>
+        <h3 class="display-7">Who knows whom</h3>
         <p>Your next task is to draw your network in the grid below. First, drag each contact to the appropriate square, based upon their status and workplace. Their status may be based on their formal rank or your own perception of how much more or less senior (older, more experienced, etc) they are. </p>
         <p>Next, switch to the Connection Tool and connect contacts by clicking on one contact and dragging the cursor to another as if you are drawing a line. Connect any two contacts if they are good friends or colleagues who talk to or spend time with each other on their own at least every few months. If you are not sure, assume they are not connected. To erase a tie, use the Selection Tool to highlight it and hit Delete on your keyboard.</p>
+        <p>Next to each person's initials are letters indicating which types of support or benefits the person provides: T=technical support (problem-solving, expertise), N=news and information (opportunities, events, or happenings at work), P=political support (securing resources, positions, opportunities), G=guidance (wisdom, feedback), I=inspiration (energy, insight, perspectives), F=friendship (social support, companionship). 
         <p>Do not worry about being perfectly accurate. More important is that you take the time to think about what you know or do not know about your network.</p>  
       </div>
     </div>
@@ -107,20 +110,23 @@
 
 
     <div class="container">
-      <h3>What do you think of your network?</h3>  
 
-      <div class="jumbotron">
         <div class="form-group">
           <label for="exampleFormControlTextarea1">What patterns do you see in your network? Do you see any crowded or empty cells? What do you make of them?</label>
           <textarea class="form-control" id="txtarea1" rows="3"></textarea>
         </div>
-      </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea2">Next, look at the types of benefits you receive from your network. Are there any missing benefits? Do you see anyone providng more than 3 types of benefits? Any benefit coming from one person?
+            It may be helpful to use the checkboxes above the network grid to hide contacts that do not provide any particular type of benefit. For instance, unchecking the checkbox T shows only your contacts who provide technical support. 
+            </label>
+          <textarea class="form-control" id="txtarea2" rows="3"></textarea>
+        </div> 
+
     </div>
 
 
     <div class="container">
-      <h3>What do you think of your network?</h3>  
-
       <div class="jumbotron">
         If you are finished, you may save a PDF copy of your report and close the page. If any of your written responses are hidden, please adjust the size of the textboxes before printing out your PDF report.
       </div>
@@ -403,7 +409,7 @@ svg.append("text")
       */      global.vis.selectAll('.node').attr('transform', function(d) {
         return "translate(" + d.x + "," + d.y + ")";
       });
-      return global.vis.selectAll('.link').style("stroke", "black").style("opacity", 0.5).attr('x1', function(d) {
+      return global.vis.selectAll('.link').style("stroke", "black").style("opacity", 0.3).attr('x1', function(d) {
         return d.source.x;
       }).attr('y1', function(d) {
         return d.source.y;
@@ -487,7 +493,7 @@ toolbar.append(checkbox_btn);
    // End Check Boxes
 
 
-
+//node properties
 
    ['X', 'Y', 'Z', 'W'].forEach(function(type) {
     var new_btn;
@@ -639,7 +645,7 @@ update = function() {
     var node_color = "green"
     var text_color = "black"
 
-    new_nodes.append('circle').attr('r', 25).attr('stroke', function(d) {
+    new_nodes.append('circle').attr('r', 30).attr('stroke', function(d) {
       return d3.hcl(node_color).brighter(6); //global.colorify(d.type)
     }).attr('fill', function(d) {
       return d3.hcl(node_color).brighter(9);
@@ -648,8 +654,8 @@ update = function() {
     /* draw the label
     */
     new_nodes.append('text').text(function(d) {
-      return d.id + " [" + d.cats + "]";
-    }).attr('dy', '0.35em').attr('fill', function(d) {
+      return d.id + ": " + d.cats;
+    }).attr('dy', '0.3em').attr('fill', function(d) {
       return global.colorify(text_color);
     });
 
@@ -727,8 +733,7 @@ update = function() {
 
   <br><br>
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="">Ko Kuwabara</a>
+  <div class="footer-copyright text-center py-3">© 2020 Copyright: Ko Kuwbara
   </div>
   <!-- Copyright -->
 
