@@ -642,11 +642,11 @@ update = function() {
       new_nodes.call(global.drag);
     }
 
-    var node_color = "blue"
+    var node_color = "green"
     var text_color = "black"
 
     new_nodes.append('circle').attr('r', 20).attr('stroke', function(d) {
-      return d3.hcl(node_color).brighter(3); //global.colorify(d.type)
+      return d3.hcl(node_color); //global.colorify(d.type)
     }).attr('fill', function(d) {
       return d3.hcl(node_color).brighter(6);
     });
