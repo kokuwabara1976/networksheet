@@ -644,9 +644,9 @@ update = function() {
 
      /*node properties */ 
     new_nodes.append('circle').attr('r', 25).attr('stroke', function(d) {
-      return d3.hcl(global.colorify(d.type, C.green)).brighter(6);
+      return d3.hcl(global.colorify(d.type, C.green));
     }).attr('fill', function(d) {
-      return d3.hcl(global.colorify(d.type, C.green)).brighter(9);
+      return d3.hcl(global.colorify(d.type, C.green));
     });
 
     /* draw the label
