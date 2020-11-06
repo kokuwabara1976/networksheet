@@ -11,7 +11,7 @@
 html, body {
     height: 100%;
     /*overflow: hidden;  MM */
-    margin: 100;
+    margin: 50;
 }
 
 html {
@@ -23,6 +23,7 @@ body {
     display: table-cell;
     vertical-align: right;
 }
+
 
 .display-5 {
   font-size:24pt;
@@ -38,6 +39,11 @@ body {
 .display-7 {
   font-size:14pt;
   color:#3373ff;
+}
+
+.display-6 {
+  font-size:14pt;
+  color:black;
 }
 
 .node > circle {
