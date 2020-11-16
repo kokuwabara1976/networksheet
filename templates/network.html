@@ -401,8 +401,8 @@ svg.append("text")
     */
     /* WARNING rect size is huge but not infinite. this is a dirty hack
     */
-    global.vis.append('rect').attr('class', 'overlay').attr('x', -2000).attr('y', -2000).attr('width', 2000).attr('height', 2000).on('click', (function(d) {
-    // global.vis.append('rect').attr('class', 'overlay').attr('x', -500000).attr('y', -500000).attr('width', 1000000).attr('height', 1000000).on('click', (function(d) {
+    // global.vis.append('rect').attr('class', 'overlay').attr('x', -2000).attr('y', -2000).attr('width', 2000).attr('height', 2000).on('click', (function(d) {
+    global.vis.append('rect').attr('class', 'overlay').attr('x', -500000).attr('y', -500000).attr('width', 1000000).attr('height', 1000000).on('click', (function(d) {
       /* SELECTION
       */      global.selection = null;
       d3.selectAll('.node').classed('selected', false);
@@ -418,7 +418,7 @@ svg.append("text")
       */      global.vis.selectAll('.node').attr('transform', function(d) {
         return "translate(" + d.x + "," + d.y + ")";
       });
-      return global.vis.selectAll('.link').style("stroke", "black").style("opacity", 0.2).attr('x1', function(d) {
+      return global.vis.selectAll('.link').style("stroke", "black").attr('x1', function(d) {
         return d.source.x;
       }).attr('y1', function(d) {
         return d.source.y;
