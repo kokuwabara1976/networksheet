@@ -393,9 +393,9 @@ svg.append("text")
     /* create container elements
     */
     container = svg.append('g');
-    container.call(d3.behavior.zoom().scaleExtent([0.5, 8]).on('zoom', (function() {
-      return global.vis.attr('transform', "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-    })));
+    // container.call(d3.behavior.zoom().scaleExtent([0.5, 8]).on('zoom', (function() {
+    //   return global.vis.attr('transform', "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    // })));
     global.vis = container.append('g');
     /* create a rectangular overlay to catch events
     */
@@ -566,7 +566,6 @@ toolbar.append(checkbox_btn);
   });
 
 update = function() {
-  console.log("update");
 
     /* update the layout
     */
@@ -582,47 +581,48 @@ update = function() {
     /* dragged nodes become fixed
     */
 
-    nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
+    if (global.tool != 'add_link') {
 
-      // Check T, show all nodes regardless of T
-      // Uncheck T, hide all nodes without T
+        nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
 
-      try{
-        if (!(document.getElementById("checkbox_T").checked) && !(d.cats.includes("T"))){ // if not checked AND includes T
-          $(this).attr("visibility", "hidden");
-          console.log("hidden T");
-        }
-        else if (!(document.getElementById("checkbox_N").checked) && !(d.cats.includes("N"))){ // if not checked AND includes N
-          $(this).attr("visibility", "hidden");
-          console.log("hidden N");
-        }
-        else if (!(document.getElementById("checkbox_P").checked) && !(d.cats.includes("P"))){ // if not checked AND includes P
-          $(this).attr("visibility", "hidden");
-          console.log("hidden P");
-        }
-        else if (!(document.getElementById("checkbox_G").checked) && !(d.cats.includes("G"))){ // if not checked AND includes G
-          $(this).attr("visibility", "hidden");
-          console.log("hidden G");
-        }
-        else if (!(document.getElementById("checkbox_I").checked) && !(d.cats.includes("I"))){ // if not checked AND includes I
-          $(this).attr("visibility", "hidden");
-          console.log("hidden I");
-        }
-        else if (!(document.getElementById("checkbox_F").checked) && !(d.cats.includes("F"))){ // if not checked AND includes F
-          $(this).attr("visibility", "hidden");
-          console.log("hidden F");
-        }
-        else{
-          $(this).attr("visibility", "visible");
-          console.log("visible");
-        };
-      }
-      catch{
-        console.log("catch");
-      };
-      
-      return d.id;
-    });
+          // Check T, show all nodes regardless of T
+          // Uncheck T, hide all nodes without T
+
+          try{
+            if (!(document.getElementById("checkbox_T").checked) && !(d.cats.includes("T"))){ // if not checked AND includes T
+              $(this).attr("visibility", "hidden");
+            }
+            else if (!(document.getElementById("checkbox_N").checked) && !(d.cats.includes("N"))){ // if not checked AND includes N
+              $(this).attr("visibility", "hidden");
+            }
+            else if (!(document.getElementById("checkbox_P").checked) && !(d.cats.includes("P"))){ // if not checked AND includes P
+              $(this).attr("visibility", "hidden");
+            }
+            else if (!(document.getElementById("checkbox_G").checked) && !(d.cats.includes("G"))){ // if not checked AND includes G
+              $(this).attr("visibility", "hidden");
+            }
+            else if (!(document.getElementById("checkbox_I").checked) && !(d.cats.includes("I"))){ // if not checked AND includes I
+              $(this).attr("visibility", "hidden");
+            }
+            else if (!(document.getElementById("checkbox_F").checked) && !(d.cats.includes("F"))){ // if not checked AND includes F
+              $(this).attr("visibility", "hidden");
+            }
+            else{
+              $(this).attr("visibility", "visible");
+            };
+          }
+          catch{
+          };
+          
+          return d.id;
+        });
+
+    } else {
+      nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
+          return d.id;
+         });
+    };
+
     new_nodes = nodes.enter().append('g').attr('class', 'node').on('click', (function(d) {
       /* SELECTION
       */      global.selection = d;
@@ -649,13 +649,13 @@ update = function() {
       new_nodes.call(drag_add_link);
     } else {
       new_nodes.call(global.drag);
-    }
+    };
 
     var node_color = "forestgreen"
     var text_color = "black"
 
     new_nodes.append('circle').attr('r', 20).attr('stroke', function(d) {
-      return d3.hcl(node_color).brighter(2); //global.colorify(d.type)
+      return d3.hcl(node_color).brighter(2);
     }).attr('fill', function(d) {
       return d3.hcl(node_color).brighter(2);
     });
@@ -668,18 +668,6 @@ update = function() {
       return global.colorify(text_color);
     });
 
-    // new_nodes.append('text').text(function(d) {
-    //   return d.type;
-    // }).attr('dy', '1.2em').attr('fill', function(d) {
-    //   return global.colorify(d.type);
-    // });
-
-    new_nodes.each(function(d) {
-      console.log(d);
-    });
-
-    console.log("finished update");
-
     return nodes.exit().remove();
   };
 
@@ -691,11 +679,9 @@ update = function() {
       */
       p = d3.mouse(global.vis.node());
       global.drag_link = global.vis.insert('line', '.node').attr('class', 'drag_link').attr('x1', d.x).attr('y1', d.y).attr('x2', p[0]).attr('y2', p[1]);
-      /* prevent pan activation
-      */
+      /* prevent pan activation*/
       d3.event.stopPropagation();
-      /* prevent text selection
-      */
+      /* prevent text selection*/
       return d3.event.preventDefault();
     })).on('mouseup.add_link', (function(d) {
       /* add link and update, but only if a link is actually added
@@ -753,7 +739,7 @@ update = function() {
 
 
 
-<script>
+<!-- <script>
   function expandTextarea(id) {
     document.getElementById(id).addEventListener('keyup', function() {
       this.style.overflow = 'hidden';
@@ -765,7 +751,7 @@ update = function() {
   expandTextarea('txtarea1');
   expandTextarea('txtarea2');
   expandTextarea('txtarea3');
-</script>
+</script> -->
 
 <style>
 textarea {
