@@ -581,47 +581,40 @@ update = function() {
     /* dragged nodes become fixed
     */
 
-    if (global.tool != 'add_link') {
 
-        nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
+    nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
 
-          // Check T, show all nodes regardless of T
-          // Uncheck T, hide all nodes without T
+      // Check T, show all nodes regardless of T
+      // Uncheck T, hide all nodes without T
 
-          try{
-            if (!(document.getElementById("checkbox_T").checked) && !(d.cats.includes("T"))){ // if not checked AND includes T
-              $(this).attr("visibility", "hidden");
-            }
-            else if (!(document.getElementById("checkbox_N").checked) && !(d.cats.includes("N"))){ // if not checked AND includes N
-              $(this).attr("visibility", "hidden");
-            }
-            else if (!(document.getElementById("checkbox_P").checked) && !(d.cats.includes("P"))){ // if not checked AND includes P
-              $(this).attr("visibility", "hidden");
-            }
-            else if (!(document.getElementById("checkbox_G").checked) && !(d.cats.includes("G"))){ // if not checked AND includes G
-              $(this).attr("visibility", "hidden");
-            }
-            else if (!(document.getElementById("checkbox_I").checked) && !(d.cats.includes("I"))){ // if not checked AND includes I
-              $(this).attr("visibility", "hidden");
-            }
-            else if (!(document.getElementById("checkbox_F").checked) && !(d.cats.includes("F"))){ // if not checked AND includes F
-              $(this).attr("visibility", "hidden");
-            }
-            else{
-              $(this).attr("visibility", "visible");
-            };
-          }
-          catch{
-          };
-          
-          return d.id;
-        });
-
-    } else {
-      nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
-          return d.id;
-         });
-    };
+      try{
+        if (!(document.getElementById("checkbox_T").checked) && !(d.cats.includes("T"))){ // if not checked AND includes T
+          $(this).attr("visibility", "hidden");
+        }
+        else if (!(document.getElementById("checkbox_N").checked) && !(d.cats.includes("N"))){ // if not checked AND includes N
+          $(this).attr("visibility", "hidden");
+        }
+        else if (!(document.getElementById("checkbox_P").checked) && !(d.cats.includes("P"))){ // if not checked AND includes P
+          $(this).attr("visibility", "hidden");
+        }
+        else if (!(document.getElementById("checkbox_G").checked) && !(d.cats.includes("G"))){ // if not checked AND includes G
+          $(this).attr("visibility", "hidden");
+        }
+        else if (!(document.getElementById("checkbox_I").checked) && !(d.cats.includes("I"))){ // if not checked AND includes I
+          $(this).attr("visibility", "hidden");
+        }
+        else if (!(document.getElementById("checkbox_F").checked) && !(d.cats.includes("F"))){ // if not checked AND includes F
+          $(this).attr("visibility", "hidden");
+        }
+        else{
+          $(this).attr("visibility", "visible");
+        };
+      }
+      catch{
+      };
+      
+      return d.id;
+    });
 
     new_nodes = nodes.enter().append('g').attr('class', 'node').on('click', (function(d) {
       /* SELECTION
