@@ -51,20 +51,24 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   <script>
     function isMobile(){
+      
       document.getElementById("demo").innerHTM=navigator.userAgent;
+      
       window.alert(navigator.userAgent);
 
           if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 
             window.alert(navigator.userAgent);
 
+            /* 
             $(document).ready(function() {
               $('a').on("click", function(e) {
                 e.preventDefault();
               });
-            }); 
-          } 
-        } 
+            });
+            */ 
+         } 
+    } 
   </script>
 
 </body>
