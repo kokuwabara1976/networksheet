@@ -29,6 +29,7 @@
         <p>This online worksheet is designed to help you think more carefully about what your network looks like and how you manage professional relationships. You will be asked to name people from your core professional network, think about your relationships with them, and draw your network. </p>
         <p>This worksheet takes about 15-30 minutes to complete, although there is no time limit. At any point in the worksheet, you may return to a previous page to change your responses as you notice something new or gain new insights. The entire worksheet is anonymous; no data will be recorded. </p>  
         <p><strong>Disclaimer: Currently mobile devices (phones and tablets) are not supported. Please use a computer with an external mouse or touchpad to enable the start button.</strong></p>
+        <p id="demo"></p>
         <div class="container">
           <div class="row">
             <br>
@@ -50,8 +51,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   <script>
     function isMobile(){
-
-      window.alert(windows.navigator.userAgent);
+      document.getElementById("demo").innerHTM=navigator.userAgent;
+      window.alert(navigator.userAgent);
 
           if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 
