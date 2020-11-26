@@ -55,9 +55,9 @@ const button = document.querySelector('button')
 
           if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             // true for mobile device
-            button.disabled=true;
+            
             window.alert("Mobile device not supported. Please use a computer.");
-
+            button.disabled=true;
           } 
         } 
   </script>
