@@ -33,7 +33,7 @@
           <div class="row">
             <br>
             <div class="col text-center">
-              <a class="btn btn-primary btn-lg" href="/who" role="button" id="startbtn" onclick="isMobile()">Start</a>
+              <a class="btn btn-primary btn-lg" href="/who" role="button" id="startbtn">Start</a>
             </div>
           </div>
         </div>
@@ -53,8 +53,12 @@
 
           if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             // true for mobile device
-            document.getElementById("startbtn").disabled=true;
             window.alert("Mobile device not supported. Please use a computer.");
+            $(document).ready(function() {
+              $('a').on("click", function(e) {
+                e.preventDefault();
+              });
+            }); 
           } 
         } 
   </script>
