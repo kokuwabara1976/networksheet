@@ -187,12 +187,15 @@
       <div class="jumbotron">
         <div class="jumbotron-content">
           <h3 class="display-7">What do you know about them?</h3>
-          Friends: Do you know anything about their best friends?
-          <br>Family: Do they have siblings or children? Where do their parents live?
-          <br>Education: What is their highest degree? Where did they get their education?
-          <br>Cultural background: Where and how did they grow up?
-          <br>Interests: How do they spend their free time? What do they like to talk about outside of work?
-          <br>Food: What do they enjoy eating? Do they have favorite restaurants?
+          <p>Do you know anything meaningful about each of the following categories? </p>
+          <ul>
+          <li>Friends: Do you know anything about their best friends?</li>
+          <li>Family: Do they have siblings or children? Where do their parents live?</li>
+          <li>Education: What is their highest degree? Where did they get their education?</li>
+          <li>Cultural background: Where and how did they grow up?</li>
+          <li>Interests: How do they spend their free time? What do they like to talk about outside of work?</li>
+          <li>Food: What do they enjoy eating? Do they have favorite restaurants?</li>
+          </ul>
           {% for node in nodes %}
           <div class="border-top my-3"></div>
           {{ node.id }}    
