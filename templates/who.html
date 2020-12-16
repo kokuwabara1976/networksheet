@@ -4,203 +4,182 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
   <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/index.css">
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/index.css">
+  <link rel="stylesheet" href="../static/css/who.css">
   <title>NETWORKsheet</title>
 </head>
-<body>
 
+<body>
   <form action="{{ url_for('who') }}" method="POST" role="form" class="form-horizontal">
     <div class="form-group">
+      <div class="page-container section-1">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="page-header">
 
-      <br>
-      <div class="container">
-        <div class="jumbotron">
-          <div class="jumbotron-content">
-            <h3>Who's in your network?</h3> 
-            Below are questions to help you identify different types of people who have played an important role in your professional pursuits and development in the last 1-2 years. Please use initials to identify each contact (e.g. MM or Mike M; beware of people with the same initials). You may enter each contact multiple times as needed. If you are a full-time student, think about contacts from your previous job.</p>
-          </div>
-        </div>
-      </div>
+                <h3 class="page-title">
+                  <p>NETWORKsheet</p>
+                  <span></span>
+                </h3>
 
-      <br>
-      <div class="container">
-        <div class="jumbotron">
-          <div class="jumbotron-content">
-            <h1 class="display-7">Technical expertise</h1>
+                <h3 class="page-sub-title arrow">Who's in your network?</h3>
 
-            Name up to 4 people you go to for technical or operational advice and solutions. These people help you solve problems and get things done efficiently or creatively because of their expertise.
-            <div class="border-top my-3"></div>
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="T">
+                <p>Below are questions to help you identify different types of people who have played an important role in your professional pursuits and development in the last 1-2 years. Please use initials to identify each contact (e.g. MM or Mike M; beware of people with the same initials). You may enter each contact multiple times as needed. If you are a full-time student, think about contacts from your previous job.</p>
+
               </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="T">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="T">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="T">
-              </div>           
             </div>
           </div>
         </div>
       </div>
 
-      <!-- START QUESTION -->
-      <br>
-      <div class="container">
-        <div class="jumbotron">
-          <div class="jumbotron-content">
-            <h1 class="display-7">News and Information</h1>
-            Name up to 4 people you go to for information about new opportunities, events, or happenings at work or in your profession. 
-            <div class="border-top my-3"></div>
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="N">
+      <div class="container section-2">
+        <div class="row">
+          <div class="page-content">
+
+            <div class="">
+              <span class="text-green">1 / 6</span>
+              <h3 class="section-title arrow-green mb-5">Technical expertise</h3>
+              <p class="mb-5">Name up to 4 people you go to for technical or operational advice and solutions. These people help you solve problems and get things done efficiently or creatively because of their expertise.</p>
+              <div class="row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Person 1" name="T">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Person 2" name="T">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Person 3" name="T">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Person 4" name="T">
+                </div>           
               </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="N">
+              <div class="border-top my-5"></div>
+            </div>
+
+            <div class="">
+              <span class="text-green">2 / 6</span>
+              <h3 class="section-title arrow-green mb-5">News and Information</h3>
+              <p class="mb-5">Name up to 4 people you go to for information about new opportunities, events, or happenings at work or in your profession.</p>
+              <div class="row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="N">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="N">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="N">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="N">
+                </div>
               </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="N">
+              <div class="border-top my-5"></div>
+            </div>
+
+            <div class="">
+              <span class="text-green">3 / 6</span>
+              <h3 class="section-title arrow-green mb-5">Political Support</h3>
+              <p class="mb-5">Name up to 4 people you rely on to help you secure resources, positions, or opportunities to do new things or meet new people because of their role or influence.</p>
+              <div class="row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="P">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="P">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="P">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="P">
+                </div>
               </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="N">
+              <div class="border-top my-5"></div>
+            </div>
+
+            <div class="">
+              <span class="text-green">4 / 6</span>
+              <h3 class="section-title arrow-green mb-5">Guidance</h3>
+              <p class="mb-5">Name up to 4 people you go to for wisdom and feedback to help you reflect and change perspectives on important professional and personal questions. You value them as mentors or sounding boards.</p>
+              <div class="row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="G">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="G">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="G">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="G">
+                </div>
+              </div>
+              <div class="border-top my-5"></div>
+            </div>
+
+            <div class="">
+              <span class="text-green">5 / 6</span>
+              <h3 class="section-title arrow-green mb-5">Inspiration</h3>
+              <p class="mb-5">Name up to 4 people who give you inspiration (energy, confidence, purpose) at work. They inspire, challenge, or encourage you to strive toward important goals.</p>
+              <div class="row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="I">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="I">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="I">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="I">
+                </div>
+              </div>
+              <div class="border-top my-5"></div>
+            </div>
+
+            <div class="">
+              <span class="text-green">6 / 6</span>
+              <h3 class="section-title arrow-green mb-5">Friendship</h3>
+              <p class="mb-5">Name up to 4 people who have been the most important friends. You can discuss personal or non-professional matters with them. They give you emotional support and make you feel accepted.</p>
+              <div class="row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="F">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="F">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="F">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="" name="F">
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <!-- END QUESTION -->
-
-      <!-- START QUESTION -->
-      <br>
-      <div class="container">
-        <div class="jumbotron">
-          <div class="jumbotron-content">
-            <h1 class="display-7">Political Support</h1>
-            Name up to 4 people you rely on to help you secure resources, positions, or opportunities to do new things or meet new people because of their role or influence.
-            <div class="border-top my-3"></div>
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="P">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="P">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="P">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="P">
+            
+            <div class="btn-container mt-5">
+              <button type="submit" class="btn-custom btn">CONTINUE</button>
+              <div>
+                <span style="background: #2e6c53"></span>
+                <span style="background: #2e6c53"></span>
+                <span></span>
+                <span></span>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <!-- END QUESTION -->
 
-
-
-      <!-- START QUESTION -->
-      <br>
-      <div class="container">
-        <div class="jumbotron">
-          <div class="jumbotron-content">
-            <h1 class="display-7">Guidance</h1>
-            Name up to 4 people you go to for wisdom and feedback to help you reflect and change perspectives on important professional and personal questions. You value them as mentors or sounding boards.
-            <div class="border-top my-3"></div>
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="G">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="G">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="G">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="G">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- END QUESTION -->
-
-      <!-- START QUESTION -->
-      <br>
-      <div class="container">
-        <div class="jumbotron">
-          <div class="jumbotron-content">
-            <h1 class="display-7">Inspiration</h1>
-            Name up to 4 people who give you inspiration (energy, confidence, purpose) at work. They inspire, challenge, or encourage you to strive toward important goals . 
-            <div class="border-top my-3"></div>
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="I">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="I">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="I">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="I">
-              </div>
-            </div>
           </div>
         </div>
       </div> 
       <!-- END QUESTION -->
 
-      <!-- START QUESTION -->
-      <br>
-      <div class="container">
-        <div class="jumbotron">
-          <div class="jumbotron-content">
-            <h1 class="display-7">Friendship</h1>
-            Name up to 4 people who have been the most important friends. You can discuss personal or non-professional matters with them. They give you emotional support and make you feel accepted.
-            <div class="border-top my-3"></div>
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="F">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="F">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="F">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="" name="F">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> 
-      <!-- END QUESTION -->
-
-
-
     </div>
-
-
-  <div class="container">
-    <div class="row">
-      <div class="col text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </div>
 
 </form>
 
@@ -215,10 +194,11 @@
 <footer>
   <br><br>
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright: Ko Kuwabara
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="">Ko Kuwabara</a>
   </div>
   <!-- Copyright -->
-
+  <br>
 </footer>
 <!-- Footer -->
 

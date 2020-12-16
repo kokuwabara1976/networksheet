@@ -233,3 +233,20 @@ body {
   width: fit-content;
   padding-right: 40px;
 }
+.arrow-green {
+  background: url('../img/arrow-green.png');
+  background-position-x: right;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-size: 30px;
+  width: fit-content;
+  padding-right: 40px;
+}
+input.form-control {
+  border-radius: 0;
+}
+.text-green {
+  color: #2e6c53;
+  font-weight: bold;
+  font-size: 13px;
+}
