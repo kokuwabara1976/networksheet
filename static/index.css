@@ -1,6 +1,4 @@
 
-
-
 .center {
   display: block;
   margin-left: auto;
@@ -9,19 +7,8 @@
 }
 
 html, body {
-    height: 100%;
-    /*overflow: hidden;  MM */
-    margin: 50;
-}
-
-html {
-    display: table;
-    margin: auto;
-}
-
-body {
-    display: table-cell;
-    vertical-align: right;
+  height: 100%;
+  /*overflow: hidden;  MM */
 }
 
 p {
@@ -138,4 +125,111 @@ p {
 }
 .library svg:not(:last-child) {
   padding-right: 6px;
+}
+
+
+
+
+/* created by Jovan Kovacevic 12/15/2020 */
+
+@font-face {
+  font-family: 'marmelad';
+  src: url('fonts/Marmelad/Marmelad-Regular.ttf'); /* IE9 Compat Modes */
+  src: url('fonts/Marmelad/Marmelad-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'roboto';
+  src: url('fonts/Marmelad/Roboto-Light.ttf'); /* IE9 Compat Modes */
+  src: url('fonts/Marmelad/Roboto-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+body {
+  font-family: marmelad;
+  background: #f0f0f0;
+}
+.page-container {
+  background: url('img/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.page-header {
+  padding: 30px 40px 0;
+  color: white;
+}
+.page-title {
+  position: relative;
+  width: fit-content;
+}
+.page-title >p {
+  font-size: 80px;
+}
+.page-title >span {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: white;
+  bottom: 0px;
+}
+.page-sub-title {
+  margin: 40px 0 30px;
+  font-size: 30px;
+}
+.page-content {
+  margin-top: 50px;
+  background: white;
+  padding: 50px;
+}
+.section-1 {
+  padding-bottom: 250px;
+}
+.section-2 {
+  margin-top: -250px;
+}
+.note {
+  background: #f0f0f0;
+  padding: 10px 20px 10px 20px;
+}
+.note >p {
+  background: url('img/note.png');
+  margin: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-left: 65px;
+}
+.btn-custom {
+  background: #2e6c53;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  width: 150px;
+  font-weight: bold;
+}
+.btn-custom:hover {
+  color: white;
+  background: #31996f;
+}
+.btn-container {
+  margin: 40px auto 0;
+  width: 150px;
+}
+.btn-container >div >span {
+  width: 33px;
+  height: 3px;
+  background: #f0f0f0;
+  margin-top: 0px;
+  display: inline-block;
+}
+.footer-copyright {
+  color: #a9a9a9;
+}
+.footer-copyright >a {
+  color: #2e6c53;
+}
+.arrow {
+  background: url('img/arrow.png');
+  background-position-x: right;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-size: 30px;
+  width: fit-content;
+  padding-right: 40px;
 }
