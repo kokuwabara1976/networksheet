@@ -134,20 +134,20 @@ p {
 
 @font-face {
   font-family: 'marmelad';
-  src: url('fonts/Marmelad/Marmelad-Regular.ttf'); /* IE9 Compat Modes */
-  src: url('fonts/Marmelad/Marmelad-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+  src: url('../fonts/Marmelad/Marmelad-Regular.ttf'); /* IE9 Compat Modes */
+  src: url('../fonts/Marmelad/Marmelad-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
 }
 @font-face {
   font-family: 'roboto';
-  src: url('fonts/Marmelad/Roboto-Light.ttf'); /* IE9 Compat Modes */
-  src: url('fonts/Marmelad/Roboto-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+  src: url('../fonts/Marmelad/Roboto-Light.ttf'); /* IE9 Compat Modes */
+  src: url('../fonts/Marmelad/Roboto-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
 }
 body {
   font-family: marmelad;
   background: #f0f0f0;
 }
 .page-container {
-  background: url('img/background.png');
+  background: url('../img/background.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -189,7 +189,7 @@ body {
   padding: 10px 20px 10px 20px;
 }
 .note >p {
-  background: url('img/note.png');
+  background: url('../img/note.png');
   margin: 0;
   background-repeat: no-repeat;
   background-size: contain;
@@ -225,7 +225,7 @@ body {
   color: #2e6c53;
 }
 .arrow {
-  background: url('img/arrow.png');
+  background: url('../img/arrow.png');
   background-position-x: right;
   background-repeat: no-repeat;
   background-position-y: center;
