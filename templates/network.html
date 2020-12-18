@@ -8,7 +8,7 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/index.css">
+  <link rel="stylesheet" href="../static/css/index.css">
   
   <style type="text/css" media="print">
     @media print{ 
@@ -30,125 +30,133 @@
 
 </head>
 <body onload="main()">
-  <br>
-  <br>
 
-
-  <br>
-  <br>
-
-  <div class="container"> 
-
-      <!-- Instructions -->
-    <div class="jumbotron">
-      <div class="jumbotron-content">
-        <h3>Your NETWORKsheet Report</h3>
-        <p>Please complete your network report below. Keep in mind that this report is not meant to be a comprehensive analysis of your entire network. Rather, it is designed to help you reflect on your general networking patterns by thinking about the people who comprise your core professional network.</p>
+  <div class="page-container section-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="page-header">
+            <h3 class="page-title">
+              <p>NETWORKsheet</p>
+              <span></span>
+            </h3>
+            <h3 class="page-sub-title arrow">Your NETWORKsheet Report</h3>
+            <p>Please complete your network report below. Keep in mind that this report is not meant to be a comprehensive analysis of your entire network. Rather, it is designed to help you reflect on your general networking patterns by thinking about the people who comprise your core professional network.</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- End instructions -->
-
-    <div class="jumbotron">
-    <div class="jumbotron-content">
-      <br>
-      <h3 class="display-7">How strong are your relationships?</h3>
-      <p>The pie charts below indicate how strong your relationships are across different dimensions. The more green the pie chart is, the stronger the relationship on a given dimension.</p>
-      <p>Do you see any weak relationships? In what ways are they weak? You may return to the previous page to see how you responded to each qeustion. </p>
     </div>
   </div>
 
-  <div class="jumbotron-content">
-      <table class="table">
-        <thead>
-          <tr>
-            <th style="width:4cm">Contact</th>
-            <th style="width:4cm">How close are you?</th>
-            <th style="width:4cm">How often do you talk at work?</th>
-            <th style="width:4cm">How often do you talk outside of work?</th>
-            <th style="width:4cm">How balanced are your relationships?</th>
-            <th style="width:4cm">What do you know about them?</th>
-            <th style="width:4cm">How similar are you?</th>
-          </tr>
-        </thead>
+  <div class="container section-2">
+    <div class="row">
+      <div class="page-content">
+        <div class="">
+          <span class="text-green">2 / 2</span>
+          <h3 class="section-title arrow-green mb-5">How strong are your relationships?</h3>
+          <p>The pie charts below indicate how strong your relationships are across different dimensions. The more green the pie chart is, the stronger the relationship on a given dimension.</p>
+          <p>Do you see any weak relationships? In what ways are they weak? You may return to the previous page to see how you responded to each qeustion. </p>
 
-        {% for name, questions in summary.items() %}
-        <tr>
-          <td>{{ name }}</td>
+          <table class="table mt-5">
+            <thead>
+              <tr>
+                <th style="width:4cm">Contact</th>
+                <th style="width:4cm">How close are you?</th>
+                <th style="width:4cm">How often do you talk at work?</th>
+                <th style="width:4cm">How often do you talk outside of work?</th>
+                <th style="width:4cm">How balanced are your relationships?</th>
+                <th style="width:4cm">What do you know about them?</th>
+                <th style="width:4cm">How similar are you?</th>
+              </tr>
+            </thead>
 
-          {% for quest in ['close', 'work', 'outside', 'help', 'know', 'similar'] %}
+            {% for name, questions in summary.items() %}
+            <tr>
+              <td>{{ name }}</td>
 
-          <td>
+              {% for quest in ['close', 'work', 'outside', 'help', 'know', 'similar'] %}
 
-            <img src={{ summary[name][quest] }}>
+              <td>
 
-          </td>
+                <img src={{ summary[name][quest] }}>
 
-          {% endfor %}
+              </td>
 
-        </tr>
+              {% endfor %}
 
-        {% endfor %}
-      </table>
+            </tr>
 
-      <!---
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1">Do you see any relationships that appear particularly weak across multiple dimensions? Does this concern you? Is there anything you can do to strengthen these relationships?</label>
-        <textarea class="form-control" id="txtarea2" rows="3" style="font-size: 12pt"></textarea>
-      </div>
+            {% endfor %}
+          </table>
 
-      <div class="form-group">
-        <label for="exampleFormControlTextarea1">Next, examine your pie charts down each column. Do you see anything suprising or notable patterns? Do see any weak areas (columns with many empty pie charts)? What can yo do to improve those areas of your relationships?</label>
-        <textarea id="txtarea3" class="form-control" rows="3" style="font-size: 12pt"></textarea>
-      </div>
-      --> 
-      
-    </div>
+          <!---
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Do you see any relationships that appear particularly weak across multiple dimensions? Does this concern you? Is there anything you can do to strengthen these relationships?</label>
+            <textarea class="form-control" id="txtarea2" rows="3" style="font-size: 12pt"></textarea>
+          </div>
 
-
-
-    <div class="break" style="display: block; page-break-before: always; "></div>
-
-    <!-- Instructions -->
-    <div class="jumbotron">
-      <div class="jumbotron-content">
-        <h3 class="display-7">What does your network look like?</h3>
-        <p>Your next task is to draw your network in the grid below. First, use the Selection Tool (the red arrow) to drag each contact to the appropriate square, based upon their status and workplace. Their status may be based on their formal rank or your own perception of how much more or less senior (older, more experienced, etc) they are. </p>
-        <p>Next, switch to the Connection Tool (the plus sign) and draw connections by clicking on one contact and dragging the cursor to another as if you are drawing a line (you may not see the line until you reach the other dot). Connect any two contacts if they are good friends or colleagues who talk to or spend time with each other on their own at least every few months. If you are not sure, assume they are not connected. To erase a tie, use the Selection Tool to highlight it and hit Delete (Mac: fn + delete) on your keyboard.</p>
-        <p>Here is a <a href="/static/img/sample.png" target="_blank">sample</a>. Do not worry about being perfectly accurate. More important is that you take the time to think about what you know or do not know about your network.</p> 
-        <p>Once your network is drawn, think about what it looks like. Do you see any empty cells? Crowded cells? Next to each person's initials are letters indicating which types of support or benefits the person provides: T=technical support (problem-solving, expertise), N=news and information (opportunities, events, or happenings at work), P=political support (securing resources, positions, opportunities), G=guidance (wisdom, feedback, mentoring), I=inspiration (energy, courage, creativity), F=friendship (social support, companionship). Do you see any missing benefits?</p>
-        <p>WARNING: The network grid will be refreshed if you return to a previous page or refresh this page. If you have trouble drawing your network below, you can use this <a href="/static/img/networkgrid.pdf" target="_blank">paper-and-pencil template</a>. Please report any technical issues <a href="mailto:kokuwabara@gmail.com">here</a>.</p>  
-      </div>
-    </div>
-    <!-- End instructions -->
-
-
-    <network>
-    </network>
-
-    <!--
-    <div class="container">
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">What patterns do you see in your network? Do you see any crowded or empty cells? What do you make of them?</label>
-          <textarea class="form-control" id="txtarea1" rows="3" style="font-size: 12pt"></textarea>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Next, examine your pie charts down each column. Do you see anything suprising or notable patterns? Do see any weak areas (columns with many empty pie charts)? What can yo do to improve those areas of your relationships?</label>
+            <textarea id="txtarea3" class="form-control" rows="3" style="font-size: 12pt"></textarea>
+          </div>
+          --> 
+          
         </div>
 
-        <div class="form-group">
-          <label for="exampleFormControlTextarea2">Next, look at the types of benefits you receive from your network. Are there any missing benefits? Do you see anyone providng more than 3 types of benefits? Any benefit coming from one person?
-            It may be helpful to use the checkboxes above the network grid to hide contacts that do not provide any particular type of benefit. For instance, unchecking the checkbox T shows only your contacts who provide technical support. 
-            </label>
-          <textarea class="form-control" id="txtarea2" rows="3" style="font-size: 12pt"></textarea>
-        </div> 
+        <!-- Instructions -->
+        <div class="">
+          <span class="text-green">2 / 2</span>
+          <h3 class="section-title arrow-green mb-5">What does your network look like?</h3>
+          <p>Your next task is to draw your network in the grid below. First, use the Selection Tool (the red arrow) to drag each contact to the appropriate square, based upon their status and workplace. Their status may be based on their formal rank or your own perception of how much more or less senior (older, more experienced, etc) they are. </p>
+          <p>Next, switch to the Connection Tool (the plus sign) and draw connections by clicking on one contact and dragging the cursor to another as if you are drawing a line (you may not see the line until you reach the other dot). Connect any two contacts if they are good friends or colleagues who talk to or spend time with each other on their own at least every few months. If you are not sure, assume they are not connected. To erase a tie, use the Selection Tool to highlight it and hit Delete (Mac: fn + delete) on your keyboard.</p>
+          <p>Here is a <a href="/static/img/sample.png" target="_blank">sample</a>. Do not worry about being perfectly accurate. More important is that you take the time to think about what you know or do not know about your network.</p> 
+          <p>Once your network is drawn, think about what it looks like. Do you see any empty cells? Crowded cells? Next to each person's initials are letters indicating which types of support or benefits the person provides: T=technical support (problem-solving, expertise), N=news and information (opportunities, events, or happenings at work), P=political support (securing resources, positions, opportunities), G=guidance (wisdom, feedback, mentoring), I=inspiration (energy, courage, creativity), F=friendship (social support, companionship). Do you see any missing benefits?</p>
+          
+        </div>
+        <!-- End instructions -->
 
-    </div>
-    -->
+        <div class="note my-5">
+          <p>WARNING: The network grid will be refreshed if you return to a previous page or refresh this page. If you have trouble drawing your network below, you can use this <a href="/static/img/networkgrid.pdf" target="_blank">paper-and-pencil template</a>. Please report any technical issues <a href="mailto:kokuwabara@gmail.com">here</a>.</p>
+        </div>
 
-    <div class="container">
-      <div class="jumbotron">
-        If you are finished, please print out or save a PDF copy of your report and close the page. Your data will not be saved once you close the browser. If your network gets cut off, please go to your printer settings and rescale. 
-      <!--If any of your written responses are hidden, please adjust the size of the textboxes before printing out your PDF report.-->
+        <div>
+          <network>
+          </network>
+        </div>
+        
+        <!--
+        <div class="container">
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">What patterns do you see in your network? Do you see any crowded or empty cells? What do you make of them?</label>
+              <textarea class="form-control" id="txtarea1" rows="3" style="font-size: 12pt"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlTextarea2">Next, look at the types of benefits you receive from your network. Are there any missing benefits? Do you see anyone providng more than 3 types of benefits? Any benefit coming from one person?
+                It may be helpful to use the checkboxes above the network grid to hide contacts that do not provide any particular type of benefit. For instance, unchecking the checkbox T shows only your contacts who provide technical support. 
+                </label>
+              <textarea class="form-control" id="txtarea2" rows="3" style="font-size: 12pt"></textarea>
+            </div> 
+
+        </div>
+        -->
+
+        <div class="">
+          If you are finished, please print out or save a PDF copy of your report and close the page. Your data will not be saved once you close the browser. If your network gets cut off, please go to your printer settings and rescale.
+        </div>
+
+        <div class="btn-container mt-5">
+          <button class="btn-custom btn">SAVE PDF</button>
+          <div>
+            <span style="background: #2e6c53"></span>
+            <span style="background: #2e6c53"></span>
+            <span style="background: #2e6c53"></span>
+            <span style="background: #2e6c53"></span>
+          </div>
+        </div>
+
       </div>
     </div>
-
 
 
   </body>
@@ -717,11 +725,11 @@ update = function() {
   <div class="container">
     <div class="row">
       <div class="col text-center">
-        <!--
-        <form name="myform" action="javascript:getPdf()">
+        
+      <!--   <form name="myform" action="javascript:getPdf()">
           <button type="submit" class="btn btn-primary">Print your report</button>
-        </form>
-      -->
+        </form> -->
+      
       </div>
     </div>
     <br>
@@ -731,9 +739,11 @@ update = function() {
 
   <br><br>
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright: Ko Kuwabara
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="">Ko Kuwabara</a>
   </div>
   <!-- Copyright -->
+  <br>
 
 </footer>
 <!-- Footer -->

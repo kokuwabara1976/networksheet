@@ -250,3 +250,6 @@ input.form-control {
   font-weight: bold;
   font-size: 13px;
 }
+.table thead th {
+  vertical-align: top;
+}

@@ -36,32 +36,32 @@
     <div class="container section-2">
       <div class="row">
         <div class="page-content">
-      <!-- Question 1 -->
+          <!-- Question 1 -->
           <div>
             <span class="text-green">1 / 6</span>
             <h3 class="section-title arrow-green mb-5">How close are you?</h3>
             <p class="mb-5">People feel close if they trust each other and feel comfortable discussing personal matters. How close do you feel towards your contacts?</p>
             {% for node in nodes %}
-            <strong style='color:#2e6c53;'>{{ node.id }}</strong>
+            {{ node.id }}
             <div class="form-group">
               <div class="form-check form-check-inline">
-                <label class="form-check-label" for="inlineRadio1_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">
-                <input class="form-check-input" type="radio" name="close_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio1_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Rather distant" required>
+                <label class="form-check-label" for="inlineRadio1_{{ node.id }}">
+                <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio1_{{ node.id }}" value="Rather distant" required>
                 Rather distant</label>
               </div>
               <div class="form-check form-check-inline">
-                <label class="form-check-label" for="inlineRadio2_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">
-                <input class="form-check-input" type="radio" name="close_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio2_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Somewhat close" required>
+                <label class="form-check-label" for="inlineRadio2_{{ node.id }}">
+                <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio2_{{ node.id }}" value="Somewhat close" required>
                 Somewhat close</label>
               </div>
               <div class="form-check form-check-inline">
-                <label class="form-check-label" for="inlineRadio3_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">
-                <input class="form-check-input" type="radio" name="close_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio3_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Rather close" required>
+                <label class="form-check-label" for="inlineRadio3_{{ node.id }}">
+                <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio3_{{ node.id }}" value="Rather close" required>
                 Rather close</label>
               </div>
               <div class="form-check form-check-inline">
-                <label class="form-check-label" for="inlineRadio4_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">
-                <input class="form-check-input" type="radio" name="close_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio4_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Very close" required>
+                <label class="form-check-label" for="inlineRadio4_{{ node.id }}">
+                <input class="form-check-input" type="radio" name="close_{{ node.id }}" id="inlineRadio4_{{ node.id }}" value="Very close" required>
                 Very close</label>
               </div>
             </div>
@@ -76,23 +76,23 @@
             <h3 class="section-title arrow-green mb-5">How often do you talk to them during normal work hours?  </h3>
             <p class="mb-5">Do you make a point to talk to them regularly on your own? Do you know what they are up to lately?</p>
             {% for node in nodes %}
-            <strong style='color:#2e6c53;'>{{ node.id }}</strong>
+            {{ node.id }}
             <div class="form-group">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="work_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio5_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="1-2 times a year" required>
-                <label class="form-check-label" for="inlineRadio5_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">0-2 times a year</label>
+                <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio5_{{ node.id }}" value="1-2 times a year" required>
+                <label class="form-check-label" for="inlineRadio5_{{ node.id }}">0-2 times a year</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="work_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio6_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Every few months" required>
-                <label class="form-check-label" for="inlineRadio6_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Every few months</label>
+                <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio6_{{ node.id }}" value="Every few months" required>
+                <label class="form-check-label" for="inlineRadio6_{{ node.id }}">Every few months</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="work_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio7_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Every month" required>
-                <label class="form-check-label" for="inlineRadio7_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Every month</label>
+                <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio7_{{ node.id }}" value="Every month" required>
+                <label class="form-check-label" for="inlineRadio7_{{ node.id }}">Every month</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="work_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio8_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Every week" required>
-                <label class="form-check-label" for="inlineRadio8_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Every week</label>
+                <input class="form-check-input" type="radio" name="work_{{ node.id }}" id="inlineRadio8_{{ node.id }}" value="Every week" required>
+                <label class="form-check-label" for="inlineRadio8_{{ node.id }}">Every week</label>
               </div>
             </div>
             {% endfor %}
@@ -106,23 +106,23 @@
             <h3 class="section-title arrow-green mb-5">How often do you talk to them outside of work hours?</h3>
             <p class="mb-5">Spending time together outside of work contexts offers opportunities to get to know one another in different ways. When was the last time you got together with them just to catch up?</p>
             {% for node in nodes %}
-            <strong style='color:#2e6c53;'>{{ node.id }}</strong>
+            {{ node.id }}
             <div class="form-group">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="outside_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio9_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="1-2 times a year" required>
-                <label class="form-check-label" for="inlineRadio9_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">0-2 times a year</label>
+                <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio9_{{ node.id }}" value="1-2 times a year" required>
+                <label class="form-check-label" for="inlineRadio9_{{ node.id }}">0-2 times a year</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="outside_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio10_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Every few months" required>
-                <label class="form-check-label" for="inlineRadio10_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Every few months</label>
+                <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio10_{{ node.id }}" value="Every few months" required>
+                <label class="form-check-label" for="inlineRadio10_{{ node.id }}">Every few months</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="outside_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio11_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Every month" required>
-                <label class="form-check-label" for="inlineRadio11_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Every month</label>
+                <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio11_{{ node.id }}" value="Every month" required>
+                <label class="form-check-label" for="inlineRadio11_{{ node.id }}">Every month</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="outside_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio12_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Every week" required>
-                <label class="form-check-label" for="inlineRadio12_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Every week</label>
+                <input class="form-check-input" type="radio" name="outside_{{ node.id }}" id="inlineRadio12_{{ node.id }}" value="Every week" required>
+                <label class="form-check-label" for="inlineRadio12_{{ node.id }}">Every week</label>
               </div>  
             </div>
             {% endfor %}
@@ -137,26 +137,26 @@
             <p class="mb-5">Are you in their network as much as they are in yours? Do they come to you for support, advice, or company as much as you go to them? Or do you feel that your relationships are one-sided? Please indicate how balanced (you are both "in it together") or unbalanced and one-sided (in either direction) you feel about each relationship.</p>
 
             {% for node in nodes %}
-            <strong style='color:#2e6c53;'>{{ node.id }}</strong>
+            {{ node.id }}
             <div class="form-group">
               <div class="form-check form-check-inline">
-                <label class="form-check-label" for="inlineRadio13_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">
-                <input class="form-check-input" type="radio" name="help_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio13_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="1-2 times a year" required>
+                <label class="form-check-label" for="inlineRadio13_{{ node.id }}">
+                <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio13_{{ node.id }}" value="1-2 times a year" required>
                 Quite unbalanced</label>
               </div>
               <div class="form-check form-check-inline">
-                <label class="form-check-label" for="inlineRadio14_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">
-                <input class="form-check-input" type="radio" name="help_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio14_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Every few months" required>
+                <label class="form-check-label" for="inlineRadio14_{{ node.id }}">
+                <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio14_{{ node.id }}" value="Every few months" required>
                 Slightly unbalanced</label>
               </div>
               <div class="form-check form-check-inline">
-                <label class="form-check-label" for="inlineRadio15_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">
-                <input class="form-check-input" type="radio" name="help_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio15_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Every month" required>
+                <label class="form-check-label" for="inlineRadio15_{{ node.id }}">
+                <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio15_{{ node.id }}" value="Every month" required>
                 Generally balanced</label>
               </div>
               <div class="form-check form-check-inline">
-                <label class="form-check-label" for="inlineRadio16_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">
-                <input class="form-check-input" type="radio" name="help_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineRadio16_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Every week" required>
+                <label class="form-check-label" for="inlineRadio16_{{ node.id }}">
+                <input class="form-check-input" type="radio" name="help_{{ node.id }}" id="inlineRadio16_{{ node.id }}" value="Every week" required>
                 Very balanced</label>
 
               </div>  
@@ -180,31 +180,31 @@
             <li>Food: What do they enjoy eating? Do they have favorite restaurants?</li>
             </ul>
             {% for node in nodes %}
-            <strong style='color:#2e6c53;'>{{ node.id }}</strong>
+            {{ node.id }}
             <div class="form-group">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="know_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox1_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Friends">
-                <label class="form-check-label" for="inlineCheckbox1_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Friends</label>
+                <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineCheckbox1_{{ node.id }}" value="Friends">
+                <label class="form-check-label" for="inlineCheckbox1_{{ node.id }}">Friends</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="know_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox2_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Family">
-                <label class="form-check-label" for="inlineCheckbox2_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Family</label>
+                <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineCheckbox2_{{ node.id }}" value="Family">
+                <label class="form-check-label" for="inlineCheckbox2_{{ node.id }}">Family</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="know_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox3_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Education">
-                <label class="form-check-label" for="inlineCheckbox3_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Education</label>
+                <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineCheckbox3_{{ node.id }}" value="Education">
+                <label class="form-check-label" for="inlineCheckbox3_{{ node.id }}">Education</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="know_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox4_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Culture">
-                <label class="form-check-label" for="inlineCheckbox4_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Cultural background</label>
+                <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineCheckbox4_{{ node.id }}" value="Culture">
+                <label class="form-check-label" for="inlineCheckbox4_{{ node.id }}">Cultural background</label>
               </div>           
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="know_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox5_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Interests or hobbies">
-                <label class="form-check-label" for="inlineCheckbox5_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Interests or hobbies</label>
+                <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineCheckbox5_{{ node.id }}" value="Interests or hobbies">
+                <label class="form-check-label" for="inlineCheckbox5_{{ node.id }}">Interests or hobbies</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="know_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox6_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Favorite Food">
-                <label class="form-check-label" for="inlineCheckbox6_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Favorite Food</label>
+                <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineCheckbox6_{{ node.id }}" value="Favorite Food">
+                <label class="form-check-label" for="inlineCheckbox6_{{ node.id }}">Favorite Food</label>
               </div>
             </div>
             {% endfor %}
@@ -218,31 +218,31 @@
             <h3 class="section-title arrow-green mb-5">How similar are you?</h3>
             <p class="mb-5">Do you have anything in common with your contacts? Here are some common ways in which people feel similar to one another.</p>
             {% for node in nodes %}
-            <strong style='color:#2e6c53;'>{{ node.id }}</strong>
+            {{ node.id }}
             <div class="form-group">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox7_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Gender">
-                <label class="form-check-label" for="inlineCheckbox7_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Gender</label>
+                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineCheckbox7_{{ node.id }}" value="Gender">
+                <label class="form-check-label" for="inlineCheckbox7_{{ node.id }}">Gender</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox8_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Age">
-                <label class="form-check-label" for="inlineCheckbox8_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Age</label>
+                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineCheckbox8_{{ node.id }}" value="Age">
+                <label class="form-check-label" for="inlineCheckbox8_{{ node.id }}">Age</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox9_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Country or culture of origin">
-                <label class="form-check-label" for="inlineCheckbox9_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Cultural background</label>
+                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineCheckbox9_{{ node.id }}" value="Country or culture of origin">
+                <label class="form-check-label" for="inlineCheckbox9_{{ node.id }}">Cultural background</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox10_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Professional Interests">
-                <label class="form-check-label" for="inlineCheckbox10_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Professional Interests</label>
+                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineCheckbox10_{{ node.id }}" value="Professional Interests">
+                <label class="form-check-label" for="inlineCheckbox10_{{ node.id }}">Professional Interests</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox11_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Social or political attitudes">
-                <label class="form-check-label" for="inlineCheckbox11_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Social or political attitudes</label>
+                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineCheckbox11_{{ node.id }}" value="Social or political attitudes">
+                <label class="form-check-label" for="inlineCheckbox11_{{ node.id }}">Social or political attitudes</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="similar_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" id="inlineCheckbox12_<strong style='color:#2e6c53;'>{{ node.id }}</strong>" value="Personality">
-                <label class="form-check-label" for="inlineCheckbox12_<strong style='color:#2e6c53;'>{{ node.id }}</strong>">Personality</label>
+                <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineCheckbox12_{{ node.id }}" value="Personality">
+                <label class="form-check-label" for="inlineCheckbox12_{{ node.id }}">Personality</label>
               </div>
             </div>
             {% endfor %}
