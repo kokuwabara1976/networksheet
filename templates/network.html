@@ -13,7 +13,7 @@
   <style type="text/css" media="print">
     @media print{ 
       /* All styles for print should goes here */ 
-      .container{ 
+      .container{
         width: 100%; 
         height: auto; 
         margin: 50px auto; 
@@ -71,7 +71,7 @@
             </thead>
 
             {% for name, questions in summary.items() %}
-            <tr>
+            <tr class="tr_result">
               <td>{{ name }}</td>
 
               {% for quest in ['close', 'work', 'outside', 'help', 'know', 'similar'] %}
@@ -146,7 +146,7 @@
         </div>
 
         <div class="btn-container mt-5">
-          <button class="btn-custom btn" onclick="getPdf()">SAVE PDF</button>
+          <button class="btn-custom btn" id="save_pdf">SAVE PDF</button>
           <div>
             <span style="background: #2e6c53"></span>
             <span style="background: #2e6c53"></span>
@@ -158,6 +158,13 @@
       </div>
     </div>
 
+    <img src="/static/img/background.png" id="background" style="display: none;">
+    <img src="/static/img/background_header.png" id="background_header" style="display: none;">
+    <img src="/static/img/background_footer.png" id="background_footer" style="display: none;">
+    <img src="/static/img/arrow.png" id="arrow" style="display: none;">
+    <img id="img_result" src="" style="display: none;">
+    <iframe frameborder="0" width="1100" height="500" style="display: block;"></iframe>
+    <canvas id="svg_canvas" width="1200" height="800" style="display: none;"></canvas>
 
   </body>
 
@@ -299,6 +306,12 @@ gradient.append("svg:stop")
 
 global.gradient = gradient;
 
+svg.append('rect')
+.style("fill", "white")
+.attr("x", 0)
+.attr("y", 0)
+.attr("width", 1200)
+.attr("height", 800);
 
 svg.append('rect')
 .style("fill", "white")
@@ -783,6 +796,13 @@ textarea {
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="/static/js/jspdf.debug.js"></script>
+<script type="text/javascript" src="/static/js/jspdf.customfonts.debug.js"></script>
+<script type="text/javascript" src="/static/js/default_vfs.js"></script>
+<script type="text/javascript" src="/static/js/canvas2image.js"></script>
+<script type="text/javascript" src="https://unpkg.com/canvg@3.0.4/lib/umd.js"></script>
+<script type="text/javascript" src="/static/js/custom.js"></script>
 
 </html>
 
