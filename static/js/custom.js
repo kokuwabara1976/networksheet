@@ -6,6 +6,7 @@ var img_footer = document.getElementById('background_footer');
 var img_arrow = document.getElementById('arrow');
 
 function generatePDF() {
+	doc = new jsPDF('p', 'in', 'letter');
 	// first page
     doc.addImage(img_back, 'JPEG', 0, 0, 10, 11);
     doc.addImage(img_arrow, 'PNG', 6.8, 4.55, 0.3, 0.15);
@@ -123,10 +124,10 @@ function generatePDF() {
 
     doc.addImage(img_result.src, 'PNG', 0, 4, 9, 6);
 
-	string = doc.output('datauristring');
-	$('iframe').attr('src', string);
+	// string = doc.output('datauristring');
+	// $('iframe').attr('src', string);
 
-	// doc.save('document.pdf');
+	doc.save('document.pdf');
 }
 
 $(document).ready(function () {
