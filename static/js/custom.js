@@ -6,7 +6,15 @@ var img_footer = document.getElementById('background_footer');
 var img_arrow = document.getElementById('arrow');
 
 function generatePDF() {
+	
 	doc = new jsPDF('p', 'in', 'letter');
+	doc.addFont('Roboto-Light.ttf', 'roboto_light', 'normal');
+	doc.addFont('Roboto-Bold.ttf', 'roboto_bold', 'normal');
+	doc.addFont('Roboto-Thin.ttf', 'roboto_thin', 'normal');
+	doc.addFont('Roboto-Regular.ttf', 'roboto_regular', 'normal');
+	doc.addFont('Marmelad-Regular.ttf', 'marmelad', 'bold');
+	doc.addFont('Marmelad-Regular.ttf', 'marmelad', 'normal');
+
 	// first page
     doc.addImage(img_back, 'JPEG', 0, 0, 10, 11);
     doc.addImage(img_arrow, 'PNG', 6.8, 4.55, 0.3, 0.15);
@@ -78,8 +86,8 @@ function generatePDF() {
 
 	var tr = document.getElementsByClassName('tr_result');
 	for (var i = 0; i < tr.length; i++) {
+		if (i > 3) break;
 		var td = tr[i].children;
-		console.log(td[0].innerHTML);
 		for (var j = 0; j < 7; j++) {
 			if (j == 0) {
 				doc.setFont("roboto_regular");
@@ -93,7 +101,39 @@ function generatePDF() {
 		}
 	}
 
-	// third page
+    var offset = 0;
+    if (tr.length > 3) {
+    	for (var i = 4; i < tr.length; i++) {
+    		if ((i - 4) % 8 == 0) {
+				doc.addPage("", "");
+			    doc.addImage(img_header, 'JPEG', 0, 0, 8.5, 1.4);
+			    doc.addImage(img_footer, 'JPEG', 0, 10, 8.5, 1.3);
+
+				doc.setTextColor(255, 255, 255);
+				doc.setFontSize(20);
+				doc.setFont("marmelad");
+				doc.text(0.4, 0.75, "NETWORKsheet");
+				doc.setLineWidth(0.02);
+				doc.setDrawColor(255, 255, 255);
+				doc.line(0.4, 0.82, 2.5, 0.82);
+				offset = i;
+    		}
+			var td = tr[i].children;
+			for (var j = 0; j < 7; j++) {
+				if (j == 0) {
+					doc.setFont("roboto_regular");
+					doc.setFontSize(13);
+					doc.setTextColor(46, 108, 83);
+					doc.text(0.5, 2.1+(i-offset)*1, td[j].innerHTML);
+				} else {
+					var img = td[j].children;
+					doc.addImage(img[0], 'PNG', 0.45+j*1.09, 1.5+(i-offset)*1, 1, 1);
+				}
+			}
+    	}
+    }
+
+	// last page
 	doc.addPage("", "");
     doc.addImage(img_header, 'JPEG', 0, 0, 8.5, 1.4);
     doc.addImage(img_footer, 'JPEG', 0, 10, 8.5, 1.3);
@@ -124,10 +164,10 @@ function generatePDF() {
 
     doc.addImage(img_result.src, 'PNG', 0, 4, 9, 6);
 
-	// string = doc.output('datauristring');
-	// $('iframe').attr('src', string);
+	string = doc.output('datauristring');
+	$('iframe').attr('src', string);
 
-	doc.save('document.pdf');
+	// doc.save('document.pdf');
 }
 
 $(document).ready(function () {
