@@ -164,10 +164,10 @@ function generatePDF() {
 
     doc.addImage(img_result.src, 'PNG', 0, 4, 9, 6);
 
-	string = doc.output('datauristring');
-	$('iframe').attr('src', string);
+	// string = doc.output('datauristring');
+	// $('iframe').attr('src', string);
 
-	// doc.save('document.pdf');
+	doc.save('document.pdf');
 }
 
 $(document).ready(function () {
