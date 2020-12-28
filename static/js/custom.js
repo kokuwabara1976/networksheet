@@ -66,7 +66,7 @@ function generatePDF() {
 	doc.text(0.4, 3.9, str);
 	doc.text(0.4, 4.5, "Do you see any weak relationships? In what ways are they weak?");
 	str = [
-		"Contact",
+		"Contacts",
 		"How close \nare you?",
 		"How often do \nyou talk at \nwork?",
 		"How often \ndo you talk \noutside of \nwork?",
