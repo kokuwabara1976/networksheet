@@ -65,7 +65,7 @@ function generatePDF() {
 	doc.text(0.4, 3.9, str);
 	doc.text(0.4, 4.5, "Do you see any weak relationships? In what ways are they weak?");
 	str = [
-		"Contact",
+		"Contacts",
 		"How close \nare you?",
 		"How often do \nyou talk at \nwork?",
 		"How often \ndo you talk \noutside of \nwork?",
@@ -135,7 +135,10 @@ function generatePDF() {
 				doc.setDrawColor(255, 255, 255);
 				doc.line(0.4, 0.82, 2.5, 0.82);
 				offset = i;
-    		}
+			}
+			
+
+
 			var td = tr[i].children;
 			for (var j = 0; j < 7; j++) {
 				if (j == 0) {
