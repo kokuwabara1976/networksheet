@@ -119,24 +119,7 @@ function generatePDF() {
 				offset = i;
 			}
 			
-			str = [
-				"Contact",
-				"How close \nare you?",
-				"How often do \nyou talk at \nwork?",
-				"How often \ndo you talk \noutside of \nwork?",
-				"How balanced \nare your \nrelationships?",
-				"What do you \nknow about \n them?",
-				"How similar \nare you?"
-			];
-			doc.setFont("roboto_regular");
-			doc.setFontSize(11);
-			for (var i = 0; i < 7; i++) {
-				doc.setDrawColor(0);
-				doc.setFillColor(240, 240, 240);
-				//var x = 0.4 + 1.09 * i;
-				//doc.rect(x, 4.8, 1.06, 0.85, "F");
-				//doc.text(x+0.05, 5, str[i]);
-			}
+
 
 			var td = tr[i].children;
 			for (var j = 0; j < 7; j++) {
