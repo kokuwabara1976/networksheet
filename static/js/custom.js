@@ -10,7 +10,6 @@ function generatePDF() {
 	doc = new jsPDF('p', 'in', 'letter');
 	doc.addFont('Roboto-Light.ttf', 'roboto_light', 'normal');
 	doc.addFont('Roboto-Bold.ttf', 'roboto_bold', 'normal');
-	doc.addFont('Roboto-Thin.ttf', 'roboto_thin', 'normal');
 	doc.addFont('Roboto-Regular.ttf', 'roboto_regular', 'normal');
 	doc.addFont('Marmelad-Regular.ttf', 'marmelad', 'bold');
 	doc.addFont('Marmelad-Regular.ttf', 'marmelad', 'normal');
@@ -104,10 +103,29 @@ function generatePDF() {
     var offset = 0;
     if (tr.length > 3) {
     	for (var i = 4; i < tr.length; i++) {
-    		if ((i - 4) % 8 == 0) {
+    		if ((i - 4) % 7 == 0) {
 				doc.addPage("", "");
-			    doc.addImage(img_header, 'JPEG', 0, 0, 8.5, 1.4);
-			    doc.addImage(img_footer, 'JPEG', 0, 10, 8.5, 1.3);
+				str = [
+					"Contact",
+					"How close \nare you?",
+					"How often do \nyou talk at \nwork?",
+					"How often \ndo you talk \noutside of \nwork?",
+					"How balanced \nare your \nrelationships?",
+					"What do you \nknow about \n them?",
+					"How similar \nare you?"
+				];
+				doc.setFont("roboto_regular");
+				doc.setFontSize(11);
+				doc.setTextColor(32, 33, 36);
+				for (var j = 0; j < 7; j++) {
+					doc.setDrawColor(0);
+					doc.setFillColor(240, 240, 240);
+					var x = 0.4 + 1.09 * j;
+					doc.rect(x, 1.8, 1.06, 0.85, "F");
+					doc.text(x+0.05, 2, str[j]);
+				}
+				doc.addImage(img_header, 'JPEG', 0, 0, 8.5, 1.4);
+				doc.addImage(img_footer, 'JPEG', 0, 10, 8.5, 1.3);
 
 				doc.setTextColor(255, 255, 255);
 				doc.setFontSize(20);
@@ -124,10 +142,10 @@ function generatePDF() {
 					doc.setFont("roboto_regular");
 					doc.setFontSize(13);
 					doc.setTextColor(46, 108, 83);
-					doc.text(0.5, 2.1+(i-offset)*1, td[j].innerHTML);
+					doc.text(0.5, 3.4+(i-offset)*1, td[j].innerHTML);
 				} else {
 					var img = td[j].children;
-					doc.addImage(img[0], 'PNG', 0.45+j*1.09, 1.5+(i-offset)*1, 1, 1);
+					doc.addImage(img[0], 'PNG', 0.45+j*1.09, 2.8+(i-offset)*1, 1, 1);
 				}
 			}
     	}
