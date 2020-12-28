@@ -133,9 +133,9 @@ function generatePDF() {
 			for (var i = 0; i < 7; i++) {
 				doc.setDrawColor(0);
 				doc.setFillColor(240, 240, 240);
-				var x = 0.4 + 1.09 * i;
-				doc.rect(x, 4.8, 1.06, 0.85, "F");
-				doc.text(x+0.05, 5, str[i]);
+				//var x = 0.4 + 1.09 * i;
+				//doc.rect(x, 4.8, 1.06, 0.85, "F");
+				//doc.text(x+0.05, 5, str[i]);
 			}
 
 			var td = tr[i].children;
