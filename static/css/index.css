@@ -186,14 +186,14 @@ body {
 }
 .note {
   background: #f0f0f0;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 10px 10px 20px;
 }
 .note >p {
   background: url('../img/warning.png');
   margin: 0;
   background-repeat: no-repeat;
   background-size: auto; /* contain; */
-  padding-left: 10px;
+  padding-left: 60px;
 }
 .btn-custom {
   background: #2e6c53;
