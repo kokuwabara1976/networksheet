@@ -189,7 +189,7 @@ body {
   padding: 10px 20px 10px 20px;
 }
 .note >p {
-  background: url('../img/note.png');
+  background: url('../img/warning.png');
   margin: 0;
   background-repeat: no-repeat;
   background-size: auto; /* contain; */
