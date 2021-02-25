@@ -192,7 +192,7 @@ body {
   background: url('../img/note.png');
   margin: 0;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: auto; /* contain; */
   padding-left: 55px;
 }
 .btn-custom {
