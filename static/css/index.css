@@ -193,7 +193,7 @@ body {
   margin: 0;
   background-repeat: no-repeat;
   background-size: auto; /* contain; */
-  padding-left: 30px;
+  padding-left: 10px;
 }
 .btn-custom {
   background: #2e6c53;
