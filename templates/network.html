@@ -417,6 +417,14 @@ svg.append("text")
 .attr("font-family", "sans-serif")
 .attr("font-size", "20px");
 
+svg.append("text")
+.attr('class', 'counter')
+.attr("x", 450)
+.attr("y", 750)
+.text("")
+.attr("font-family", "sans-serif")
+.attr("font-size", "20px");
+
     /* ZOOM and PAN
     */
     /* create container elements
@@ -689,6 +697,10 @@ update = function() {
     }).attr('dy', '0.3em').attr('fill', function(d) {
       return global.colorify(text_color);
     });
+
+    d3.select("text.counter").text("No. of contacts: " + graph.nodes.length + ", No. of ties: " + graph.links.length)
+
+    // debugger;
 
     return nodes.exit().remove();
   };
