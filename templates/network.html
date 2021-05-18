@@ -700,8 +700,8 @@ update = function() {
 
    
     counter=d3.select("text.counter").attr('dy', '1em').attr('dx','-15em').text("No. of contacts: " + graph.nodes.length + " --- No. of ties: " + graph.links.length)
-    counter.append(" --- No. of ties: " + graph.links.length).attr('dy', '1em')
-    
+    d3.append("counter").text(" --- No. of ties: " + graph.links.length).attr('dy', '1em')
+
     // debugger;
 
     return nodes.exit().remove();
