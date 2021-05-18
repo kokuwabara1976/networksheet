@@ -700,7 +700,8 @@ update = function() {
 
    
     d3.select("text.counter").text("No. of contacts: " + graph.nodes.length)
-    d3.select("text.counter").text("No. of ties: " + graph.links.length)
+    d3.append("text.counter").attr("dy", "1em").text("No. of ties: " + graph.links.length)
+
     
     // debugger;
 
