@@ -698,8 +698,10 @@ update = function() {
       return global.colorify(text_color);
     });
 
-    d3.select("text.counter").text("No. of contacts: " + graph.nodes.length + ", No. of ties: " + graph.links.length)
-
+    <br><br>  
+    d3.select("text.counter").text("No. of contacts: " + graph.nodes.length)
+    d3.select("text.counter").text("No. of ties: " + graph.links.length)
+    
     // debugger;
 
     return nodes.exit().remove();
