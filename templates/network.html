@@ -399,7 +399,7 @@ svg.append("text")
 svg.append("text")
 .attr("x", 460)
 .attr("y", 715)
-.text("Same organization")
+.text("Different unit")
 .attr("font-family", "sans-serif")
 .attr("font-size", "20px");
 
@@ -701,7 +701,7 @@ update = function() {
    
     counter=d3.select("text.counter").attr('dy', '1em').attr('dx','-15em').text("No. of contacts: " + graph.nodes.length + " --- No. of ties: " + graph.links.length)
     
-    
+
     // debugger;
 
     return nodes.exit().remove();
