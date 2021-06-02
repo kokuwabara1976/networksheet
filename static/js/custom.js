@@ -118,19 +118,19 @@ function generatePDF() {
 		doc.setFillColor(240, 240, 240);
 		var x = 0.4 + 1.09 * i;
 		doc.rect(x, 6.8, 1.06, 0.85, "F"); //doc.rect(x, 4.8, 1.06, 0.85, "F");
-		doc.text(x+0.05, 5, str[i]);
+		doc.text(x+0.05, 7, str[i]);
 	}
 
 	var tr = document.getElementsByClassName('tr_result');
 	for (var i = 0; i < tr.length; i++) {
-		if (i > 3) break;
+		if (i > 1) break;
 		var td = tr[i].children;
 		for (var j = 0; j < 7; j++) {
 			if (j == 0) {
 				doc.setFont("roboto_regular");
 				doc.setFontSize(13);
 				doc.setTextColor(46, 108, 83);
-				doc.text(0.5, 6.25+i*1, td[j].innerHTML);
+				doc.text(0.5, 8.25+i*1, td[j].innerHTML);
 			} else {
 				var img = td[j].children;
 				doc.addImage(img[0], 'PNG', 0.45+j*1.09, 5.66+i*1, 1, 1);
