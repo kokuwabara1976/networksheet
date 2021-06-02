@@ -117,7 +117,7 @@ function generatePDF() {
 		doc.setDrawColor(0);
 		doc.setFillColor(240, 240, 240);
 		var x = 0.4 + 1.09 * i;
-		doc.rect(x, 4.8, 1.06, 0.85, "F");
+		doc.rect(x, 6.8, 1.06, 0.85, "F"); //doc.rect(x, 4.8, 1.06, 0.85, "F");
 		doc.text(x+0.05, 5, str[i]);
 	}
 
@@ -139,7 +139,7 @@ function generatePDF() {
 	}
 
     var offset = 0;
-    if (tr.length > 3) {
+    if (tr.length > 1) { //if (tr.length > 3) {
     	for (var i = 4; i < tr.length; i++) {
     		if ((i - 4) % 7 == 0) {
 				doc.addPage("", "");
