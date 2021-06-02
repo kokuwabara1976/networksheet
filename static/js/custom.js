@@ -68,13 +68,37 @@ function generatePDF() {
 	doc.setFontSize(13);
     doc.setFont("roboto_bold");
     doc.setTextColor(46, 108, 83);
-    doc.text(0.4, 5.5, "Response keys");
+    doc.text(0.4, 4.8, "Response keys");
 
-    doc.setFontSize(13);
+    doc.setFontSize(10);
     doc.setFont("roboto_light");
     doc.setTextColor(32, 33, 36);
-    doc.text(0.4, 6.5, "How close are you?");
+    doc.text(0.4, 5.0, "How close are you?");
 
+    doc.setFontSize(10);
+    doc.setFont("roboto_light");
+    doc.setTextColor(32, 33, 36);
+    doc.text(0.4, 5.2, "How often do you talk during work?");
+
+	doc.setFontSize(10);
+    doc.setFont("roboto_light");
+    doc.setTextColor(32, 33, 36);
+    doc.text(0.4, 5.4, "How often do you talk outside of work?");
+
+    doc.setFontSize(10);
+    doc.setFont("roboto_light");
+    doc.setTextColor(32, 33, 36);
+    doc.text(0.4, 5.6, "How balanced are your relationships?");
+
+	doc.setFontSize(10);
+    doc.setFont("roboto_light");
+    doc.setTextColor(32, 33, 36);
+    doc.text(0.4, 5.8, "What do you know abou them?");
+
+	doc.setFontSize(10);
+    doc.setFont("roboto_light");
+    doc.setTextColor(32, 33, 36);
+    doc.text(0.4, 6.0, "How similar are you?");
 
 doc.addPage("", "");
 
@@ -92,7 +116,7 @@ doc.addPage("", "");
 	for (var i = 0; i < 7; i++) {
 		doc.setDrawColor(0);
 		doc.setFillColor(240, 240, 240);
-		var x = 0.4 + 1.09 * i;
+		var x = i; //0.4 + 1.09 * i;
 		doc.rect(x, 4.8, 1.06, 0.85, "F");
 		doc.text(x+0.05, 5, str[i]);
 	}
