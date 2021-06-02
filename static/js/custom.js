@@ -130,7 +130,7 @@ function generatePDF() {
 				doc.setFont("roboto_regular");
 				doc.setFontSize(13);
 				doc.setTextColor(46, 108, 83);
-				doc.text(0.5, 6.25+i*1, td[j].innerHTML);
+				doc.text(0.5, 8.25+i*1, td[j].innerHTML);
 			} else {
 				var img = td[j].children;
 				doc.addImage(img[0], 'PNG', 0.45+j*1.09, 7.66+i*1, 1, 1);//doc.addImage(img[0], 'PNG', 0.45+j*1.09, 5.66+i*1, 1, 1);
