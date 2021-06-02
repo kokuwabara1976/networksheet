@@ -68,37 +68,37 @@ function generatePDF() {
 	doc.setFontSize(11);
     doc.setFont("roboto_bold");
     doc.setTextColor(46, 108, 83);
-    doc.text(0.6, 4.8, "Response keys");
+    doc.text(0.6, 5.8, "Response keys");
 
     doc.setFontSize(10);
     doc.setFont("roboto_light");
     doc.setTextColor(32, 33, 36);
-    doc.text(0.6, 5.0, "How close are you? [1/4=rather distant, 2/4=somewhat close, 3/4=rather close, 4/4=very close]");
+    doc.text(0.6, 6.0, "How close are you? [1/4=rather distant, 2/4=somewhat close, 3/4=rather close, 4/4=very close]");
 
     doc.setFontSize(10);
     doc.setFont("roboto_light");
     doc.setTextColor(32, 33, 36);
-    doc.text(0.6, 5.2, "How often do you talk during work? [1/4=0-2 times a year, 2/4=every few months, 3/4=every month, 4/4=every week]");
+    doc.text(0.6, 6.2, "How often do you talk during work? [1/4=0-2 times a year, 2/4=every few months, 3/4=every month, 4/4=every week]");
 
 	doc.setFontSize(10);
     doc.setFont("roboto_light");
     doc.setTextColor(32, 33, 36);
-    doc.text(0.6, 5.4, "How often do you talk outside of work? [1/4=0-2 times a year, 2/4=every few months, 3/4=every month, 4/4=every week]");
+    doc.text(0.6, 6.4, "How often do you talk outside of work? [1/4=0-2 times a year, 2/4=every few months, 3/4=every month, 4/4=every week]");
 
     doc.setFontSize(10);
     doc.setFont("roboto_light");
     doc.setTextColor(32, 33, 36);
-    doc.text(0.6, 5.6, "How balanced are your relationships? [1/4=quite unbalanced, 2/4=slightly unbalanced, 3/4=generally balanced, 4/4=very balanced]");
+    doc.text(0.6, 6.6, "How balanced are your relationships? [1/4=quite unbalanced, 2/4=slightly unbalanced, 3/4=generally balanced, 4/4=very balanced]");
 
 	doc.setFontSize(10);
     doc.setFont("roboto_light");
     doc.setTextColor(32, 33, 36);
-    doc.text(0.6, 5.8, "What do you know about them? [0/6=nothing, 6/6=a lot: friends, family, education, cultural background, interests, food]");
+    doc.text(0.6, 6.8, "What do you know about them? [0/6=nothing, 6/6=a lot: friends, family, education, cultural background, interests, food]");
 
 	doc.setFontSize(10);
     doc.setFont("roboto_light");
     doc.setTextColor(32, 33, 36);
-    doc.text(0.6, 6.0, "How similar are you? [0/6=not at all, 6/6=very much: gender, age, cultural background, interests, social or political attitudes, personality]");
+    doc.text(0.6, 7.0, "How similar are you? [0/6=not at all, 6/6=very much: gender, age, cultural background, interests, social or political attitudes, personality]");
 
 	//doc.addPage("", "");
 
