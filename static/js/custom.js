@@ -65,7 +65,6 @@ function generatePDF() {
 	doc.text(0.4, 3.9, str);
 	doc.text(0.4, 4.5, "Do you see any weak relationships? In what ways are they weak?");
 
-
 	doc.setFontSize(13);
     doc.setFont("roboto_bold");
     doc.setTextColor(46, 108, 83);
@@ -76,6 +75,8 @@ function generatePDF() {
     doc.setTextColor(32, 33, 36);
     doc.text(0.4, 6.5, "How close are you?");
 
+
+doc.addPage("", "");
 
 	str = [
 		"Contacts",
