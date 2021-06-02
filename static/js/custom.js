@@ -64,6 +64,9 @@ function generatePDF() {
 	doc.setTextColor(32, 33, 36);
 	doc.text(0.4, 3.9, str);
 	doc.text(0.4, 4.5, "Do you see any weak relationships? In what ways are they weak?");
+
+	doc.addPage("", "");
+
 	str = [
 		"Contacts",
 		"How close \nare you?",
