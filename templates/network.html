@@ -160,18 +160,19 @@
         <div class="">
           <p>If you are finished, please print out or save a PDF copy of your report and close the page. Your data will not be saved once you close the browser.</p> 
          
+          <!---
           <p>
 					<input type="checkbox"  onchange="document.getElementById('savePDF').disabled = !this.checked;" />
 					<label for="exampleFormControlTextarea1">Please verify that you have drawn your network in the grid above by connecting the dots. If you see only dots but no lines connecting any of them, please do so before saving your PDF report.</label>	
-           </p> 
+           </p>
+          --> 
         
         </div>
 
         <script>        
           function drawnetwork() {
-            alert("Please make sure that you have drawn your network in the grid above by connecting the dots. If your PDF shows only dots but no lines, please draw your network and download your PDF report again.");
+            alert("Please make sure that you have drawn your network in the grid above by connecting the dots. If your PDF shows only dots but no lines, please draw your network in the grid and download your PDF report again.");
           }
-    
         </script>
 
 
