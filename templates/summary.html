@@ -1,3 +1,9 @@
+<script>
+	function drawnetwork() {
+	  alert("Please make sure that you have drawn your network in the grid above by connecting the dots. If your PDF shows only dots but no lines, please draw your network and download your PDF report again.");
+	}
+</script>
+
 
 <!doctype html>
 <html lang="en">
@@ -159,7 +165,7 @@ textarea {
 			<div class="row">
 				<div class="col text-center">
 					<form name="myform" action="javascript:getPdf()">
-						<button type="submit" class="btn btn-primary">Save as PDF</button>
+						<button type="submit" class="btn btn-primary" onclick="drawnetwork()">Save as PDF</button>
 					</form>
 				</div>
 			</div>
