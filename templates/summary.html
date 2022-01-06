@@ -100,7 +100,7 @@
 				</div>
 				
 				<div class="form-group"></div>
-					<input type="checkbox"  onchange="document.getElementById('savePDF').disabled = this.checked;" />
+					
 					<label for="exampleFormControlTextarea1">Please verify that you have drawn your network in the grid above by connecting the dots. If you see only dots but no lines connecting any of them, please do so before saving your PDF report.</label>	
 				</div>
 			</div>
@@ -156,11 +156,11 @@ textarea {
 
 		<script>
 			function getPdf() {
-				window.print()
+				window.print();
 			}
 		
 			function drawnetwork() {
-			alert("Please make sure that you have drawn your network in the grid above by connecting the dots. If your PDF shows only dots but no lines, please draw your network and download your PDF report again.");
+				alert("Please make sure that you have drawn your network in the grid above by connecting the dots. If your PDF shows only dots but no lines, please draw your network and download your PDF report again.");
 			}
 
 		</script>
@@ -172,7 +172,7 @@ textarea {
 				<div class="col text-center">
 					<form name="myform" action="javascript:getPdf()">
 
-						<button type="submit" class="btn btn-primary" id="savePDF" onclick="drawnetwork()">Save as PD</button>
+						<button type="submit" class="btn btn-primary" id="savePDF" onclick="drawnetwork()">Save as pdf</button>
 					</form>
 				</div>
 			</div>
