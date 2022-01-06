@@ -95,9 +95,14 @@
 				<textarea id="txtarea3" class="form-control" rows="3"></textarea>
 			  </div>
 
-			  <div class="form-group">
+			  	<div class="form-group">
 					<label for="exampleFormControlTextarea1">If you are finished, you may save a PDF copy of your report and close the page. If any of your written responses are hidden, please adjust the size of the textboxes before printing out your PDF report.</label>
-				  </div>
+				</div>
+				
+				<div class="form-group"></div>
+					<input type="checkbox"  onchange="document.getElementById('savePDF').disabled = this.checked;" />
+					<label for="exampleFormControlTextarea1">Please verify that you have drawn your network in the grid above by connecting the dots. If you see only dots but no lines connecting any of them, please do so before saving your PDF report.</label>	
+				</div>
 			</div>
 	
 	
@@ -166,7 +171,8 @@ textarea {
 			<div class="row">
 				<div class="col text-center">
 					<form name="myform" action="javascript:getPdf()">
-						<button type="submit" class="btn btn-primary" onclick="drawnetwork()">Save as PDF</button>
+
+						<button type="submit" class="btn btn-primary" id="savePDF">Save as PDF</button>
 					</form>
 				</div>
 			</div>
