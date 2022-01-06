@@ -1,0 +1,185 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/index.css">
+	<script src="//d3js.org/d3.v3.min.js"></script>
+
+	<title>NETWORKsheet</title>
+</head>
+<body>
+	<br>
+	<br>
+      <!-- Instructions -->
+	  <div class="container"> 
+	  <div class="jumbotron">
+			<div class="jumbotron-content">
+			  <h3>Your NETWORKsheet Report</h3>
+			  <p>Please complete your network report below. Keep in mind that this report is not meant to be a comprehensive analysis of your entire network. Rather, it is designed to help you reflect on your general networking pattnerns by thinking about the people who comprise your core professional network.</p>
+			</div>
+		</div>
+	</div>
+		<!-- End instructions -->
+
+
+	<div class="container">
+
+		<h3>What do you think of your network?</h3>
+		<img src={{ img | safe }} class="center"/>
+	
+
+		<div class="jumbotron">
+			<div class="form-group">
+			<label for="exampleFormControlTextarea1">What patterns do you see in your network? Do you see any crowded or empty cells? What do you make of them?</label>
+			<textarea class="form-control" id="txtarea1" rows="3"></textarea>
+			  </div>
+		</div>
+	</div>
+
+	<div class="container" style="display: block; page-break-before: always; ">
+
+		<div class="">
+			<div class="jumbotron-content">
+
+				<br>
+				<h3>What do you think of your relationships?</h3>
+				<p>The pie charts below indicate how strong your relationships are across different dimensions. The more green the pie chart is, the stronger the relationship on a given dimension.</p>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th style="width:4cm">Contact</th>
+							<th style="width:4cm">How close are you?</th>
+							<th style="width:4cm">How often do you talk at work?</th>
+							<th style="width:4cm">How often do you talk outside of work?</th>
+							<th style="width:4cm">How balanced are your relationships?</th>
+							<th style="width:4cm">What do you know about them?</th>
+							<th style="width:4cm">How similar are you?</th>
+						</tr>
+					</thead>
+
+					{% for name, questions in summary.items() %}
+					<tr>
+						<td>{{ name }}</td>
+
+						{% for quest in ['close', 'work', 'outside', 'help', 'know', 'similar'] %}
+
+   						    <td>
+
+   						    	<img src={{ summary[name][quest] }}>
+
+   						    </td>
+
+						{% endfor %}
+
+					</tr>
+
+					{% endfor %}
+	     </table>
+		</div>
+	
+		<div class="jumbotron" style="display: block; page-break-before: always; ">
+				<div class="form-group">
+				<label for="exampleFormControlTextarea1">Do you see any relationships that appear particularly weak across multiple dimensions? Does this concern you? Is there anything you can do to strengthen these relationships?</label>
+				<textarea class="form-control" id="txtarea2" rows="3"></textarea>
+				  </div>
+			
+			  <div class="form-group">
+				<label for="exampleFormControlTextarea1">Next, examine your pie charts down each column. Do you see anything suprising or notable patterns? Do see any weak areas (columns with many empty pie charts)? What can yo do to improve those areas of your relationships?</label>
+				<textarea id="txtarea3" class="form-control" rows="3"></textarea>
+			  </div>
+
+			  <div class="form-group">
+					<label for="exampleFormControlTextarea1">If you are finished, you may save a PDF copy of your report and close the page. If any of your written responses are hidden, please adjust the size of the textboxes before printing out your PDF report.</label>
+				  </div>
+			</div>
+	
+	
+	</div>
+
+
+{% block content %}{% endblock %}
+
+	
+</div>
+		
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<script>
+	function expandTextarea(id) {
+    document.getElementById(id).addEventListener('keyup', function() {
+        this.style.overflow = 'hidden';
+        this.style.height = 0;
+        this.style.height = this.scrollHeight + 'px';
+    }, false);
+}
+
+expandTextarea('txtarea1');
+expandTextarea('txtarea2');
+expandTextarea('txtarea3');
+</script>
+
+<style>
+textarea {
+  margin:0px 0px;
+  padding:5px;
+  height:16px;
+  line-height:16px;
+  width:96%;
+  display:block;
+  margin:0px auto;    
+}
+</style>
+
+
+	</body>
+
+
+	<!-- Footer -->
+	<footer>
+
+		<script>
+			function getPdf() {
+				window.print()
+			}
+		</script>
+
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<form name="myform" action="javascript:getPdf()">
+						<button type="submit" class="btn btn-primary">Save as P DF</button>
+					</form>
+				</div>
+			</div>
+			<br>
+		</div>
+
+
+
+		<br><br>
+		<!-- Copyright -->
+		<div class="footer-copyright text-center py-3">© 2020 Copyright: Ko Kuwabara
+		</div>
+		<!-- Copyright -->
+
+	</footer>
+	<!-- Footer -->
+
+	</html>
+
+
+
+
+

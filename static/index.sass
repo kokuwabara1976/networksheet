@@ -1,0 +1,67 @@
+.node > circle
+    stroke-width: 8px
+    
+.node > text
+    pointer-events: none
+    font-family: sans-serif
+    font-weight: bold
+    text-anchor: middle
+    
+    // prevent text selection
+    -webkit-user-select: none 
+    -moz-user-select: none
+    -ms-user-select: none
+    -o-user-select: none
+    user-select: none
+    
+// editing
+.link, .drag_link
+    stroke-width: 6px
+    stroke: gray
+    opacity: 0.5
+    
+.drag_link
+    stroke-linecap: round
+    
+// selection
+.selected > circle
+    stroke-width: 8px
+    
+.selected.link
+    stroke-width: 14px
+    
+// zoom and pan
+.overlay
+    fill: transparent
+    
+// toolbar
+.toolbar
+    position: absolute
+    top: 12px
+    left: 480px
+    width: 400px
+    margin-left: -120px
+    text-align: center
+    
+.tool:not(:last-child)
+    margin-right: 10px
+    
+.tool
+    fill: #A3A4C3
+    cursor: pointer
+    &.active
+        fill: #B52D0C
+        
+.library
+    border: 2px solid #A3A4C3
+    border-radius: 6px
+    background: rgba(255,255,255,0.8)
+    padding: 6px
+    margin-top: 10px
+    
+    svg
+        cursor: pointer
+        
+    svg:not(:last-child)
+        padding-right: 6px
+        
