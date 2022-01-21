@@ -730,7 +730,7 @@ update = function() {
     });
 
    
-    counter=d3.select("text.counter").attr('dy', '1em').attr('dx','-15em').text("No. of contacts: " + graph.nodes.length + " --- No. of ties: " + graph.links.length)
+    counter=d3.select("text.counter").attr('dy', '1em').attr('dx','-15em').text("Density-adjusted size: " +  graph.nodes.length-(2*graph.links.length/graph.nodes.length)  + " (based on " +graph.links.length+ "among "+ graph.nodes.length+ "contacts")
     
 
     // debugger;
