@@ -86,7 +86,7 @@
 
             {% for name, questions in summary.items() %}
             <tr class="tr_result">
-              <td>{{ name }} {{summary[name][type]}}</td>
+              <td>{{ name }} ha {{ summary[name][type] }}</td>
 
               {% for quest in ['close', 'work', 'outside', 'help', 'know', 'similar'] %}
 
