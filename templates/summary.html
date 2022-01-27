@@ -8,7 +8,7 @@
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<link rel="stylesheet" href="/static/index.css">
+	<link rel="stylesheet" href="/static/css/index.css">
 	<script src="//d3js.org/d3.v3.min.js"></script>
 
 	<title>NETWORKsheet</title>
@@ -95,9 +95,14 @@
 				<textarea id="txtarea3" class="form-control" rows="3"></textarea>
 			  </div>
 
-			  <div class="form-group">
+			  	<div class="form-group">
 					<label for="exampleFormControlTextarea1">If you are finished, you may save a PDF copy of your report and close the page. If any of your written responses are hidden, please adjust the size of the textboxes before printing out your PDF report.</label>
-				  </div>
+				</div>
+				
+				<div class="form-group"></div>
+					<input type="checkbox"  onchange="document.getElementById('savePDF').disabled = !this.checked;" />
+					<label for="exampleFormControlTextarea1">Please verify that you have drawn your network in the grid above by connecting the dots. If you see only dots but no lines connecting any of them, please do so before saving your PDF report.</label>	
+				</div>
 			</div>
 	
 	
@@ -151,15 +156,23 @@ textarea {
 
 		<script>
 			function getPdf() {
-				window.print()
+				window.print();
 			}
+		
+			function drawnetwork() {
+				alert("Please make sure that you have drawn your network in the grid above by connecting the dots. If your PDF shows only dots but no lines, please draw your network and download your PDF report again.");
+			}
+
 		</script>
+
+
 
 		<div class="container">
 			<div class="row">
 				<div class="col text-center">
 					<form name="myform" action="javascript:getPdf()">
-						<button type="submit" class="btn btn-primary">Save as P DF</button>
+
+						<button type="submit" class="btn btn-primary" id="savePDF" onclick="drawnetwork()">Save as pdf</button>
 					</form>
 				</div>
 			</div>
@@ -177,7 +190,7 @@ textarea {
 	</footer>
 	<!-- Footer -->
 
-	</html>
+</html>
 
 
 
