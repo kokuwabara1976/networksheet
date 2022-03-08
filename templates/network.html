@@ -730,7 +730,7 @@ update = function() {
     });
 
    
-    counter=d3.select("text.counter").attr('dy', '1em').attr('dx','-15em').text("Density: " + 100*(graph.links.length/(0.5*graph.nodes.length*(graph.nodes.length-1)).toFixed(2) + "% and Density-adjusted size: " + (graph.nodes.length-(2*graph.links.length/graph.nodes.length)).toFixed(2)  + " (based on " +graph.links.length+ " ties among "+ graph.nodes.length+ " contacts)")
+    counter=d3.select("text.counter").attr('dy', '1em').attr('dx','-15em').text("Density: " + (100*graph.links.length/(0.5*graph.nodes.length*(graph.nodes.length-1))).toFixed(2) + "% and Density-adjusted size: " + (graph.nodes.length-(2*graph.links.length/graph.nodes.length)).toFixed(2)  + " (based on " +graph.links.length+ " ties among "+ graph.nodes.length+ " contacts)")
     
 
     // debugger;
