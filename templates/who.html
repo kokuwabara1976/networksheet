@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="../static/css/index.css">
   <link rel="stylesheet" href="../static/css/who.css">
   <title>NETWORKsheet</title>
+  <script>
+    let k=4;
+  </script>
+
 </head>
 
 <body>
@@ -42,20 +46,16 @@
             <div class="">
               <span class="text-green">1 / 6</span>
               <h3 class="section-title arrow-green mb-5">Technical expertise</h3>
-              <p class="mb-5">Name up to 4 people you go to for technical or operational advice and solutions. These people help you solve problems and get things done efficiently or creatively because of their expertise.</p>
+              <p class="mb-5">Name up to <script>document.write(k);</script> people you go to for technical or operational advice and solutions. These people help you solve problems and get things done efficiently or creatively because of their expertise.</p>
               <div class="row">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="T">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="T">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="T">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="T">
-                </div>           
+
+               <script>
+                 for (var i=1; i<k; i++) {
+                    document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="T"></div>');
+                 }
+               </script>   
+
+         
               </div>
               <div class="border-top my-5"></div>
             </div>
