@@ -50,12 +50,10 @@
               <div class="row">
 
                <script>
-                 for (var i=1; i<k; i++) {
+                 for (var i=1; i<=k; i++) {
                     document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="T"></div>');
                  }
                </script>   
-
-         
               </div>
               <div class="border-top my-5"></div>
             </div>
@@ -63,20 +61,13 @@
             <div class="">
               <span class="text-green">2 / 6</span>
               <h3 class="section-title arrow-green mb-5">News and Information</h3>
-              <p class="mb-5">Name up to 4 people you go to for information about new opportunities, events, or happenings at work or in your profession.</p>
+              <p class="mb-5">Name up to <script>document.write(k);</script> people you go to for information about new opportunities, events, or happenings at work or in your profession.</p>
               <div class="row">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="N">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="N">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="N">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="N">
-                </div>
+                <script>
+                  for (var i=1; i<=k; i++) {
+                     document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="N"></div>');
+                  }
+                </script>  
               </div>
               <div class="border-top my-5"></div>
             </div>
@@ -84,20 +75,13 @@
             <div class="">
               <span class="text-green">3 / 6</span>
               <h3 class="section-title arrow-green mb-5">Political Support</h3>
-              <p class="mb-5">Name up to 4 people you rely on to help you secure resources, positions, or opportunities to do new things or meet new people because of their role or influence.</p>
+              <p class="mb-5">Name up to <script>document.write(k);</script> people you rely on to help you secure resources, positions, or opportunities to do new things or meet new people because of their role or influence.</p>
               <div class="row">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="P">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="P">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="P">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="P">
-                </div>
+                <script>
+                  for (var i=1; i<=k; i++) {
+                     document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="P"></div>');
+                  }
+                </script>               
               </div>
               <div class="border-top my-5"></div>
             </div>
@@ -105,41 +89,27 @@
             <div class="">
               <span class="text-green">4 / 6</span>
               <h3 class="section-title arrow-green mb-5">Guidance</h3>
-              <p class="mb-5">Name up to 4 people you go to for wisdom and feedback to help you reflect and change perspectives on important professional and personal questions. You value them as mentors or sounding boards.</p>
+              <p class="mb-5">Name up to <script>document.write(k);</script> people you go to for wisdom and feedback to help you reflect and change perspectives on important professional and personal questions. You value them as mentors or sounding boards.</p>
               <div class="row">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="G">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="G">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="G">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="G">
-                </div>
-              </div>
+                <script>
+                  for (var i=1; i<=k; i++) {
+                     document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="G"></div>');
+                  }
+                </script> 
+                </div> 
               <div class="border-top my-5"></div>
             </div>
 
             <div class="">
               <span class="text-green">5 / 6</span>
               <h3 class="section-title arrow-green mb-5">Inspiration</h3>
-              <p class="mb-5">Name up to 4 people who give you inspiration (energy, confidence, purpose) at work. They inspire, challenge, or encourage you to strive toward important goals.</p>
+              <p class="mb-5">Name up to <script>document.write(k);</script> people who give you inspiration (energy, confidence, purpose) at work. They inspire, challenge, or encourage you to strive toward important goals.</p>
               <div class="row">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="I">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="I">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="I">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="I">
-                </div>
+                <script>
+                  for (var i=1; i<=k; i++) {
+                     document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="I"></div>');
+                  }
+                </script>  
               </div>
               <div class="border-top my-5"></div>
             </div>
@@ -147,21 +117,15 @@
             <div class="">
               <span class="text-green">6 / 6</span>
               <h3 class="section-title arrow-green mb-5">Friendship</h3>
-              <p class="mb-5">Name up to 4 people who have been the most important friends. You can discuss personal or non-professional matters with them. They give you emotional support and make you feel accepted.</p>
+              <p class="mb-5">Name up to <script>document.write(k);</script> people who have been the most important friends. You can discuss personal or non-professional matters with them. They give you emotional support and make you feel accepted.</p>
               <div class="row">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="F">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="F">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="F">
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="" name="F">
-                </div>
+                <script>
+                  for (var i=1; i<=k; i++) {
+                     document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="I"></div>');
+                  }
+                </script>  
               </div>
+              
             </div>
             
             <div class="btn-container mt-5">
