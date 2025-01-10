@@ -56,9 +56,9 @@ def how():
 		# help_CC ['Never']
 
 		names = set()  # Use a set for efficient unique name collection  
-		for ques_name, _ in request.form.items(): # Iterate through items view, not lists  
-        	name = ques_name.split("_")[1]  
-    		names.add(name)
+		for ques_name, _ in request.form.items(): # Iterate through items view, not lists
+			name = ques_name.split("_")[1]
+			names.add(name)
 		names = list(names)  # Convert to list if needed later  
 
 		score_to_pie = {"1-2 times a year": "/static/img/1_4.png", 
