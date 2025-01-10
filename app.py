@@ -1,4 +1,5 @@
 from flask import Flask, request, redirect, render_template, url_for, jsonify, session
+from collections import defaultdict #added 1/10/2025
 import io
 import pandas as pd
 import json
@@ -14,45 +15,34 @@ PORT = 8081
 def landing():
     return render_template('landing.html')
 
-@app.route("/who", methods=['GET', 'POST'])
-def who():
+@app.route("/who", methods=['GET', 'POST'])  
+def who():  
+    if request.method == 'POST':  
+        nodes = []  
+        who = request.form  
 
-	if request.method == 'POST':
+        # Use a defaultdict to efficiently group names and categories  
+        name_categories = defaultdict(list)  
+        for headline in ['T', 'N', 'P', 'G', 'I', 'F']:  
+            for name in who.getlist(headline):  
+                if name:  # More efficient than df[df['names'] != '']  
+                    name_categories[name].append(headline)  
 
-		nodes = []
+        # Create nodes directly from the defaultdict  
+        for name, categories in name_categories.items():  
+            nodes.append({  
+                "id": name,  
+                "name": name,  
+                "x": 469,  
+                "y": 410,  
+                "type": ', '.join(categories),  # No need for string conversion and eval  
+                "cats": categories  
+            })  
 
-		who = request.form
+        session['nodes'] = nodes  
+        return redirect(url_for('how'))  
 
-		df = pd.DataFrame({})
-
-		for headline in ['T', 'N', 'P', 'G', 'I', 'F']:
-		    _df = pd.DataFrame({'names': who.getlist(headline), 'category': headline})
-		    df = pd.concat([df, _df])
-
-		df = df[df['names'] != '']
-		df = df.reset_index(drop=True).groupby('names')['category'].agg(lambda x: str(list(x)))
-
-		for name,categories in df.items():
-
-			print(categories)
-			print(type(categories))
-
-			nodes.append(
-			    	{
-			    	 "id": name,
-			    	 "name": name,
-			    	 "x": 469,
-			    	 "y": 410,
-			    	 "type": ', '.join(eval(categories)),
-			    	 "cats": eval(categories)
-			    	 }
-		    	 )
-
-		session['nodes'] = nodes
-
-		return redirect(url_for('how'))
-
-	return render_template('who.html')
+    return render_template('who.html')  
 
 
 @app.route("/how", methods=['GET', 'POST'])
