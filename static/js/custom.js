@@ -232,6 +232,10 @@ function generatePDF() {
 $(document).ready(function () {
 
 	$('#save_pdf').click(function() {
+		if (document.querySelectorAll('.link').length === 0) {
+			alert("Please draw your network first.");
+			return;
+		}
 		var str_svg = $($('svg')[0]).html();
 		str_svg = str_svg.replace(/"/g, "'").replace("class='overlay'", "style='fill:transparent'");
 		str_svg = "<svg>" + str_svg + "</svg>";
