@@ -508,9 +508,7 @@ svg.append("text")
             graph.remove(global.selection);
             global.selection = null;
             return update();
-
           };
-          
         }
       }
     });
@@ -650,25 +648,25 @@ update = function() {
     nodes = global.vis.selectAll('.node').data(graph.nodes, function(d) {
 
       // Check T, show all nodes regardless of T
-      // Uncheck T, hide all nodes without T
+      // Uncheck T, hide all nodes with T
 
       try{
-        if (!(document.getElementById("checkbox_T").checked) && !(d.cats.includes("T"))){ // if not checked AND includes T
+        if (!(document.getElementById("checkbox_T").checked) && d.cats.includes("T")){
           $(this).attr("visibility", "hidden");
         }
-        else if (!(document.getElementById("checkbox_N").checked) && !(d.cats.includes("N"))){ // if not checked AND includes N
+        else if (!(document.getElementById("checkbox_N").checked) && d.cats.includes("N")){
           $(this).attr("visibility", "hidden");
         }
-        else if (!(document.getElementById("checkbox_P").checked) && !(d.cats.includes("P"))){ // if not checked AND includes P
+        else if (!(document.getElementById("checkbox_P").checked) && d.cats.includes("P")){
           $(this).attr("visibility", "hidden");
         }
-        else if (!(document.getElementById("checkbox_G").checked) && !(d.cats.includes("G"))){ // if not checked AND includes G
+        else if (!(document.getElementById("checkbox_G").checked) && d.cats.includes("G")){
           $(this).attr("visibility", "hidden");
         }
-        else if (!(document.getElementById("checkbox_I").checked) && !(d.cats.includes("I"))){ // if not checked AND includes I
+        else if (!(document.getElementById("checkbox_I").checked) && d.cats.includes("I")){
           $(this).attr("visibility", "hidden");
         }
-        else if (!(document.getElementById("checkbox_F").checked) && !(d.cats.includes("F"))){ // if not checked AND includes F
+        else if (!(document.getElementById("checkbox_F").checked) && d.cats.includes("F")){
           $(this).attr("visibility", "hidden");
         }
         else{
