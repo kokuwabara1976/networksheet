@@ -651,29 +651,13 @@ update = function() {
       // Uncheck T, hide all nodes with T
 
       try{
-        if (!(document.getElementById("checkbox_T").checked) && d.cats.includes("T")){
-          $(this).attr("visibility", "hidden");
-        }
-        else if (!(document.getElementById("checkbox_N").checked) && d.cats.includes("N")){
-          $(this).attr("visibility", "hidden");
-        }
-        else if (!(document.getElementById("checkbox_P").checked) && d.cats.includes("P")){
-          $(this).attr("visibility", "hidden");
-        }
-        else if (!(document.getElementById("checkbox_G").checked) && d.cats.includes("G")){
-          $(this).attr("visibility", "hidden");
-        }
-        else if (!(document.getElementById("checkbox_I").checked) && d.cats.includes("I")){
-          $(this).attr("visibility", "hidden");
-        }
-        else if (!(document.getElementById("checkbox_F").checked) && d.cats.includes("F")){
-          $(this).attr("visibility", "hidden");
-        }
-        else{
-          $(this).attr("visibility", "visible");
-        };
+        var checks = ['T', 'N', 'P', 'G', 'I', 'F'];
+        var hide = checks.some(function(c) {
+          return !document.getElementById('checkbox_' + c).checked && d.cats.includes(c);
+        });
+        $(this).css("display", hide ? "none" : "");
       }
-      catch{
+      catch(e){
       };
       
       return d.id;
@@ -699,6 +683,23 @@ update = function() {
       return d3.selectAll('.node').classed('selected', false);
     }));
     links.exit().remove();
+
+    /* Hide links whose source or target node is hidden
+    */
+    global.vis.selectAll('.link').style('display', function(d) {
+      function nodeHidden(node) {
+        if (!node || !node.cats) return false;
+        var checks = ['T', 'N', 'P', 'G', 'I', 'F'];
+        for (var i = 0; i < checks.length; i++) {
+          if (!document.getElementById('checkbox_' + checks[i]).checked && node.cats.includes(checks[i])) {
+            return true;
+          }
+        }
+        return false;
+      }
+      return (nodeHidden(d.source) || nodeHidden(d.target)) ? 'none' : null;
+    });
+
     /* TOOLBAR - add link tool initialization for new nodes
     */
     if (global.tool === 'add_link') {
