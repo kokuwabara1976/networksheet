@@ -104,7 +104,7 @@
           <div class="">
             <span class="text-green">3 / 6</span>
             <h3 class="section-title arrow-green mb-5">How often do you talk to them outside of work hours?</h3>
-            <p class="mb-5">Spending time together outside of work contexts offers opportunities to get to know one another in different ways. When was the last time you got together with them just to catch up?</p>
+            <p class="mb-5">Spending time together outside of work contexts offers opportunities to get to know one another in different ways. How frequently do you got together with them just to catch up?</p>
             {% for node in nodes %}
             {{ node.id }}
             <div class="form-group">
@@ -134,7 +134,7 @@
           <div class="">
             <span class="text-green">4 / 6</span>
             <h3 class="section-title arrow-green mb-5">How balanced are your relationships?</h3>
-            <p class="mb-5">Are you in their network as much as they are in yours? Do they come to you for support, advice, or company as much as you go to them? Or do you feel that your relationships are one-sided? Please indicate how balanced (you are both "in it together") or unbalanced and one-sided (in either direction) you feel about each relationship.</p>
+            <p class="mb-5">How often do you go to them, or do they typically come to you? Do they come to you for support, advice, or company as much as you go to them? Or do you feel that your relationships are one-sided? Please indicate how balanced (you are both "in it together") or unbalanced and one-sided (in either direction) you feel about each relationship.</p>
 
             {% for node in nodes %}
             {{ node.id }}
@@ -177,7 +177,7 @@
             <li>Education: What is their highest degree? Where did they get their education?</li>
             <li>Cultural background: Where and how did they grow up?</li>
             <li>Interests: How do they spend their free time? What do they like to talk about outside of work?</li>
-            <li>Food: What do they enjoy eating? Do they have favorite restaurants?</li>
+            <li>Food: What do they enjoy eating? Do they have favorite restaurants or dishes?</li>
             </ul>
             {% for node in nodes %}
             {{ node.id }}
@@ -230,11 +230,11 @@
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineCheckbox9_{{ node.id }}" value="Country or culture of origin">
-                <label class="form-check-label" for="inlineCheckbox9_{{ node.id }}">Cultural background</label>
+                <label class="form-check-label" for="inlineCheckbox9_{{ node.id }}">Race and culture</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineCheckbox10_{{ node.id }}" value="Professional Interests">
-                <label class="form-check-label" for="inlineCheckbox10_{{ node.id }}">Professional Interests</label>
+                <label class="form-check-label" for="inlineCheckbox10_{{ node.id }}">Professional or personal interests</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineCheckbox11_{{ node.id }}" value="Social or political attitudes">
