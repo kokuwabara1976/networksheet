@@ -523,10 +523,11 @@ svg.append("text")
     /* DELETION - pressing DEL deletes the selection
     */
     d3.select(window).on('keydown', function() {
+      console.log('keydown', d3.event.keyCode, 'selection', global.selection);
       if (d3.event.keyCode === 46) {
         if (global.selection != null) {
           if (global.selection.hasOwnProperty("source")){
-
+            console.log('deleting link', global.selection);
             graph.remove(global.selection);
             global.selection = null;
             return update();
@@ -759,6 +760,7 @@ update = function() {
   drag_add_link = function(selection) {
     return selection.on('mousedown.add_link', (function(d) {
       var p;
+      console.log('add_link mousedown', d);
       global.new_link_source = d;
       /* create the draggable link representation
       */
@@ -769,6 +771,7 @@ update = function() {
       /* prevent text selection*/
       return d3.event.preventDefault();
     })).on('mouseup.add_link', (function(d) {
+      console.log('add_link mouseup', d, 'source', global.new_link_source);
       /* add link and update, but only if a link is actually added
       */      
       if (graph.add_link(global.new_link_source, d) != null) return update();
