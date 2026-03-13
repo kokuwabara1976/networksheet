@@ -92,6 +92,7 @@
         alert("Please select your current status before starting.");
         return false;
       }
+      localStorage.setItem('networksheet_status', selected.value);
       isMobile();
       return true;
     }

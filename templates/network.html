@@ -223,6 +223,29 @@
   /* create some fake data
   */
 
+  var userStatus = localStorage.getItem('networksheet_status') || 'employee';
+  var bottomLabels = {
+    student: [
+      'Same academic program',
+      'Different program (but same college/university)',
+      'Outside of your college/university but in the industry of your interest',
+      'Different industry'
+    ],
+    employee: [
+      'Same unit',
+      'Different unit',
+      'Different organization',
+      'Different industry'
+    ],
+    'self-employed': [
+      'Same industry',
+      'Different industry, same region',
+      'Same industry, different region',
+      'Different industry, different region'
+    ]
+  };
+  var bottom = bottomLabels[userStatus] || bottomLabels.employee;
+
   graph = {
     nodes: {{ nodes | safe }},
     links: [],
@@ -420,28 +443,28 @@ svg.append("text")
 svg.append("text")
 .attr("x", 270)
 .attr("y", 715)
-.text("Same unit")
+.text(bottom[0])
 .attr("font-family", "sans-serif")
 .attr("font-size", "20px");
 
 svg.append("text")
 .attr("x", 500)
 .attr("y", 715)
-.text("Different unit")
+.text(bottom[1])
 .attr("font-family", "sans-serif")
 .attr("font-size", "20px");
 
 svg.append("text")
 .attr("x", 655)
 .attr("y", 715)
-.text("Different organization")
+.text(bottom[2])
 .attr("font-family", "sans-serif")
 .attr("font-size", "20px");
 
 svg.append("text")
 .attr("x", 870)
 .attr("y", 715)
-.text("Different industry")
+.text(bottom[3])
 .attr("font-family", "sans-serif")
 .attr("font-size", "20px");
 
