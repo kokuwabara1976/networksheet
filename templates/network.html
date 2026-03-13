@@ -227,8 +227,8 @@
   var bottomLabels = {
     student: [
       'Same academic program',
-      'Different program (but same college/university)',
-      'Outside of your college/university but in the industry of your interest',
+      'Different program, same college/university',
+      'Industry of your interest',
       'Different industry'
     ],
     employee: [
@@ -440,33 +440,32 @@ svg.append("text")
 .attr("font-family", "sans-serif")
 .attr("font-size", "20px");
 
-svg.append("text")
-.attr("x", 270)
-.attr("y", 715)
-.text(bottom[0])
-.attr("font-family", "sans-serif")
-.attr("font-size", "20px");
+function addWrappedBottomText(x, y, textLines) {
+  var t = svg.append("text")
+    .attr("x", x)
+    .attr("y", y)
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "18px")
+    .attr("text-anchor", "middle");
+  textLines.forEach(function(line, i) {
+    t.append("tspan")
+      .attr("x", x)
+      .attr("dy", i === 0 ? "0" : "1.1em")
+      .text(line);
+  });
+}
 
-svg.append("text")
-.attr("x", 500)
-.attr("y", 715)
-.text(bottom[1])
-.attr("font-family", "sans-serif")
-.attr("font-size", "20px");
+var bottomTextLines = [
+  bottom[0].match(/.{1,24}(?:\s|$)/g).map(function(s){return s.trim();}),
+  bottom[1].match(/.{1,24}(?:\s|$)/g).map(function(s){return s.trim();}),
+  bottom[2].match(/.{1,24}(?:\s|$)/g).map(function(s){return s.trim();}),
+  bottom[3].match(/.{1,24}(?:\s|$)/g).map(function(s){return s.trim();})
+];
 
-svg.append("text")
-.attr("x", 655)
-.attr("y", 715)
-.text(bottom[2])
-.attr("font-family", "sans-serif")
-.attr("font-size", "20px");
-
-svg.append("text")
-.attr("x", 870)
-.attr("y", 715)
-.text(bottom[3])
-.attr("font-family", "sans-serif")
-.attr("font-size", "20px");
+addWrappedBottomText(270, 715, bottomTextLines[0]);
+addWrappedBottomText(500, 715, bottomTextLines[1]);
+addWrappedBottomText(655, 715, bottomTextLines[2]);
+addWrappedBottomText(870, 715, bottomTextLines[3]);
 
 svg.append("text")
 .attr('class', 'counter')
