@@ -39,8 +39,9 @@ def who():
                 "cats": categories  
             })  
 
-        session['nodes'] = nodes  
-        return redirect(url_for('how'))  
+        nodes.sort(key=lambda n: n["id"].lower())
+        session['nodes'] = nodes
+        return redirect(url_for('how'))
 
     return render_template('who.html')  
 
