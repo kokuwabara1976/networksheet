@@ -25,7 +25,7 @@
                 <span></span>
               </h3>
               <h3 class="page-sub-title arrow">How well do you know your contacts?</h3>
-              <p>Now that you’ve identified some of the key contacts in your network, we’re going to explore the nature and strength of those relationships. Please answer the questions below for each contact in your network.</p>
+              <p>Now that you’ve identified some of the key contacts in your network, we’re going to explore the nature and strength of those relationships. Please answer the questions below for each contact. The letters next to each name indicate which types of support or benefits the person provides: T=technical support (problem-solving, expertise), N=news and information (opportunities, events, or happenings at work), P=political support (securing resources, positions, opportunities), G=guidance (wisdom, feedback, mentoring), I=inspiration (energy, courage, creativity), F=friendship (social support, companionship).</p>
               <p>This section may feel rather tedious depending on how many contacts you have identified, but please do not rush. It is an important part of understanding your relationships.</p>
             </div>
           </div>
@@ -42,7 +42,7 @@
             <h3 class="section-title arrow-green mb-5">How close are you?</h3>
             <p class="mb-5">People feel close if they trust each other and feel comfortable discussing personal matters. How close do you feel towards your contacts?</p>
             {% for node in nodes %}
-            {{ node.id }}
+            {{ node.id }}: {{ node.type }}
             <div class="form-group">
               <div class="form-check form-check-inline">
                 <label class="form-check-label" for="inlineRadio1_{{ node.id }}">
@@ -76,7 +76,7 @@
             <h3 class="section-title arrow-green mb-5">How often do you talk to them during normal work hours?  </h3>
             <p class="mb-5">Do you make a point to talk to them regularly on your own? Do you know what they are up to lately?</p>
             {% for node in nodes %}
-            {{ node.id }}
+            {{ node.id }}: {{ node.type }}
             <div class="form-group">
               <div class="form-check form-check-inline">
                 <input class="form-check-input" checked type="radio" name="work_{{ node.id }}" id="inlineRadio5_{{ node.id }}" value="1-2 times a year" required>
@@ -106,7 +106,7 @@
             <h3 class="section-title arrow-green mb-5">How often do you talk to them outside of work hours?</h3>
             <p class="mb-5">Spending time together outside of work contexts offers opportunities to get to know one another in different ways. How frequently do you got together with them just to catch up?</p>
             {% for node in nodes %}
-            {{ node.id }}
+            {{ node.id }}: {{ node.type }}
             <div class="form-group">
               <div class="form-check form-check-inline">
                 <input class="form-check-input" checked type="radio" name="outside_{{ node.id }}" id="inlineRadio9_{{ node.id }}" value="1-2 times a year" required>
@@ -137,7 +137,7 @@
             <p class="mb-5">How often do you go to them, or do they typically come to you? Do they come to you for support, advice, or company as much as you go to them? Or do you feel that your relationships are one-sided? Please indicate how balanced (you are both "in it together") or unbalanced and one-sided (in either direction) you feel about each relationship.</p>
 
             {% for node in nodes %}
-            {{ node.id }}
+            {{ node.id }}: {{ node.type }}
             <div class="form-group">
               <div class="form-check form-check-inline">
                 <label class="form-check-label" for="inlineRadio13_{{ node.id }}">
@@ -180,7 +180,7 @@
             <li>Food: What do they enjoy eating? Do they have favorite restaurants or dishes?</li>
             </ul>
             {% for node in nodes %}
-            {{ node.id }}
+            {{ node.id }}: {{ node.type }}
             <div class="form-group">
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="know_{{ node.id }}" id="inlineCheckbox1_{{ node.id }}" value="Friends">
@@ -218,7 +218,7 @@
             <h3 class="section-title arrow-green mb-5">How similar are you?</h3>
             <p class="mb-5">Do you have anything in common with your contacts? Here are some common ways in which people feel similar to one another.</p>
             {% for node in nodes %}
-            {{ node.id }}
+            {{ node.id }}: {{ node.type }}
             <div class="form-group">
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="similar_{{ node.id }}" id="inlineCheckbox7_{{ node.id }}" value="Gender">
