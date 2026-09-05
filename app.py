@@ -45,8 +45,16 @@ def compute_how(raw):
 def landing():
     return render_template('landing.html')
 
-@app.route("/who", methods=['GET', 'POST'])  
-def who():  
+@app.route("/new_session")
+def new_session():
+
+    session.clear()
+
+    return redirect(url_for('who'))
+
+
+@app.route("/who", methods=['GET', 'POST'])
+def who():
     if request.method == 'POST':  
         nodes = []  
         who = request.form  
