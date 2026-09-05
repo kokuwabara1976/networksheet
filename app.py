@@ -41,9 +41,15 @@ def who():
 
         nodes.sort(key=lambda n: n["id"].lower())
         session['nodes'] = nodes
+
+        # Drop stale how-answers for contacts that no longer exist (removed or renamed)
+        current_names = {n["id"] for n in nodes}
+        session['how_raw'] = {name: answers for name, answers in session.get('how_raw', {}).items() if name in current_names}
+        session['how'] = {name: answers for name, answers in session.get('how', {}).items() if name in current_names}
+
         return redirect(url_for('how'))
 
-    return render_template('who.html')  
+    return render_template('who.html', nodes=session.get('nodes', []))
 
 
 @app.route("/how", methods=['GET', 'POST'])
@@ -79,9 +85,11 @@ def how():
 		                  5: "/static/img/5_6.png",
 		                  6: "/static/img/4_4.png"}
 
+		raw = {}
 		score = {}
 
 		for name in names:
+			raw[name] = {}
 			score[name] = {}
 
 		for quest in ['close', 'work', 'outside', 'help', 'know', 'similar'] :
@@ -92,19 +100,20 @@ def how():
 				ans = [y for x,y in request.form.lists() if x == key]
 
 				if quest in ['close', 'help', 'outside', 'work']:
+					raw[name][quest] = ans[0][0]
 					score[name][quest] = score_to_pie[ans[0][0]]
 				else:
-					if len(ans) == 0:
-						score[name][quest] = score_to_pie_6[0]
-					else:
-					    score[name][quest] = score_to_pie_6[len(ans[0])]
+					checked = ans[0] if ans else []
+					raw[name][quest] = checked
+					score[name][quest] = score_to_pie_6[len(checked)]
 
+		session['how_raw'] = raw
 		session['how'] = score
 
 		return redirect(url_for('network'))
 
 
-	return render_template('how.html', nodes=session['nodes'])
+	return render_template('how.html', nodes=session['nodes'], answers=session.get('how_raw', {}))
 
 
 @app.route("/network", methods=['GET', 'POST'])

@@ -48,12 +48,14 @@
               <h3 class="section-title arrow-green mb-5">Technical expertise</h3>
               <p class="mb-5">Name up to <script>document.write(k);</script> people you go to for technical or operational advice and solutions. These people help you solve problems and get things done efficiently or creatively because of their expertise.</p>
               <div class="row">
-
+                {% for node in nodes if 'T' in node.cats %}
+                <div class="col"><input type="text" class="form-control" value="{{ node.id }}" name="T"></div>
+                {% endfor %}
                <script>
                  for (var i=1; i<=k; i++) {
                     document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="T"></div>');
                  }
-               </script>   
+               </script>
               </div>
               <div class="border-top my-5"></div>
             </div>
@@ -63,11 +65,14 @@
               <h3 class="section-title arrow-green mb-5">News and Information</h3>
               <p class="mb-5">Name up to <script>document.write(k);</script> people who keep you "in the loop" regarding new opportunities, events, or trends relevant to your profession or career.</p>
               <div class="row">
+                {% for node in nodes if 'N' in node.cats %}
+                <div class="col"><input type="text" class="form-control" value="{{ node.id }}" name="N"></div>
+                {% endfor %}
                 <script>
                   for (var i=1; i<=k; i++) {
                      document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="N"></div>');
                   }
-                </script>  
+                </script>
               </div>
               <div class="border-top my-5"></div>
             </div>
@@ -77,11 +82,14 @@
               <h3 class="section-title arrow-green mb-5">Political Support</h3>
               <p class="mb-5">Name up to <script>document.write(k);</script> people you rely on to help you secure resources, positions, or opportunities to do new things or meet new people because of their role or influence.</p>
               <div class="row">
+                {% for node in nodes if 'P' in node.cats %}
+                <div class="col"><input type="text" class="form-control" value="{{ node.id }}" name="P"></div>
+                {% endfor %}
                 <script>
                   for (var i=1; i<=k; i++) {
                      document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="P"></div>');
                   }
-                </script>               
+                </script>
               </div>
               <div class="border-top my-5"></div>
             </div>
@@ -91,12 +99,15 @@
               <h3 class="section-title arrow-green mb-5">Guidance</h3>
               <p class="mb-5">Name up to <script>document.write(k);</script> people you go to for wisdom and feedback to help you reflect and change perspectives on important professional and personal questions. You value them as mentors or sounding boards.</p>
               <div class="row">
+                {% for node in nodes if 'G' in node.cats %}
+                <div class="col"><input type="text" class="form-control" value="{{ node.id }}" name="G"></div>
+                {% endfor %}
                 <script>
                   for (var i=1; i<=k; i++) {
                      document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="G"></div>');
                   }
-                </script> 
-                </div> 
+                </script>
+                </div>
               <div class="border-top my-5"></div>
             </div>
 
@@ -105,11 +116,14 @@
               <h3 class="section-title arrow-green mb-5">Inspiration</h3>
               <p class="mb-5">Name up to <script>document.write(k);</script> people who give you inspiration (energy, confidence, sense of purpose). They inspire, challenge, or encourage you to strive toward important goals.</p>
               <div class="row">
+                {% for node in nodes if 'I' in node.cats %}
+                <div class="col"><input type="text" class="form-control" value="{{ node.id }}" name="I"></div>
+                {% endfor %}
                 <script>
                   for (var i=1; i<=k; i++) {
                      document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="I"></div>');
                   }
-                </script>  
+                </script>
               </div>
               <div class="border-top my-5"></div>
             </div>
@@ -119,11 +133,14 @@
               <h3 class="section-title arrow-green mb-5">Friendship</h3>
               <p class="mb-5">Name up to <script>document.write(k);</script> people who have been the most important friends. You can discuss personal or non-professional matters with them. They give you emotional support and make you feel accepted.</p>
               <div class="row">
+                {% for node in nodes if 'F' in node.cats %}
+                <div class="col"><input type="text" class="form-control" value="{{ node.id }}" name="F"></div>
+                {% endfor %}
                 <script>
                   for (var i=1; i<=k; i++) {
                      document.write('<div class="col"><input type="text" class="form-control" placeholder="" name="F"></div>');
                   }
-                </script>  
+                </script>
               </div>
               
             </div>
