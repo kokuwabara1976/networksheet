@@ -67,7 +67,8 @@
             How balanced are your relationships? [1/4=quite unbalanced, 2/4=slightly unbalanced, 3/4=generally balanced, 4/4=very balanced]<br>
             What do you know about them? [0/6=nothing, 6/6=a lot: friends, family, education, cultural background, interests, food]<br>
             How similar are you? [0/6=not at all, 6/6=very much: gender, age, cultural background, interests, social or political attitudes, personality]
-          </p> 
+          </p>
+          <p>Each pie's wedges run clockwise starting from the top, in the order listed above, and are labeled directly on the chart.</p>
           
 
 
@@ -89,10 +90,22 @@
               <td>{{ name }} {{ type }}</td>
 
               {% for quest in ['close', 'work', 'outside', 'help', 'know', 'similar'] %}
+              {% set labels = wedge_labels[quest] %}
+              {% if quest in ['close', 'work', 'outside', 'help'] %}
+                {% set filled = [] %}
+                {% for i in range(labels|length) %}
+                  {% set _ = filled.append(i < summary[name][quest]) %}
+                {% endfor %}
+              {% else %}
+                {% set filled = [] %}
+                {% for label in labels %}
+                  {% set _ = filled.append(label in summary[name][quest]) %}
+                {% endfor %}
+              {% endif %}
 
               <td>
 
-                <img src={{ summary[name][quest] }}>
+                {{ render_pie(labels, filled) | safe }}
 
               </td>
 

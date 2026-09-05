@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, render_template, url_for, jsonify, s
 from collections import defaultdict #added 1/10/2025
 import io
 import csv
+import math
 import pandas as pd
 import json
 import numpy as np
@@ -12,22 +13,15 @@ app = Flask(__name__)
 app.secret_key = "aVerySecretKey"
 PORT = 8081
 
-SCORE_TO_PIE = {"1-2 times a year": "/static/img/1_4.png",
-                "Rather distant": "/static/img/1_4.png",
-                "Every few months": "/static/img/2_4.png",
-                "Somewhat close": "/static/img/2_4.png",
-                "Every month": "/static/img/3_4.png",
-                "Rather close": "/static/img/3_4.png",
-                "Every week": "/static/img/4_4.png",
-                "Very close": "/static/img/4_4.png"}
+CLOSE_LEVELS = ["Rather distant", "Somewhat close", "Rather close", "Very close"]
+FREQ_LEVELS = ["1-2 times a year", "Every few months", "Every month", "Every week"]
 
-SCORE_TO_PIE_6 = {0: "/static/img/0_4.png",
-                  1: "/static/img/1_6.png",
-                  2: "/static/img/2_6.png",
-                  3: "/static/img/2_4.png",
-                  4: "/static/img/4_6.png",
-                  5: "/static/img/5_6.png",
-                  6: "/static/img/4_4.png"}
+QUEST_LEVELS = {"close": CLOSE_LEVELS, "work": FREQ_LEVELS, "outside": FREQ_LEVELS, "help": FREQ_LEVELS}
+
+KNOW_LABELS = ["Friends", "Family", "Education", "Culture", "Interests or hobbies", "Favorite Food"]
+SIMILAR_LABELS = ["Gender", "Age", "Country or culture of origin", "Professional Interests", "Social or political attitudes", "Personality"]
+
+QUEST_LABELS = {"know": KNOW_LABELS, "similar": SIMILAR_LABELS, **QUEST_LEVELS}
 
 
 def compute_how(raw):
@@ -35,11 +29,81 @@ def compute_how(raw):
     for name, answers in raw.items():
         score[name] = {}
         for quest, value in answers.items():
-            if quest in ['close', 'help', 'outside', 'work']:
-                score[name][quest] = SCORE_TO_PIE[value]
+            if quest in QUEST_LEVELS:
+                score[name][quest] = QUEST_LEVELS[quest].index(value) + 1
             else:
-                score[name][quest] = SCORE_TO_PIE_6[len(value)]
+                score[name][quest] = value
     return score
+
+
+def wrap_label(label, max_chars=10):
+    if len(label) <= max_chars:
+        return [label]
+    words = label.split(' ')
+    if len(words) == 1:
+        return [label]
+    best_i, best_diff = 1, None
+    for i in range(1, len(words)):
+        diff = abs(len(' '.join(words[:i])) - len(' '.join(words[i:])))
+        if best_diff is None or diff < best_diff:
+            best_i, best_diff = i, diff
+    return [' '.join(words[:best_i]), ' '.join(words[best_i:])]
+
+
+def render_pie(labels, filled, size=100):
+    n = len(labels)
+    wedge_angle = 360 / n
+    cx = cy = size / 2
+    r = size / 2 - 2
+    font_size = 6 if n <= 4 else 5.2
+
+    def point(angle_deg):
+        angle_rad = math.radians(angle_deg)
+        return cx + r * math.sin(angle_rad), cy - r * math.cos(angle_rad)
+
+    parts = [f'<svg width="{size}" height="{size}" viewBox="0 0 {size} {size}" xmlns="http://www.w3.org/2000/svg">']
+
+    for i, label in enumerate(labels):
+        start_angle = i * wedge_angle
+        end_angle = start_angle + wedge_angle
+        x1, y1 = point(start_angle)
+        x2, y2 = point(end_angle)
+        fill = "#008000" if filled[i] else "#dbe9df"
+        large_arc = 1 if wedge_angle > 180 else 0
+        path = f'M {cx},{cy} L {x1:.2f},{y1:.2f} A {r},{r} 0 {large_arc},1 {x2:.2f},{y2:.2f} Z'
+        parts.append(f'<path d="{path}" fill="{fill}" stroke="#ffffff" stroke-width="1.2"><title>{label}</title></path>')
+
+        mid_angle = start_angle + wedge_angle / 2
+        rotation = mid_angle - 90
+        if 90 < rotation % 360 < 270:
+            rotation += 180
+
+        lines = wrap_label(label, max_chars=10 if n <= 4 else 9)
+        label_r = r * 0.6
+        lx = cx + label_r * math.sin(math.radians(mid_angle))
+        ly = cy - label_r * math.cos(math.radians(mid_angle))
+        line_height = font_size * 1.15
+
+        if len(lines) == 1:
+            content = lines[0]
+        else:
+            tspans = []
+            for idx, line in enumerate(lines):
+                dy = -line_height / 2 if idx == 0 else line_height
+                tspans.append(f'<tspan x="{lx:.2f}" dy="{dy:.2f}">{line}</tspan>')
+            content = ''.join(tspans)
+
+        parts.append(
+            f'<text x="{lx:.2f}" y="{ly:.2f}" font-size="{font_size}" fill="#04342C" '
+            f'text-anchor="middle" dominant-baseline="middle" '
+            f'transform="rotate({rotation:.2f} {lx:.2f} {ly:.2f})">{content}</text>'
+        )
+
+    parts.append('</svg>')
+    return ''.join(parts)
+
+
+app.jinja_env.globals['render_pie'] = render_pie
 
 @app.route("/")
 def landing():
@@ -135,7 +199,7 @@ def how():
 @app.route("/network", methods=['GET', 'POST'])
 def network():
 
-	return render_template('network.html', nodes=json.dumps(session['nodes']), summary=session['how'])
+	return render_template('network.html', nodes=json.dumps(session['nodes']), summary=session['how'], wedge_labels=QUEST_LABELS)
 
 
 @app.route("/pie", methods=['GET', 'POST'])

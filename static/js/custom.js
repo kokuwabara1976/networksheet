@@ -5,6 +5,18 @@ var img_header = document.getElementById('background_header');
 var img_footer = document.getElementById('background_footer');
 var img_arrow = document.getElementById('arrow');
 
+function svgCellToDataURL(td) {
+	var svgEl = td.querySelector('svg');
+	var xml = new XMLSerializer().serializeToString(svgEl);
+	var canvas = document.createElement('canvas');
+	canvas.width = parseInt(svgEl.getAttribute('width'), 10);
+	canvas.height = parseInt(svgEl.getAttribute('height'), 10);
+	var ctx = canvas.getContext('2d');
+	var v = canvg.Canvg.fromString(ctx, xml);
+	v.start();
+	return canvas.toDataURL('image/png');
+}
+
 function generatePDF() {
 	
 	doc = new jsPDF('p', 'in', 'letter');
@@ -132,8 +144,7 @@ function generatePDF() {
 				doc.setTextColor(46, 108, 83);
 				doc.text(0.5, 8.25+i*1, td[j].innerHTML);
 			} else {
-				var img = td[j].children;
-				doc.addImage(img[0], 'PNG', 0.45+j*1.09, 7.66+i*1, 1, 1);//doc.addImage(img[0], 'PNG', 0.45+j*1.09, 5.66+i*1, 1, 1);
+				doc.addImage(svgCellToDataURL(td[j]), 'PNG', 0.45+j*1.09, 7.66+i*1, 1, 1);
 			}
 		}
 	}
@@ -185,8 +196,7 @@ function generatePDF() {
 					doc.setTextColor(46, 108, 83);
 					doc.text(0.5, 3.4+(i-offset)*1, td[j].innerHTML);
 				} else {
-					var img = td[j].children;
-					doc.addImage(img[0], 'PNG', 0.45+j*1.09, 2.8+(i-offset)*1, 1, 1);
+					doc.addImage(svgCellToDataURL(td[j]), 'PNG', 0.45+j*1.09, 2.8+(i-offset)*1, 1, 1);
 				}
 			}
     	}
