@@ -16,6 +16,18 @@
 </head>
 
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p>Working across multiple sessions? <a href="{{ url_for('export_csv') }}">Download your progress as a CSV</a> so you can resume later.</p>
+        <form action="{{ url_for('import_csv') }}" method="POST" enctype="multipart/form-data" class="form-inline">
+          <input type="file" name="file" accept=".csv" class="form-control-file" required>
+          <button type="submit" class="btn-custom btn">RESUME FROM FILE</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <form action="{{ url_for('who') }}" method="POST" role="form" class="form-horizontal">
     <div class="form-group">
       <div class="page-container section-1">
