@@ -49,20 +49,23 @@
           </div>
           <div class="btn-container">
             <a class="btn-custom btn" href="{{ url_for('new_session') }}" role="button" onclick="return checkSelection()">START NEW SESSION</a>
+          </div>
+
+          <div class="container" style="text-align:center; margin-top:20px;">
+            <p>Working across multiple sessions? Resume from a previously downloaded CSV file below.</p>
+            <form action="{{ url_for('import_csv') }}" method="POST" enctype="multipart/form-data" id="resume-form">
+              <input type="file" name="file" accept=".csv" id="resume-file-input" style="display:none" required>
+              <a href="#" class="btn-custom btn" onclick="return triggerResume()">RESUME FROM FILE</a>
+            </form>
+          </div>
+
+          <div class="btn-container">
             <div>
               <span style="background: #2e6c53"></span>
               <span></span>
               <span></span>
               <span></span>
             </div>
-          </div>
-
-          <div class="container" style="text-align:center">
-            <p>Working across multiple sessions? Resume from a previously downloaded CSV file below.</p>
-            <form action="{{ url_for('import_csv') }}" method="POST" enctype="multipart/form-data" id="resume-form">
-              <input type="file" name="file" accept=".csv" id="resume-file-input" style="display:none" required>
-              <a href="#" class="btn-custom btn" onclick="return triggerResume()">RESUME FROM FILE</a>
-            </form>
           </div>
         </div>
       </div>
