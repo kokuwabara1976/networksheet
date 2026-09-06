@@ -184,7 +184,7 @@
         -->
 
         <div class="">
-          <p>If you are finished, please print out or save a PDF copy of your report and close the page. Your data will not be saved once you close the browser.</p> 
+          <p>If you are finished, please print out or save a PDF copy of your report and close the page. Your data will not be saved once you close the browser. <button class="btn-custom btn" id="save_pdf" id="savePDF">SAVE PDF</button></p>
          
           <!---
           <p>
@@ -195,14 +195,16 @@
         
         </div>
 
-        <div class="btn-container mt-5">
-          <a href="{{ url_for('export_csv') }}" class="btn-custom btn">DOWNLOAD CSV</a>
-          <button class="btn-custom btn" id="save_pdf" id="savePDF">SAVE PDF</button>
-          <div>
-            <span style="background: #2e6c53"></span>
-            <span style="background: #2e6c53"></span>
-            <span style="background: #2e6c53"></span>
-            <span style="background: #2e6c53"></span>
+        <div style="display:flex; align-items:center; justify-content:center; gap:15px; flex-wrap:wrap;">
+          <span>You may download the raw data of your responses for future use.</span>
+          <div class="btn-container mt-5">
+            <a href="{{ url_for('export_csv') }}" class="btn-custom btn">DOWNLOAD CSV</a>
+            <div>
+              <span style="background: #2e6c53"></span>
+              <span style="background: #2e6c53"></span>
+              <span style="background: #2e6c53"></span>
+              <span style="background: #2e6c53"></span>
+            </div>
           </div>
         </div>
 

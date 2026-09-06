@@ -246,7 +246,7 @@ $(document).ready(function () {
 			alert("Please draw your network first.");
 			return;
 		}
-		var str_svg = $($('svg')[0]).html();
+		var str_svg = $($('network svg')[0]).html();
 		str_svg = str_svg.replace(/"/g, "'").replace("class='overlay'", "style='fill:transparent'");
 		str_svg = "<svg>" + str_svg + "</svg>";
 		var canvas = document.getElementById('svg_canvas');
