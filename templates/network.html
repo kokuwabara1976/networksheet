@@ -90,22 +90,24 @@
               <td>{{ name }} {{ type }}</td>
 
               {% for quest in ['close', 'work', 'outside', 'help', 'know', 'similar'] %}
-              {% set labels = wedge_labels[quest] %}
+              {% set pairs = wedge_labels[quest] %}
+              {% set display_labels = [] %}
+              {% set filled = [] %}
               {% if quest in ['close', 'work', 'outside', 'help'] %}
-                {% set filled = [] %}
-                {% for i in range(labels|length) %}
-                  {% set _ = filled.append(i < summary[name][quest]) %}
+                {% for value, display in pairs %}
+                  {% set _ = display_labels.append(display) %}
+                  {% set _ = filled.append(loop.index0 < summary[name][quest]) %}
                 {% endfor %}
               {% else %}
-                {% set filled = [] %}
-                {% for label in labels %}
-                  {% set _ = filled.append(label in summary[name][quest]) %}
+                {% for value, display in pairs %}
+                  {% set _ = display_labels.append(display) %}
+                  {% set _ = filled.append(value in summary[name][quest]) %}
                 {% endfor %}
               {% endif %}
 
               <td>
 
-                {{ render_pie(labels, filled) | safe }}
+                {{ render_pie(display_labels, filled) | safe }}
 
               </td>
 

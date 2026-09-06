@@ -3,6 +3,7 @@ from collections import defaultdict #added 1/10/2025
 import io
 import csv
 import math
+import uuid
 import pandas as pd
 import json
 import numpy as np
@@ -18,10 +19,30 @@ FREQ_LEVELS = ["1-2 times a year", "Every few months", "Every month", "Every wee
 
 QUEST_LEVELS = {"close": CLOSE_LEVELS, "work": FREQ_LEVELS, "outside": FREQ_LEVELS, "help": FREQ_LEVELS}
 
-KNOW_LABELS = ["Friends", "Family", "Education", "Culture", "Interests or hobbies", "Favorite Food"]
-SIMILAR_LABELS = ["Gender", "Age", "Country or culture of origin", "Professional Interests", "Social or political attitudes", "Personality"]
+KNOW_VALUES = ["Friends", "Family", "Education", "Culture", "Interests or hobbies", "Favorite Food"]
+SIMILAR_VALUES = ["Gender", "Age", "Country or culture of origin", "Professional Interests", "Social or political attitudes", "Personality"]
 
-QUEST_LABELS = {"know": KNOW_LABELS, "similar": SIMILAR_LABELS, **QUEST_LEVELS}
+# Shortened text for the pie wedge itself; the full value is still what's matched against raw answers.
+SIMILAR_DISPLAY = {
+    "Country or culture of origin": "country/culture",
+    "Professional Interests": "Interests",
+    "Social or political attitudes": "soc/pol attitudes",
+}
+
+
+def wedge_pairs(values, display_overrides=None):
+    display_overrides = display_overrides or {}
+    return [(v, display_overrides.get(v, v)) for v in values]
+
+
+QUEST_LABELS = {
+    "close": wedge_pairs(CLOSE_LEVELS),
+    "work": wedge_pairs(FREQ_LEVELS),
+    "outside": wedge_pairs(FREQ_LEVELS),
+    "help": wedge_pairs(FREQ_LEVELS),
+    "know": wedge_pairs(KNOW_VALUES),
+    "similar": wedge_pairs(SIMILAR_VALUES, SIMILAR_DISPLAY),
+}
 
 
 def compute_how(raw):
@@ -36,71 +57,68 @@ def compute_how(raw):
     return score
 
 
-def wrap_label(label, max_chars=10):
-    if len(label) <= max_chars:
-        return [label]
-    words = label.split(' ')
-    if len(words) == 1:
-        return [label]
-    best_i, best_diff = 1, None
-    for i in range(1, len(words)):
-        diff = abs(len(' '.join(words[:i])) - len(' '.join(words[i:])))
-        if best_diff is None or diff < best_diff:
-            best_i, best_diff = i, diff
-    return [' '.join(words[:best_i]), ' '.join(words[best_i:])]
-
-
-def render_pie(labels, filled, size=100):
+def render_pie(labels, filled, size=170):
     n = len(labels)
     wedge_angle = 360 / n
     cx = cy = size / 2
-    r = size / 2 - 2
-    font_size = 6 if n <= 4 else 5.2
+    r = size / 2 - 35
+    label_r = r + 14
+    font_size = 12 if n <= 4 else 10.4
+    uid = uuid.uuid4().hex[:8]
 
-    def point(angle_deg):
+    def point(angle_deg, radius):
         angle_rad = math.radians(angle_deg)
-        return cx + r * math.sin(angle_rad), cy - r * math.cos(angle_rad)
+        return cx + radius * math.sin(angle_rad), cy - radius * math.cos(angle_rad)
 
-    parts = [f'<svg width="{size}" height="{size}" viewBox="0 0 {size} {size}" xmlns="http://www.w3.org/2000/svg">']
+    svg_open = (
+        f'<svg width="{size}" height="{size}" viewBox="0 0 {size} {size}" '
+        f'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">'
+    )
+    defs = ['<defs>']
+    body = []
 
     for i, label in enumerate(labels):
         start_angle = i * wedge_angle
         end_angle = start_angle + wedge_angle
-        x1, y1 = point(start_angle)
-        x2, y2 = point(end_angle)
+        x1, y1 = point(start_angle, r)
+        x2, y2 = point(end_angle, r)
         fill = "#008000" if filled[i] else "#dbe9df"
         large_arc = 1 if wedge_angle > 180 else 0
         path = f'M {cx},{cy} L {x1:.2f},{y1:.2f} A {r},{r} 0 {large_arc},1 {x2:.2f},{y2:.2f} Z'
-        parts.append(f'<path d="{path}" fill="{fill}" stroke="#ffffff" stroke-width="1.2"><title>{label}</title></path>')
+        body.append(f'<path d="{path}" fill="{fill}" stroke="#ffffff" stroke-width="1.2"><title>{label}</title></path>')
 
         mid_angle = start_angle + wedge_angle / 2
-        rotation = mid_angle - 90
-        if 90 < rotation % 360 < 270:
-            rotation += 180
+        flip = 90 < mid_angle % 360 < 270
 
-        lines = wrap_label(label, max_chars=10 if n <= 4 else 9)
-        label_r = r * 0.6
-        lx = cx + label_r * math.sin(math.radians(mid_angle))
-        ly = cy - label_r * math.cos(math.radians(mid_angle))
-        line_height = font_size * 1.15
+        # canvg's textPath support truncates whenever startOffset is non-zero, regardless
+        # of text-anchor (verified empirically) - so instead of centering via startOffset,
+        # shift the underlying path's own start angle back by half the estimated text
+        # width and always render at startOffset=0, which is the one combination canvg
+        # renders in full rather than clipping.
+        text_width = len(label) * font_size * 0.62 + 4
+        half_width_deg = math.degrees((text_width / 2) / label_r)
+        label_start_angle = mid_angle - half_width_deg
+        label_end_angle = mid_angle + half_width_deg
+        label_large_arc = 1 if abs(label_end_angle - label_start_angle) > 180 else 0
 
-        if len(lines) == 1:
-            content = lines[0]
-        else:
-            tspans = []
-            for idx, line in enumerate(lines):
-                dy = -line_height / 2 if idx == 0 else line_height
-                tspans.append(f'<tspan x="{lx:.2f}" dy="{dy:.2f}">{line}</tspan>')
-            content = ''.join(tspans)
-
-        parts.append(
-            f'<text x="{lx:.2f}" y="{ly:.2f}" font-size="{font_size}" fill="#04342C" '
-            f'text-anchor="middle" dominant-baseline="middle" '
-            f'transform="rotate({rotation:.2f} {lx:.2f} {ly:.2f})">{content}</text>'
+        a1, a2 = (label_end_angle, label_start_angle) if flip else (label_start_angle, label_end_angle)
+        sweep = 0 if flip else 1
+        lx1, ly1 = point(a1, label_r)
+        lx2, ly2 = point(a2, label_r)
+        path_id = f'wedge-label-{uid}-{i}'
+        defs.append(
+            f'<path id="{path_id}" d="M {lx1:.2f},{ly1:.2f} A {label_r:.2f},{label_r:.2f} 0 {label_large_arc},{sweep} '
+            f'{lx2:.2f},{ly2:.2f}" fill="none"/>'
         )
 
-    parts.append('</svg>')
-    return ''.join(parts)
+        body.append(
+            f'<text font-size="{font_size}" fill="#04342C">'
+            f'<textPath href="#{path_id}" xlink:href="#{path_id}" startOffset="0">{label}</textPath>'
+            f'</text>'
+        )
+
+    defs.append('</defs>')
+    return svg_open + ''.join(defs) + ''.join(body) + '</svg>'
 
 
 app.jinja_env.globals['render_pie'] = render_pie

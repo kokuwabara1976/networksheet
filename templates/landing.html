@@ -59,9 +59,9 @@
 
           <div class="container">
             <p>Working across multiple sessions? Resume from a previously downloaded CSV file below.</p>
-            <form action="{{ url_for('import_csv') }}" method="POST" enctype="multipart/form-data" class="form-inline" onsubmit="return checkSelection()">
-              <input type="file" name="file" accept=".csv" class="form-control-file" required>
-              <button type="submit" class="btn-custom btn">RESUME FROM FILE</button>
+            <form action="{{ url_for('import_csv') }}" method="POST" enctype="multipart/form-data" id="resume-form">
+              <input type="file" name="file" accept=".csv" id="resume-file-input" style="display:none" required>
+              <a href="#" class="btn-custom btn" onclick="return triggerResume()">RESUME FROM FILE</a>
             </form>
           </div>
         </div>
@@ -103,6 +103,16 @@
       isMobile();
       return true;
     }
+
+    function triggerResume() {
+      if (!checkSelection()) return false;
+      document.getElementById('resume-file-input').click();
+      return false;
+    }
+
+    document.getElementById('resume-file-input').addEventListener('change', function() {
+      document.getElementById('resume-form').submit();
+    });
   </script>
 
 </body>
