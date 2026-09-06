@@ -26,7 +26,7 @@ SIMILAR_VALUES = ["Gender", "Age", "Country or culture of origin", "Professional
 SIMILAR_DISPLAY = {
     "Country or culture of origin": "Culture",
     "Professional Interests": "Interests",
-    "Social or political attitudes": "Soc/pol attitudes",
+    "Social or political attitudes": "Politics",
 }
 
 # "help" reuses the same 4 raw frequency values as work/outside, but displays balance wording.

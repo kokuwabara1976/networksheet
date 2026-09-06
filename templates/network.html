@@ -158,7 +158,7 @@
         <!-- End instructions -->
 
         <div class="note my-5">
-          <p>WARNING: The network grid will be refreshed if you return to a previous page or refresh this page. If you have trouble drawing your network below, you can use this <a href="/static/img/networkgrid.pdf" target="_blank">paper-and-pencil template</a> or print out a PDF copy of the page below and draw on it directly. Please report any technical issues <a href="mailto:kokuwabara@gmail.com">here</a>.</p>
+          <p>WARNING: The network grid will be refreshed if you return to a previous page or refresh this page.  Please report any technical issues <a href="mailto:kokuwabara@gmail.com">here</a>.</p>
         </div>
 
         <div>
@@ -183,30 +183,27 @@
         </div>
         -->
 
-        <div class="">
-          <p>If you are finished, please print out or save a PDF copy of your report and close the page. Your data will not be saved once you close the browser. <button class="btn-custom btn" id="save_pdf" id="savePDF">SAVE PDF</button></p>
-         
-          <!---
-          <p>
+        <!---
+        <p>
 					<input type="checkbox"  onchange="document.getElementById('savePDF').disabled = !this.checked;" />
-					<label for="exampleFormControlTextarea1">Please verify that you have drawn your network in the grid above by connecting the dots. If you see only dots but no lines connecting any of them, please do so before saving your PDF report.</label>	
-           </p>
-          --> 
-        
-        </div>
+					<label for="exampleFormControlTextarea1">Please verify that you have drawn your network in the grid above by connecting the dots. If you see only dots but no lines connecting any of them, please do so before saving your PDF report.</label>
+        </p>
+        -->
 
-        <div style="display:flex; align-items:center; justify-content:center; gap:15px; flex-wrap:wrap;">
-          <span>You may download the raw data of your responses for future use.</span>
-          <div class="btn-container mt-5">
-            <a href="{{ url_for('export_csv') }}" class="btn-custom btn">DOWNLOAD CSV</a>
-            <div>
-              <span style="background: #2e6c53"></span>
-              <span style="background: #2e6c53"></span>
-              <span style="background: #2e6c53"></span>
-              <span style="background: #2e6c53"></span>
-            </div>
-          </div>
-        </div>
+        <table style="width:5in; margin:40px auto 0; border-collapse:collapse;">
+          <tr>
+            <td style="padding:10px; text-align:left; vertical-align:middle;">If you are finished, please print out or save a PDF copy of your report and close the page. Your data will not be saved once you close the browser.</td>
+            <td style="padding:10px; text-align:center; vertical-align:middle; white-space:nowrap;">
+              <button class="btn-custom btn" id="save_pdf" id="savePDF">SAVE PDF</button>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:10px; text-align:left; vertical-align:middle;">You may download the raw data of your responses for future use.</td>
+            <td style="padding:10px; text-align:center; vertical-align:middle; white-space:nowrap;">
+              <a href="{{ url_for('export_csv') }}" class="btn-custom btn">DOWNLOAD CSV</a>
+            </td>
+          </tr>
+        </table>
 
       </div>
     </div>
