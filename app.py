@@ -24,9 +24,9 @@ SIMILAR_VALUES = ["Gender", "Age", "Country or culture of origin", "Professional
 
 # Shortened text for the pie wedge itself; the full value is still what's matched against raw answers.
 SIMILAR_DISPLAY = {
-    "Country or culture of origin": "country/culture",
+    "Country or culture of origin": "Culture",
     "Professional Interests": "Interests",
-    "Social or political attitudes": "soc/pol attitudes",
+    "Social or political attitudes": "Soc/pol attitudes",
 }
 
 # "help" reuses the same 4 raw frequency values as work/outside, but displays balance wording.
@@ -139,16 +139,38 @@ def render_pie(labels, filled, size=170, top_label=None):
         body.append(f'<path d="{path}" fill="{fill}" stroke="#ffffff" stroke-width="1.2"><title>{title}</title></path>')
 
     if top_label is not None:
-        add_curved_label(top_label, 0, label_r)
+        # A single answer, no longer competing with other wedge labels - render it
+        # as plain (non-curved) text centered on the pie itself, like a donut-chart
+        # center label, rather than perimeter text (which was hard to keep centered).
+        inner_r = r * 0.55
+        text_width = len(top_label) * font_size * 0.62 + 4
+        lines = wrap_label(top_label) if text_width > inner_r * 1.8 else [top_label]
+        line_height = font_size * 1.15
+        n_lines = len(lines)
+        tspans = []
+        for li, line in enumerate(lines):
+            dy = -line_height * (n_lines - 1) / 2 if li == 0 else line_height
+            tspans.append(f'<tspan x="{cx}" dy="{dy:.2f}">{line}</tspan>')
+        body.append(f'<circle cx="{cx}" cy="{cy}" r="{inner_r:.2f}" fill="#ffffff"/>')
+        body.append(
+            f'<text x="{cx}" y="{cy}" font-size="{font_size}" fill="#04342C" '
+            f'text-anchor="middle" dominant-baseline="middle">{"".join(tspans)}</text>'
+        )
     else:
         for i, label in enumerate(labels):
             mid_angle = i * wedge_angle + wedge_angle / 2
+            flip = 90 < mid_angle % 360 < 270
             own_arc_length = label_r * math.radians(wedge_angle)
             text_width = len(label) * font_size * 0.62 + 4
             lines = wrap_label(label) if text_width > own_arc_length else [label]
             line_gap = font_size * 1.15
+            n_lines = len(lines)
             for li, line in enumerate(lines):
-                radius = label_r + (li - (len(lines) - 1) / 2) * line_gap
+                # Larger radius sits higher on screen for top-half wedges and lower for
+                # bottom-half ones (flipped) - order lines so reading top-to-bottom on
+                # screen matches the label's natural left-to-right word order.
+                idx = li if flip else (n_lines - 1 - li)
+                radius = label_r + (idx - (n_lines - 1) / 2) * line_gap
                 add_curved_label(line, mid_angle, radius)
 
     defs.append('</defs>')
