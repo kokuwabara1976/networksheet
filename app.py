@@ -29,6 +29,14 @@ SIMILAR_DISPLAY = {
     "Social or political attitudes": "soc/pol attitudes",
 }
 
+# "help" reuses the same 4 raw frequency values as work/outside, but displays balance wording.
+HELP_DISPLAY = {
+    "1-2 times a year": "Quite unbalanced",
+    "Every few months": "Slightly unbalanced",
+    "Every month": "Generally balanced",
+    "Every week": "Very balanced",
+}
+
 
 def wedge_pairs(values, display_overrides=None):
     display_overrides = display_overrides or {}
@@ -39,7 +47,7 @@ QUEST_LABELS = {
     "close": wedge_pairs(CLOSE_LEVELS),
     "work": wedge_pairs(FREQ_LEVELS),
     "outside": wedge_pairs(FREQ_LEVELS),
-    "help": wedge_pairs(FREQ_LEVELS),
+    "help": wedge_pairs(FREQ_LEVELS, HELP_DISPLAY),
     "know": wedge_pairs(KNOW_VALUES),
     "similar": wedge_pairs(SIMILAR_VALUES, SIMILAR_DISPLAY),
 }
@@ -57,14 +65,27 @@ def compute_how(raw):
     return score
 
 
-def render_pie(labels, filled, size=170):
-    n = len(labels)
+def wrap_label(label):
+    words = label.split(' ')
+    if len(words) == 1:
+        return [label]
+    best_i, best_diff = 1, None
+    for i in range(1, len(words)):
+        diff = abs(len(' '.join(words[:i])) - len(' '.join(words[i:])))
+        if best_diff is None or diff < best_diff:
+            best_i, best_diff = i, diff
+    return [' '.join(words[:best_i]), ' '.join(words[best_i:])]
+
+
+def render_pie(labels, filled, size=170, top_label=None):
+    n = len(filled)
     wedge_angle = 360 / n
     cx = cy = size / 2
     r = size / 2 - 35
     label_r = r + 14
     font_size = 12 if n <= 4 else 10.4
     uid = uuid.uuid4().hex[:8]
+    counter = [0]
 
     def point(angle_deg, radius):
         angle_rad = math.radians(angle_deg)
@@ -77,7 +98,36 @@ def render_pie(labels, filled, size=170):
     defs = ['<defs>']
     body = []
 
-    for i, label in enumerate(labels):
+    def add_curved_label(text, mid_angle, radius):
+        # canvg's textPath support truncates whenever startOffset is non-zero, regardless
+        # of text-anchor (verified empirically) - so instead of centering via startOffset,
+        # shift the underlying path's own start angle back by half the estimated text
+        # width and always render at startOffset=0, which is the one combination canvg
+        # renders in full rather than clipping.
+        flip = 90 < mid_angle % 360 < 270
+        text_width = len(text) * font_size * 0.62 + 4
+        half_width_deg = math.degrees((text_width / 2) / radius)
+        label_start_angle = mid_angle - half_width_deg
+        label_end_angle = mid_angle + half_width_deg
+        label_large_arc = 1 if abs(label_end_angle - label_start_angle) > 180 else 0
+
+        a1, a2 = (label_end_angle, label_start_angle) if flip else (label_start_angle, label_end_angle)
+        sweep = 0 if flip else 1
+        lx1, ly1 = point(a1, radius)
+        lx2, ly2 = point(a2, radius)
+        counter[0] += 1
+        path_id = f'wedge-label-{uid}-{counter[0]}'
+        defs.append(
+            f'<path id="{path_id}" d="M {lx1:.2f},{ly1:.2f} A {radius:.2f},{radius:.2f} 0 {label_large_arc},{sweep} '
+            f'{lx2:.2f},{ly2:.2f}" fill="none"/>'
+        )
+        body.append(
+            f'<text font-size="{font_size}" fill="#04342C">'
+            f'<textPath href="#{path_id}" xlink:href="#{path_id}" startOffset="0">{text}</textPath>'
+            f'</text>'
+        )
+
+    for i in range(n):
         start_angle = i * wedge_angle
         end_angle = start_angle + wedge_angle
         x1, y1 = point(start_angle, r)
@@ -85,37 +135,21 @@ def render_pie(labels, filled, size=170):
         fill = "#008000" if filled[i] else "#dbe9df"
         large_arc = 1 if wedge_angle > 180 else 0
         path = f'M {cx},{cy} L {x1:.2f},{y1:.2f} A {r},{r} 0 {large_arc},1 {x2:.2f},{y2:.2f} Z'
-        body.append(f'<path d="{path}" fill="{fill}" stroke="#ffffff" stroke-width="1.2"><title>{label}</title></path>')
+        title = labels[i] if i < len(labels) else ''
+        body.append(f'<path d="{path}" fill="{fill}" stroke="#ffffff" stroke-width="1.2"><title>{title}</title></path>')
 
-        mid_angle = start_angle + wedge_angle / 2
-        flip = 90 < mid_angle % 360 < 270
-
-        # canvg's textPath support truncates whenever startOffset is non-zero, regardless
-        # of text-anchor (verified empirically) - so instead of centering via startOffset,
-        # shift the underlying path's own start angle back by half the estimated text
-        # width and always render at startOffset=0, which is the one combination canvg
-        # renders in full rather than clipping.
-        text_width = len(label) * font_size * 0.62 + 4
-        half_width_deg = math.degrees((text_width / 2) / label_r)
-        label_start_angle = mid_angle - half_width_deg
-        label_end_angle = mid_angle + half_width_deg
-        label_large_arc = 1 if abs(label_end_angle - label_start_angle) > 180 else 0
-
-        a1, a2 = (label_end_angle, label_start_angle) if flip else (label_start_angle, label_end_angle)
-        sweep = 0 if flip else 1
-        lx1, ly1 = point(a1, label_r)
-        lx2, ly2 = point(a2, label_r)
-        path_id = f'wedge-label-{uid}-{i}'
-        defs.append(
-            f'<path id="{path_id}" d="M {lx1:.2f},{ly1:.2f} A {label_r:.2f},{label_r:.2f} 0 {label_large_arc},{sweep} '
-            f'{lx2:.2f},{ly2:.2f}" fill="none"/>'
-        )
-
-        body.append(
-            f'<text font-size="{font_size}" fill="#04342C">'
-            f'<textPath href="#{path_id}" xlink:href="#{path_id}" startOffset="0">{label}</textPath>'
-            f'</text>'
-        )
+    if top_label is not None:
+        add_curved_label(top_label, 0, label_r)
+    else:
+        for i, label in enumerate(labels):
+            mid_angle = i * wedge_angle + wedge_angle / 2
+            own_arc_length = label_r * math.radians(wedge_angle)
+            text_width = len(label) * font_size * 0.62 + 4
+            lines = wrap_label(label) if text_width > own_arc_length else [label]
+            line_gap = font_size * 1.15
+            for li, line in enumerate(lines):
+                radius = label_r + (li - (len(lines) - 1) / 2) * line_gap
+                add_curved_label(line, mid_angle, radius)
 
     defs.append('</defs>')
     return svg_open + ''.join(defs) + ''.join(body) + '</svg>'

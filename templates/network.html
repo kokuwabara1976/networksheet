@@ -98,18 +98,25 @@
                   {% set _ = display_labels.append(display) %}
                   {% set _ = filled.append(loop.index0 < summary[name][quest]) %}
                 {% endfor %}
+                {% set top = display_labels[summary[name][quest] - 1] %}
+
+                <td>
+
+                  {{ render_pie(display_labels, filled, top_label=top) | safe }}
+
+                </td>
               {% else %}
                 {% for value, display in pairs %}
                   {% set _ = display_labels.append(display) %}
                   {% set _ = filled.append(value in summary[name][quest]) %}
                 {% endfor %}
+
+                <td>
+
+                  {{ render_pie(display_labels, filled) | safe }}
+
+                </td>
               {% endif %}
-
-              <td>
-
-                {{ render_pie(display_labels, filled) | safe }}
-
-              </td>
 
               {% endfor %}
 
