@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.secret_key = "aVerySecretKey"
 PORT = 8081
 
-CLOSE_LEVELS = ["Rather distant", "Somewhat close", "Rather close", "Very close"]
+CLOSE_LEVELS = ["Slightly close", "Somewhat close", "Rather close", "Very close"]
 FREQ_LEVELS = ["1-2 times a year", "Every few months", "Every month", "Every week"]
 
 QUEST_LEVELS = {"close": CLOSE_LEVELS, "work": FREQ_LEVELS, "outside": FREQ_LEVELS, "help": FREQ_LEVELS}

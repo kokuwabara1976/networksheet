@@ -85,7 +85,7 @@ function generatePDF() {
     doc.setFontSize(9);
     doc.setFont("roboto_light");
     doc.setTextColor(32, 33, 36);
-    doc.text(0.4, 5.4, "How close are you? [1/4=rather distant, 2/4=somewhat close, 3/4=rather close, 4/4=very close]");
+    doc.text(0.4, 5.4, "How close are you? [1/4=slightly close, 2/4=somewhat close, 3/4=rather close, 4/4=very close]");
 
     doc.setFontSize(9);
     doc.setFont("roboto_light");
